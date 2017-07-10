@@ -1,8 +1,4 @@
-# web-dev-template
+My name is Justin Riley, I am an undergraduate student studying computer science at Northeastern University.
+The purpose of this repo is to improve my web development skills.
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+Site link: https://riley-justin-webdev.herokuapp.com/
