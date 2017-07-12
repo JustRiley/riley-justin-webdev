@@ -1,0 +1,16 @@
+input {
+    margin-bottom: 5px;
+}
+
+body.jgr-navbar {
+    padding-top: 60px;
+}
+
+.navbar-default {
+    background-color: crimson;
+    border-color: darkred;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
