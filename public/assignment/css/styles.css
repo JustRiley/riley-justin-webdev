@@ -1,9 +1,10 @@
-input {
+input, textarea {
     margin-bottom: 5px;
 }
 
 body.jgr-navbar {
     padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .navbar-default {
@@ -12,5 +13,32 @@ body.jgr-navbar {
 }
 
 .navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+.jgr .col-xs-3.jgr-split-view-left {
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    z-index: 1;
+    overflow-y: scroll;
+}
+
+@media (min-width: 1200px){
+    .col-lg-9.jgr-split-view-right {
+        width: 75%;
+        position: absolute;
+        top: 60px;
+        bottom: 0px;
+        right: 0px;
+        overflow-y: scroll;
+    }
+}
+
+a.jgr-glyph-href {
     color: white;
 }
