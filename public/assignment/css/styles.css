@@ -20,7 +20,7 @@ body.jgr-navbar {
     color: white;
 }
 
-.jgr .col-xs-3.jgr-split-view-left {
+.jgr .jgr-split-view-left {
     position: absolute;
     top: 60px;
     bottom: 0px;
@@ -28,17 +28,22 @@ body.jgr-navbar {
     overflow-y: scroll;
 }
 
-@media (min-width: 1200px){
+
+@media (min-width: 1200px) {
     .col-lg-9.jgr-split-view-right {
         width: 75%;
         position: absolute;
-        top: 60px;
-        bottom: 0px;
         right: 0px;
         overflow-y: scroll;
+        top: 60px;
+        bottom: 0px;
     }
 }
 
 a.jgr-glyph-href {
     color: white;
+}
+/* Remove underline from links. TODO: Figure out why it doesn't work without !important */
+a {
+    text-decoration: none!important;
 }
