@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Widget</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-left hidden-xs">
+            <li><a href="widget-list.html">
+                <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
+        </ul>
+        <a class="navbar-brand" href="#">Image Widget</a>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="widget-list.html">
+                <span class="pull-right glyphicon glyphicon-check"></span></a></li>
+        </ul>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+
+    <label for="widgetname">Name</label>
+    <input name="widgetname"
+           type="text"
+           class="form-control"
+           value="Widget Name"
+           id="widgetname">
+
+    <label for="widgettext">Text</label>
+    <input name="widgettext"
+           value="This is text for an image widget"
+           type="text"
+           class="form-control"
+           id="widgettext">
+
+    <label for="widgeturl">URL</label>
+    <input name="widgeturl"
+           value="image.com"
+           type="text"
+           class="form-control"
+           id="widgeturl">
+
+    <label for="widgetwidth">Width</label>
+    <input name="widgetwidth"
+           value="5%"
+           type="text"
+           class="form-control"
+           id="widgetwidth">
+
+    <label for="widgetupload">Upload</label>
+    <input name="widgetupload"
+           type="file"
+           class="form-control"
+           id="widgetupload">
+
+    <a class="btn btn-default btn-primary btn-block"
+       href="widget-list.html"
+       role="button">Upload Image</a>
+
+    <a class="btn btn-default btn-danger btn-block"
+       href="widget-list.html"
+       role="button">Delete</a></div>
+</div>
+
+<nav class="navbar navbar-default navbar-static-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="jgr-glyph-href" href="profile.html">
+                <span class="pull-right glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div><!-- /.container-fluid -->
+</nav>
+</body>
+</html>

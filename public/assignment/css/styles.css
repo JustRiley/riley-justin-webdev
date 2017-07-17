@@ -1,10 +1,8 @@
-input, textarea {
+input, textarea{
     margin-bottom: 5px;
 }
-
-body.jgr-navbar {
-    padding-top: 60px;
-    padding-bottom: 60px;
+.navbar-static-bottom {
+    margin-top: 10px;
 }
 
 .navbar-default {
