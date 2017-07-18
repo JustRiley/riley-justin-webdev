@@ -3,6 +3,10 @@ input, textarea{
 }
 .navbar-static-bottom {
     margin-top: 10px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
 }
 
 .navbar-default {
@@ -44,4 +48,10 @@ a.jgr-glyph-href {
 /* Remove underline from links. TODO: Figure out why it doesn't work without !important */
 a {
     text-decoration: none!important;
+}
+
+iframe {
+    padding-top: 5px;
+    width: auto;
+    height: auto;
 }
