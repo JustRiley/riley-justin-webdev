@@ -4,12 +4,8 @@
         .module("WamApp")
         .controller("profileController", profileController);
 
-    function profileController($scope, $routeParams) {
+    function profileController($scope, $routeParams, userService) {
         var userId = $routeParams["userId"];
-        for (var u in users) {
-            if (users[u]._id === userId) {
-                $scope.user = users[u];
-            }
-        }
+        $scope.user = userService.findUserById(userId);
     }
 })();
