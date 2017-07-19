@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New Page</title>
+    <title>Edit Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
+
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
             <div class="row">
@@ -17,7 +18,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-10 col-xs-8">
-                    <a class="navbar-brand" href="#">New Page</a>
+                    <a class="navbar-brand" href="#">Edit Page</a>
                 </div>
                 <div class="col-lg-1 col-xs-2">
                     <ul class="nav navbar-nav navbar-right">
@@ -94,35 +95,29 @@
             </ul></div>
             <!--right side-->
             <div class="col-xs-12 col-lg-9 jgr-split-view-right">
-                <label for="name">Name</label>
-                <input name="name"
-                       placeholder="Page Name"
+                <label for="pagename">Name</label>
+                <input name="pagename"
                        type="text"
                        class="form-control"
-                       id="name">
+                       value="Blog Posts"
+                       id="pagename">
 
-                <label for="title">Title</label>
-                <textarea name="title"
-                          rows="5"
-                          placeholder="Page Title"
-                          type="text"
-                          class="form-control"
-                          id="title"></textarea>
-
-                <a class="btn btn-default btn-primary btn-block"
-                   href="website-list.html"
-                   role="button">Create</a>
-
+                <label for="pagetitle">Title</label>
+                <input name="pagetitle"
+                       placeholder="Page Title"
+                       type="text"
+                       class="form-control"
+                       id="pagetitle">
                 <a class="btn btn-default btn-danger btn-block"
-                   href="website-list.html"
-                   role="button">Cancel</a></div>
+                   href="page-list.html"
+                role="button">Delete</a></div>
         </div>
     </div>
 
     <nav class="navbar navbar-default navbar-static-bottom">
         <div class="container-fluid">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="jgr-glyph-href" href="profile.html">
+                <li><a class="jgr-glyph-href" href="../user/templates/profile.view.client.html">
                     <span class="pull-right glyphicon glyphicon-user"></span></a></li>
             </ul>
         </div><!-- /.container-fluid -->

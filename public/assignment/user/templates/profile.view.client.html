@@ -1,3 +1,4 @@
+<div ng-controller="profileController">
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
         <div class="row">
@@ -6,7 +7,7 @@
             </div>
             <div class="col-lg-2">
                 <ul class="nav navba-nav navbar-right">
-                    <li><a class="jgr-glyph-href" href="profile.html">
+                    <li><a class="jgr-glyph-href" href="profile.view.client.html">
                         <span class="pull-right glyphicon glyphicon-check"></span></a></li>
                 </ul>
             </div>
@@ -18,6 +19,7 @@
 
     <label for="firstName">First Name</label>
     <input name="firstName"
+           ng-model="user.firstName"
            placeholder="John"
            type="text"
            class="form-control"
@@ -25,6 +27,7 @@
 
     <label for="lastName">Last Name</label>
     <input name="lastName"
+           ng-model="user.lastName"
            placeholder="Doe"
            type="text"
            class="form-control"
@@ -33,7 +36,7 @@
     <label for="username">Username</label>
     <input name="username"
            readonly
-           value="Username"
+           ng-model="user.username"
            type="text"
            class="form-control"
            id="username">
@@ -52,18 +55,19 @@
            id="dob">
 
     <a class="btn btn-default btn-primary btn-block"
-       href="website-list.html"
+       href="../../website/website-list.html"
        role="button">Websites</a>
 
     <a class="btn btn-default btn-danger btn-block"
-       href="index.html"
+       href="#!/login"
        role="button">Logout</a>
 </div>
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="jgr-glyph-href" href="profile.html">
+            <li><a class="jgr-glyph-href" href="profile.view.client.html">
                 <span class="pull-right glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div><!-- /.container-fluid -->
 </nav>
+</div>
