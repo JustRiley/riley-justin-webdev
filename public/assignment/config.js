@@ -21,12 +21,16 @@
                 controller: "profileController",
                 controllerAs: "model"
             })
-        //website routes
+            //website routes
             .when("/user/:userId/website", {
                 templateUrl: "website/templates/website-list.view.client.html",
                 controller: "websiteListController",
                 controllerAs: "model"
-        })
-
+            })
+            .when("/user/:userId/website/new", {
+                templateUrl: "website/templates/website-new.view.client.html"
+                // controller: "websiteListController",
+                // controllerAs: "model"
+            })
     }
 })();
