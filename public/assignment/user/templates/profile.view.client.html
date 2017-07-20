@@ -1,4 +1,4 @@
-<div ng-controller="profileController">
+<div>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
         <div class="row">
@@ -19,7 +19,7 @@
 
     <label for="firstName">First Name</label>
     <input name="firstName"
-           ng-model="user.firstName"
+           ng-model="model.user.firstName"
            placeholder="John"
            type="text"
            class="form-control"
@@ -27,7 +27,7 @@
 
     <label for="lastName">Last Name</label>
     <input name="lastName"
-           ng-model="user.lastName"
+           ng-model="model.user.lastName"
            placeholder="Doe"
            type="text"
            class="form-control"
@@ -36,7 +36,7 @@
     <label for="username">Username</label>
     <input name="username"
            readonly
-           ng-model="user.username"
+           ng-model="model.user.username"
            type="text"
            class="form-control"
            id="username">
@@ -61,6 +61,14 @@
     <a class="btn btn-default btn-danger btn-block"
        href="#!/login"
        role="button">Logout</a>
+
+    <a class="btn btn-default btn-primary btn-block"
+       ng-click="model.updateUser()"
+       role="button">Update User</a>
+
+    <a class="btn btn-default btn-danger btn-block"
+       ng-click="model.unregister()"
+       role="button">Unregister</a>
 </div>
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
