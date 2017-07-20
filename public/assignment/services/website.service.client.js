@@ -29,5 +29,17 @@
             }
             return sites;
         }
+
+        this.findWebsiteById = findWebsiteById;
+
+        function findWebsiteById(websiteId) {
+            var website = [];
+            for(var w in websites){
+                if(websites[w]._id === websiteId){
+                    website.push(websites[w]);
+                }
+        }
+            return website;
+        }
     }
 })();

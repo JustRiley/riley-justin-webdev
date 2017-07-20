@@ -5,14 +5,25 @@
     angular.module("WamApp")
         .controller("websiteListController", websiteListController);
 
-    function websiteListController($routeParams, websiteService) {
+    function websiteListController($location, $routeParams, websiteService) {
         var model = this;
 
         model.userId = $routeParams.userId;
+
+        model.editWebsite = editWebsite;
 
         function init() {
             model.websites = websiteService.findWebsitesForUser(model.userId);
         }
         init();
+
+        function editWebsite(websiteId) {
+            var website = websiteService.findWebsiteById(websiteId);
+            if (website === null) {
+                model.errorMessage = "Website not found";
+            } else {
+                $location.url("/user/"+ model.userId +"/website/" + websiteId);
+            }
+        }
     }
 })();
