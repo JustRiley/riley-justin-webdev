@@ -30,7 +30,7 @@
         function deleteWebsite(websiteId) {
             for (var w in websites) {
                 if (websites[w]._id === websiteId) {
-                    websites.pop(websites[u]);
+                    websites.pop(websites[w]);
                 }
             }
         }
@@ -58,7 +58,6 @@
             }
             return sites;
         }
-
 
         function findWebsiteById(websiteId) {
             for(var w in websites){
