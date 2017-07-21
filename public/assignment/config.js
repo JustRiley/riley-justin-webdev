@@ -11,12 +11,22 @@
                 controller: "loginController",
                 controllerAs: "model"
             })
+            .when("/", {
+                templateUrl: "user/templates/login.view.client.html",
+                controller: "loginController",
+                controllerAs: "model"
+            })
+            .when("default", {
+                templateUrl: "user/templates/login.view.client.html",
+                controller: "loginController",
+                controllerAs: "model"
+            })
             .when("/register", {
                 templateUrl: "user/templates/register.view.client.html",
                 controller: "registerController",
                 controllerAs: "model"
             })
-            .when("/profile/:userId", {
+            .when("/user/:userId", {
                 templateUrl: "user/templates/profile.view.client.html",
                 controller: "profileController",
                 controllerAs: "model"
@@ -36,6 +46,24 @@
                 templateUrl: "website/templates/website-edit.view.client.html",
                 controller: "websiteListController",
                 controllerAs: "model"
+            })
+            .when("/user/:userId/website/:websiteId/page", {
+                templateUrl: "website/templates/page-list.view.client.html"
+            })
+            .when("/user/:userId/website/:websiteId/page/new", {
+                templateUrl: "website/templates/page-new.view.client.html"
+            })
+            .when("/user/:userId/website/:websiteId/page/:pid", {
+                templateUrl: "website/templates/page-edit.view.client.html"
+            })
+            .when("/user/:userId/website/:websiteId/page/:pid/widget", {
+                templateUrl: "website/templates/widget-list.view.client.html"
+            })
+            .when("/user/:userId/website/:websiteId/page/:pid/widget/new", {
+                templateUrl: "website/templates/widget-chooser.view.client.html"
+            })
+            .when("/user/:userId/website/:websiteId/page/:pid/widget/:wgid", {
+                templateUrl: "website/templates/widget-edit.view.client.html"
             })
     }
 })();
