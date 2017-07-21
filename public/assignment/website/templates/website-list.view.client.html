@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="../../user/templates/profile.view.client.html">
+                    <li><a href="#!/user/{{model.userId}}">
                         <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
                 </ul>
             </div>
@@ -12,8 +12,8 @@
             </div>
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="website-new.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-check"></span></a></li>
+                    <li><a href="#!/user/{{model.userId}}/website/new">
+                        <span class="pull-right glyphicon glyphicon-plus-sign"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -38,7 +38,7 @@
 
         <li ng-repeat="website in model.websites" class="list-group-item">
             <div class="row">
-                <div class="col-xs-4"><a href="../../page/page-list.html"> {{website.name}}</a></div>
+                <div class="col-xs-4"><a href="#!/user/{{model.userId}}/website/{{website._id}}/page"> {{website.name}}</a></div>
                 <div class="col-xs-6 col-sm-3">2017-07-03</div>
                 <div class="col-sm-3 hidden-xs">3,112,122</div>
                 <div class="col-xs-2">
@@ -51,7 +51,7 @@
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="jgr-glyph-href" href="../../user/templates/profile.view.client.html">
+            <li><a class="jgr-glyph-href" href="#!/user/{{model.userId}}">
                 <span class="pull-right glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div><!-- /.container-fluid -->

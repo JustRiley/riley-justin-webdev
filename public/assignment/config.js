@@ -48,22 +48,22 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page", {
-                templateUrl: "website/templates/page-list.view.client.html"
+                templateUrl: "page/templates/page-list.view.client.html"
             })
             .when("/user/:userId/website/:websiteId/page/new", {
-                templateUrl: "website/templates/page-new.view.client.html"
+                templateUrl: "page/templates/page-new.view.client.html"
             })
             .when("/user/:userId/website/:websiteId/page/:pid", {
-                templateUrl: "website/templates/page-edit.view.client.html"
+                templateUrl: "page/templates/page-edit.view.client.html"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget", {
-                templateUrl: "website/templates/widget-list.view.client.html"
+                templateUrl: "widget/templates/widget-list.view.client.html"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget/new", {
-                templateUrl: "website/templates/widget-chooser.view.client.html"
+                templateUrl: "widget/templates/widget-chooser.view.client.html"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget/:wgid", {
-                templateUrl: "website/templates/widget-edit.view.client.html"
+                templateUrl: "widget/templates/widget-edit.view.client.html"
             })
     }
 })();

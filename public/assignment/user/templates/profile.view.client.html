@@ -7,7 +7,7 @@
             </div>
             <div class="col-lg-2">
                 <ul class="nav navba-nav navbar-right">
-                    <li><a class="jgr-glyph-href" href="profile.view.client.html">
+                    <li><a class="jgr-glyph-href" ng-click="model.updateUser()" role="button">
                         <span class="pull-right glyphicon glyphicon-check"></span></a></li>
                 </ul>
             </div>
@@ -73,7 +73,7 @@
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="jgr-glyph-href" href="profile.view.client.html">
+            <li><a class="jgr-glyph-href" href="#!/user/{{model.user._id}}/">
                 <span class="pull-right glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div><!-- /.container-fluid -->
