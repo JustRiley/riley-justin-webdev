@@ -1,69 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Widget</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/styles.css" rel="stylesheet">
-</head>
-<body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-1 col-xs-2">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a href="widget-list.html">
-                            <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-10 col-xs-8">
-                    <a class="navbar-brand" href="#">Heading Widget</a>
-                </div>
-                <div class="col-lg-1 col-xs-2">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="widget-list.html">
-                            <span class="pull-right glyphicon glyphicon-check"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </nav>
-
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-xs-2">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="widget-list.html">
+                        <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-10 col-xs-8">
+                <a class="navbar-brand" href="#">Heading Widget</a>
+            </div>
+            <div class="col-lg-1 col-xs-2">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="widget-list.html">
+                        <span class="pull-right glyphicon glyphicon-check"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
 
-        <label for="widgetname">Name</label>
-        <input name="widgetname"
-               type="text"
-               class="form-control"
-               value="Widget Name"
-               id="widgetname">
+<div class="container-fluid">
 
-        <label for="widgettext">Text</label>
-        <input name="widgettext"
-               value="This is text for a header widget"
-               type="text"
-               class="form-control"
-               id="widgettext">
+    <label for="widgetname">Name</label>
+    <input name="widgetname"
+           type="text"
+           class="form-control"
+           value="Widget Name"
+           id="widgetname">
 
-        <label for="widgetsize">Size</label>
-        <input name="widgetsize"
-               value="5"
-               type="text"
-               class="form-control"
-               id="widgetsize">
+    <label for="widgettext">Text</label>
+    <input name="widgettext"
+           value="This is text for a header widget"
+           type="text"
+           class="form-control"
+           id="widgettext">
 
-        <a class="btn btn-default btn-danger btn-block"
-           href="widget-list.html"
-           role="button">Delete</a></div>
-    </div>
+    <label for="widgetsize">Size</label>
+    <input name="widgetsize"
+           value="5"
+           type="text"
+           class="form-control"
+           id="widgetsize">
 
-    <nav class="navbar navbar-default navbar-static-bottom">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="jgr-glyph-href" href="../user/templates/profile.view.client.html">
-                    <span class="pull-right glyphicon glyphicon-user"></span></a></li>
-            </ul>
-        </div><!-- /.container-fluid -->
-    </nav>
-</body>
-</html>
+    <a class="btn btn-default btn-danger btn-block"
+       href="widget-list.html"
+       role="button">Delete</a></div>
+</div>
+
+<nav class="navbar navbar-default navbar-static-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="jgr-glyph-href" href="../user/templates/profile.view.client.html">
+                <span class="pull-right glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div><!-- /.container-fluid -->
+</nav>
