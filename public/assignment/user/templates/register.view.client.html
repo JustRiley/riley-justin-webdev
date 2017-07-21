@@ -6,10 +6,19 @@
     <h2>Register</h2>
     <label for="firstName">First Name</label>
     <input name="firstName"
+           ng-model="user.firstName"
            placeholder="John"
            type="text"
            class="form-control"
            id="firstName">
+
+    <label for="lastName">Last Name</label>
+    <input name="lastName"
+           ng-model="user.lastName"
+           placeholder="Smith"
+           type="text"
+           class="form-control"
+           id="lastName">
 
     <label for="username">Username</label>
     <input name="username"
@@ -36,7 +45,7 @@
            id="verifyPassword">
 
     <a class="btn btn-default btn-primary btn-block"
-       ng-click="model.registerUser(user)"
+       ng-click="model.createUser(user)"
        role="button">Register</a>
 
     <a class="btn btn-default btn-danger btn-block"

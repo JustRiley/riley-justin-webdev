@@ -15,7 +15,7 @@
         init();
 
         function login(user) {
-            var user = userService.findUserByUsernameAndPassword(user.username, user.password);
+            var user = userService.findUserByCredentials(user.username, user.password);
             if (user === null) {
                 model.errorMessage = "User not found";
             } else {

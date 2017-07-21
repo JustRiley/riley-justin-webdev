@@ -18,7 +18,36 @@
             { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
         ];
 
-        this.findWebsitesForUser = findWebsitesForUser;
+        var api = {
+            "createWebsite": createWebsite,
+            "findWebsitesForUser": findWebsitesForUser,
+            "findWebsiteById": findWebsiteById,
+            "updateWebsite": updateWebsite,
+            "deleteWebsite": deleteWebsite
+        };
+        return api;
+
+        function deleteWebsite(websiteId) {
+            for (var w in websites) {
+                if (websites[w]._id === websiteId) {
+                    websites.pop(websites[u]);
+                }
+            }
+        }
+//TODO:needs improvement
+        function updateWebsite(websiteId, website) {
+            for(var w in websites){
+                if(websites[w]._id === websiteId){
+                    websites[w] =  website;
+                }
+            }
+        }
+
+        function createWebsite(userId, website) {
+            website.developerId = userId;
+            websites.push(website);
+            return website;
+        }
 
         function findWebsitesForUser(userId) {
             var sites = [];
@@ -30,16 +59,13 @@
             return sites;
         }
 
-        this.findWebsiteById = findWebsiteById;
 
         function findWebsiteById(websiteId) {
-            var website = [];
             for(var w in websites){
                 if(websites[w]._id === websiteId){
-                    website.push(websites[w]);
+                    return websites[w];
                 }
         }
-            return website;
         }
     }
 })();

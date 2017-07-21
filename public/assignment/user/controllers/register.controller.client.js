@@ -9,18 +9,22 @@
     function registerController(userService, $location) {
         var model = this;
 
-        model.registerUser = registerUser;
+        model.createUser = createUser;
 
         function init() {
 
         }
         init();
 
-        function registerUser(user) {
+        function createUser(user) {
             var _user = userService.findUserByUsername(user.username);
             if(!_user) {
-                var user = userService.registerUser(user);
-                $location.url("/profile/" + user._id);
+                var user1 = userService.createUser(user);
+                if(!user1) {
+                    model.error = "Passwords needs to match";
+                } else {
+                    $location.url("/profile/" + user._id);
+                }
             } else {
                 model.error = "User already exists";
             }

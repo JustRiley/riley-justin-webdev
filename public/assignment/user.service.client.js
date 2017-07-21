@@ -13,21 +13,29 @@
         ];
 
         var api = {
-            "findUserByUsernameAndPassword": findUserByUsernameAndPassword,
+            "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
-            "registerUser": registerUser,
-            "findUserByUsername": findUserByUsername
+            "createUser": createUser,
+            "findUserByUsername": findUserByUsername,
+            "updateUser": updateUser,
+            "deleteUser": deleteUser
         };
 
         return api;
 
-        function registerUser(user) {
-            user._id = (new Date()).getTime() + "";
-            users.push(user);
-            return user;
+        //If the passwords aren't the same set user to null otherwise push to db
+        //return back input
+        function createUser(user) {
+            if(user.password + "" === user.verifyPassword + "") {
+                user._id = (new Date()).getTime() + "";
+                users.push(user);
+                return user;
+            } else {
+                 return null;
+            }
         }
 
-        function findUserByUsernameAndPassword(username, password) {
+        function findUserByCredentials(username, password) {
             for (var u in users) {
                 //can't just do var user= u; since u is just an index
                 var _user = users[u];
@@ -56,5 +64,20 @@
             return null;
         }
 
+        function updateUser(userId, user) {
+            for (var u in users) {
+                if (users[u]._id === userId) {
+                    users[u] = user;
+                }
+            }
+        }
+
+        function deleteUser(userId) {
+            for (var u in users) {
+                if (users[u]._id === userId) {
+                    users.pop(users[u]);
+                }
+            }
+        }
     }
 })();
