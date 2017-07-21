@@ -23,7 +23,7 @@
                 if(!user1) {
                     model.error = "Passwords needs to match";
                 } else {
-                    $location.url("/profile/" + user._id);
+                    $location.url("/user/" + user._id);
                 }
             } else {
                 model.error = "User already exists";

@@ -69,6 +69,7 @@
 
         model.editWebsite = editWebsite;
         model.deleteWebsite = deleteWebsite;
+        model.updateWebsite = updateWebsite;
 
         function init() {
             model.website = websiteService.findWebsiteById(model.websiteId);
@@ -90,5 +91,19 @@
             websiteService.deleteWebsite(model.websiteId);
             $location.url("/user/"+ model.userId +"/website/");
         }
+
+        function updateWebsite() {
+            websiteService.updateWebsite(model.websiteId, model.website);
+            $location.url("/user/"+ model.userId +"/website/");
+        }
+        /*
+         function updateWebsite(websiteId, website) {
+         for(var w in websites){
+         if(websites[w]._id === websiteId){
+         websites[w] =  website;
+         }
+         }
+         }
+         */
     }
 })();
