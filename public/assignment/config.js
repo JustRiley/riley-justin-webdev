@@ -53,7 +53,9 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/new", {
-                templateUrl: "page/templates/page-new.view.client.html"
+                templateUrl: "page/templates/page-new.view.client.html",
+                controller: "pageNewController",
+                controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pid", {
                 templateUrl: "page/templates/page-edit.view.client.html"
