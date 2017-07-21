@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="../../website/templates/website-list.view.client.html">
+                    <li><a href="#!/user/{{model.userId}}/website/">
                         <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
                 </ul>
             </div>
@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="page-new.view.client.html">
+                    <li><a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
                         <span class="pull-right glyphicon glyphicon-plus-sign"></span></a></li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-xs-10">Page</div>
                 <div class="col-xs-2">
-                    <a class="jgr-glyph-href" href="page-new.view.client.html">
+                    <a class="jgr-glyph-href" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
                         <span class="pull-right glyphicon glyphicon-plus-sign"></span>
                     </a>
                 </div>
@@ -35,56 +35,21 @@
 
         </li>
 
-        <li class="list-group-item">
+        <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
-                <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Blog Post</a></div>
+                <div class="col-xs-10"> {{page.name}}</div>
                 <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
+                    <a ng-click="model.editPage(page._id)" role="button">
+                        <span class="pull-right glyphicon glyphicon-pencil"></span></a></div>
             </div>
         </li>
 
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Blogs</a></div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-            </div>
-        </li>
-
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Home</a></div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-            </div>
-        </li>
-
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">About</a></div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-            </div>
-        </li>
-
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Contact Us</a></div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-            </div>
-        </li>
     </ul>
 </div>
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="jgr-glyph-href" href="../../user/templates/profile.view.client.html">
+            <li><a class="jgr-glyph-href" href="#!/user/{{model.userId}}/">
                 <span class="pull-right glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div><!-- /.container-fluid -->

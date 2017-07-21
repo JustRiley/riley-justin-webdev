@@ -1,6 +1,7 @@
 /**
  * Created by Justin on 7/19/2017.
  */
+//TODO: Seperate out contollers, was in piazza post -.-
 (function () {
     angular.module("WamApp")
         .controller("websiteListController", websiteListController)
@@ -96,14 +97,5 @@
             websiteService.updateWebsite(model.websiteId, model.website);
             $location.url("/user/"+ model.userId +"/website/");
         }
-        /*
-         function updateWebsite(websiteId, website) {
-         for(var w in websites){
-         if(websites[w]._id === websiteId){
-         websites[w] =  website;
-         }
-         }
-         }
-         */
     }
 })();
