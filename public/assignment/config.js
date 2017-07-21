@@ -39,12 +39,12 @@
             })
             .when("/user/:userId/website/new", {
                 templateUrl: "website/templates/website-new.view.client.html",
-                controller: "websiteListController",
+                controller: "websiteNewController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId", {
                 templateUrl: "website/templates/website-edit.view.client.html",
-                controller: "websiteListController",
+                controller: "websiteEditController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page", {
