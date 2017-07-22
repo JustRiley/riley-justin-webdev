@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-1 col-xs-2">
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a href="widget-list.view.client.html">
+                        <li><a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/">
                             <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
                     </ul>
                 </div>
@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-lg-1 col-xs-2">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="widget-list.view.client.html">
+                        <li><a ng-click="model.updateWidget()">
                             <span class="pull-right glyphicon glyphicon-check"></span></a></li>
                     </ul>
                 </div>
@@ -39,14 +39,14 @@
 
     <label for="widgeturl">URL</label>
     <input name="widgeturl"
-           value="image.com"
+           ng-model="model.widget.url"
            type="text"
            class="form-control"
            id="widgeturl">
 
     <label for="widgetwidth">Width</label>
     <input name="widgetwidth"
-           value="5%"
+           ng-model="model.widget.width"
            type="text"
            class="form-control"
            id="widgetwidth">
@@ -62,7 +62,7 @@
        role="button">Upload Image</a>
 
     <a class="btn btn-default btn-danger btn-block"
-       href="widget-list.view.client.html"
+       ng-click="model.deleteWidget()"
        role="button">Delete</a></div>
 </div>
 
