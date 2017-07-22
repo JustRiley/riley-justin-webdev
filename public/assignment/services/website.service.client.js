@@ -30,7 +30,7 @@
         function deleteWebsite(websiteId) {
             for (var w in websites) {
                 if (websites[w]._id === websiteId) {
-                    websites.pop(websites[w]);
+                    websites.splice(w, 1);
                 }
             }
         }

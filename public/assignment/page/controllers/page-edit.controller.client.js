@@ -9,6 +9,7 @@
         model.websiteId = $routeParams.websiteId;
         model.pageId = $routeParams.pageId;
         model.updatePage = updatePage;
+        model.deletePage = deletePage;
 
         function init() {
             model.page = pageService.findPageById(model.pageId);
@@ -21,14 +22,9 @@
             $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/");
         }
 
-        /*
-         function updatePage(pageId, page) {
-         for(var p in pages){
-         if(pages[p]._id === pageId){
-         pages[p] =  page;
-         }
-         }
-         }
-         */
+        function deletePage() {
+            pageService.deletePage(model.pageId);
+            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/");
+        }
     }
 })();
