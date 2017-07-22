@@ -74,7 +74,7 @@
 
         function init() {
             model.website = websiteService.findWebsiteById(model.websiteId);
-            model.websites = websiteService.findWebsitesForUser(model.userId);
+            model.websites = angular.copy(websiteService.findWebsitesForUser(model.userId));
 
         }
         init();

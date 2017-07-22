@@ -23,10 +23,10 @@
             </div>
 
         </li>
-
+<!---TODO: Create the widget object without using ng-model-->
         <li class="list-group-item">
             <div class="row">
-                <div class="col-xs-12"><a href="widget-heading.view.client.html">Header</a></div>
+                <div class="col-xs-12"><a ng-click="model.newWidget(model.heading, widget)" role="button">Header</a></div>
             </div>
         </li>
 
@@ -62,13 +62,13 @@
 
         <li class="list-group-item">
             <div class="row">
-                <div class="col-xs-12"><a href="widget-image.view.client.html">Image</a></div>
+                <div class="col-xs-12"><a ng-click="model.newWidget(model.image, widget)" role="button">Image</a></div>
             </div>
         </li>
 
         <li class="list-group-item">
             <div class="row">
-                <div class="col-xs-12"><a href="widget-youtube.view.client.html">Youtube</a></div>
+                <div class="col-xs-12"><a ng-click="model.newWidget(model.youtube, widget)" role="button">Youtube</a></div>
             </div>
         </li>
 

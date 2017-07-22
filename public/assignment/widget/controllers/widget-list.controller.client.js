@@ -18,3 +18,4 @@
         init();
     }
 })();
+//TODO:Widget list looks like shit

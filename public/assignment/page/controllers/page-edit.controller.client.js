@@ -14,7 +14,7 @@
 
         function init() {
             model.page = pageService.findPageById(model.pageId);
-            model.pages = pageService.findPageByWebsiteId(model.websiteId);
+            model.pages = angular.copy(pageService.findPageByWebsiteId(model.websiteId));
         }
         init();
 
