@@ -11,7 +11,6 @@
         model.wgid = $routeParams.wgid;
         model.updateWidget = updateWidget;
         model.deleteWidget = deleteWidget;
-        //TODO: editWidget, Back button, profile button
 
         function init() {
             model.widget = widgetService.findWidgetById(model.wgid);
