@@ -64,7 +64,7 @@
             var widgetlist = [];
             for(var w in widgets){
                 if(widgets[w].pageId === pageId){
-                    widgetlist.push(pagers[w]);
+                    widgetlist.push(widgets[w]);
                 }
             }
             return widgetlist;

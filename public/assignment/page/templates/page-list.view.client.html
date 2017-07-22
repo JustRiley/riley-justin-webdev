@@ -37,7 +37,9 @@
 
         <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
-                <div class="col-xs-10"> {{page.name}}</div>
+                <div class="col-xs-10">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                        {{page.name}}</a></div>
                 <div class="col-xs-2">
                     <a ng-click="model.editPage(page._id)" role="button">
                         <span class="pull-right glyphicon glyphicon-pencil"></span></a></div>

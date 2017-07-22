@@ -63,7 +63,9 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
-                templateUrl: "widget/templates/widget-list.view.client.html"
+                templateUrl: "widget/templates/widget-list.view.client.html",
+                controller: "widgetListController",
+                controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pageId/widget/new", {
                 templateUrl: "widget/templates/widget-chooser.view.client.html"
