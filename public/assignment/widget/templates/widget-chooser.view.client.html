@@ -13,6 +13,16 @@
         </div>
     </div><!-- /.container-fluid -->
 </nav>
+<!---Design wise I feel there needs to be some user input before creating a widget. Otherwise you could create totally empty widgets, which could get confusing--->
+<div class="container-fluid">
+    <label for="text">Widget Description</label>
+    <input name="text"
+           ng-model="widget.text"
+           placeholder="Enter a description so you can find the widget later"
+           type="text"
+           class="form-control"
+           id="text">
+</div>
 
 <div class="container-fluid">
     <ul class="list-group">
@@ -23,7 +33,6 @@
             </div>
 
         </li>
-<!---TODO: Create the widget object without using ng-model-->
         <li class="list-group-item">
             <div class="row">
                 <div class="col-xs-12"><a ng-click="model.newWidget(model.heading, widget)" role="button">Header</a></div>
