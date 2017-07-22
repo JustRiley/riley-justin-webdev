@@ -68,10 +68,14 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pageId/widget/new", {
-                templateUrl: "widget/templates/widget-chooser.view.client.html"
+                templateUrl: "widget/templates/widget-chooser.view.client.html",
+                controller: "widgetNewController",
+                controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pageId/widget/:wgid", {
-                templateUrl: "widget/templates/widget-edit.view.client.html"
+                templateUrl: "widget/templates/widget-edit.view.client.html",
+                controller: "widgetEditController",
+                controllerAs: "model"
             })
     }
 })();

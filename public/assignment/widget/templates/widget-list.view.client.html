@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="widget-choose.view.client.html">
+                    <li><a href="widget-chooser.view.client.html">
                         <span class="pull-right glyphicon glyphicon-plus-sign"></span></a></li>
                 </ul>
             </div>
@@ -25,26 +25,9 @@
         <div class="col-lg-10 col-xs-10">
             <h3>{{widget.text}}</h3></div>
         <div class="col-lg-2 col-xs-2">
-            <div ng-repeat="widget in model.widgets">
-                <div ng-switch="widget.widgetType">
-                    <div ng-switch-when="HEADING">
-                        <ng-include src="'widget-heading.view.client.html'">
-                    </div>
-                    <div ng-switch-when="IMAGE">
-                        <ng-include src="'widget-image.view.client.html'">
-                    </div>
-                    <div ng-switch-when="YOUTUBE">
-                        <ng-include src="'widget-youtube.view.client.html'">
-                    </div>
-                </div>
-            </div>
-
+            <a href="widget-heading.html">
+                <span class="pull-right glyphicon glyphicon-pencil"></span></a>
         </div>
-        <!--
-        <div class="col-lg-2 col-xs-2">
-                <a href="widget-heading.html">
-                    <span class="pull-right glyphicon glyphicon-pencil"></span></a>
-            </div> -->
     </div>
 </div>
 
