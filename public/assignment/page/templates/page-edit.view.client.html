@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="page-list.view.client.html">
+                    <li><a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/">
                         <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
                 </ul>
             </div>
@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="page-list.view.client.html">
+                    <li><a ng-click="model.updatePage()">
                         <span class="pull-right glyphicon glyphicon-check"></span></a></li>
                 </ul>
             </div>
@@ -21,7 +21,6 @@
 </nav>
 
 <div class="container-fluid">
-
     <div class="row">
         <!--left side-->
         <div class="col-xs-3 visible-lg jgr-split-view-left"><ul class="list-group">
@@ -30,7 +29,7 @@
                 <div class="row">
                     <div class="col-xs-10">Page</div>
                     <div class="col-xs-2">
-                        <a class="jgr-glyph-href" href="page-new.view.client.html">
+                        <a class="jgr-glyph-href" href="#!">
                             <span class="pull-right glyphicon glyphicon-plus-sign"></span>
                         </a>
                     </div>
@@ -38,68 +37,31 @@
 
             </li>
 
-            <li class="list-group-item">
+            <li ng-repeat="page in model.pages" class="list-group-item">
                 <div class="row">
-                    <div class="col-xs-10">Blog Post</div>
+                    <div class="col-xs-10"> {{page.name}}</div>
                     <div class="col-xs-2">
-                        <a href="page-edit.view.client.html">
-                            <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-10">Blogs</div>
-                    <div class="col-xs-2">
-                        <a href="page-edit.view.client.html">
-                            <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-10">Home</div>
-                    <div class="col-xs-2">
-                        <a href="page-edit.view.client.html">
-                            <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-10">About</div>
-                    <div class="col-xs-2">
-                        <a href="page-edit.view.client.html">
-                            <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-10">Contact Us</div>
-                    <div class="col-xs-2">
-                        <a href="page-edit.view.client.html">
-                            <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
+                        <a ng-click="model.editPage(page._id)" role="button">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a></div>
                 </div>
             </li>
         </ul></div>
-        <!--right side-->
         <div class="col-xs-12 col-lg-9 jgr-split-view-right">
             <label for="pagename">Name</label>
             <input name="pagename"
+                   ng-model="model.page.name"
                    type="text"
                    class="form-control"
-                   value="Blog Posts"
                    id="pagename">
 
-            <label for="pagetitle">Title</label>
-            <input name="pagetitle"
-                   placeholder="Page Title"
+            <label for="description">Description</label>
+            <input name="description"
+                   ng-model="model.page.description"
                    type="text"
                    class="form-control"
-                   id="pagetitle">
+                   id="description">
             <a class="btn btn-default btn-danger btn-block"
-               href="page-list.view.client.html"
+               href="#"
             role="button">Delete</a></div>
     </div>
 </div>
@@ -107,7 +69,7 @@
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="jgr-glyph-href" href="../../user/templates/profile.view.client.html">
+            <li><a class="jgr-glyph-href" href="#!/user/{{model.userId}}/">
                 <span class="pull-right glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div><!-- /.container-fluid -->

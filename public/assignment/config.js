@@ -57,16 +57,18 @@
                 controller: "pageNewController",
                 controllerAs: "model"
             })
-            .when("/user/:userId/website/:websiteId/page/:pid", {
-                templateUrl: "page/templates/page-edit.view.client.html"
+            .when("/user/:userId/website/:websiteId/page/:pageId", {
+                templateUrl: "page/templates/page-edit.view.client.html",
+                controller: "pageEditController",
+                controllerAs: "model"
             })
-            .when("/user/:userId/website/:websiteId/page/:pid/widget", {
+            .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
                 templateUrl: "widget/templates/widget-list.view.client.html"
             })
-            .when("/user/:userId/website/:websiteId/page/:pid/widget/new", {
+            .when("/user/:userId/website/:websiteId/page/:pageId/widget/new", {
                 templateUrl: "widget/templates/widget-chooser.view.client.html"
             })
-            .when("/user/:userId/website/:websiteId/page/:pid/widget/:wgid", {
+            .when("/user/:userId/website/:websiteId/page/:pageId/widget/:wgid", {
                 templateUrl: "widget/templates/widget-edit.view.client.html"
             })
     }
