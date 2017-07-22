@@ -1,7 +1,6 @@
 /**
  * Created by Justin on 7/19/2017.
  */
-//TODO: Seperate out contollers, was in piazza post -.-
 (function () {
     angular.module("WamApp")
         .controller("websiteListController", websiteListController)

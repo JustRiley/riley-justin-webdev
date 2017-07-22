@@ -20,6 +20,43 @@
     </div><!-- /.container-fluid -->
 </nav>
 
+<div ng-repeat="widget in model.widgets">
+    <div ng-switch="widget.widgetType">
+        <div ng-switch-when="HEADING">
+            <div class="col-lg-10 col-xs-10">
+                <h3>{{widget.text}}</h3>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                    <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+            </div>
+        </div>
+        <div ng-switch-when="IMAGE">
+            <div class="col-lg-10 col-xs-10">
+                <img src={{widget.url}} width={{widget.width}}>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                    <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+            </div>
+        </div>
+        <!---TODO: Figure out youtube error-->
+        <div ng-switch-when="YOUTUBE">
+            <div class="col-lg-10 col-xs-10">
+                <iframe src={{widget.url}} width={{widget.width}}></iframe>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                    <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!--
 <div class="container-fluid">
     <div ng-repeat="widget in model.widgets" class="row">
         <div class="col-lg-10 col-xs-10">
@@ -30,8 +67,8 @@
         </div>
     </div>
 </div>
-
-<nav class="navbar navbar-default navbar-static-bottom">
+-->
+<nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
             <li><a class="jgr-glyph-href" href="#!/user/{{model.userId}}/">

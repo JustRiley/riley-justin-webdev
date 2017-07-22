@@ -18,4 +18,5 @@
         init();
     }
 })();
-//TODO:Widget list looks like shit
+//TODO:Widget list Youtube links won't load? ""Can't interpolate: {{widget.url}}
+//Error: [$sce:insecurl] Blocked loading resource from url not allowed by $sceDelegate policy.
