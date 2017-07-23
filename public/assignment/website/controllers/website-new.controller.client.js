@@ -9,7 +9,6 @@
 
         model.editWebsite = editWebsite;
         model.createWebsite = createWebsite;
-        model.deleteWebsite = deleteWebsite;
 
         function init() {
             model.websites = websiteService.findWebsitesForUser(model.userId);

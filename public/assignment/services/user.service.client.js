@@ -63,7 +63,7 @@
             }
             return null;
         }
-//TODO: Needs improvement
+
         function updateUser(userId, user) {
             for (var u in users) {
                 if (users[u]._id === userId) {
