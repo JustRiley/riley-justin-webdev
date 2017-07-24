@@ -12,8 +12,8 @@
                 controllerAs: "model"
             })
             .when("/", {
-                templateUrl: "user/templates/login.view.client.html",
-                controller: "loginController",
+                templateUrl: "home.html",
+                controller: "homeController",
                 controllerAs: "model"
             })
             .when("default", {
