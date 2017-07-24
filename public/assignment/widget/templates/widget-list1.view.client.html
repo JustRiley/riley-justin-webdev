@@ -1,0 +1,69 @@
+
+
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-xs-2">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/">
+                        <span class="pull-left glyphicon glyphicon-chevron-left"></span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-10 col-xs-8">
+                <a class="navbar-brand" href="#">Widgets</a>
+            </div>
+            <div class="col-lg-1 col-xs-2">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                        <span class="pull-right glyphicon glyphicon-plus-sign"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div ng-repeat="widget in model.widgets">
+    <div ng-switch="widget.widgetType">
+        <div ng-switch-when="HEADING">
+            <div class="col-lg-10 col-xs-10">
+                <h3>{{widget.text}}</h3>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                    <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+            </div>
+        </div>
+        <div ng-switch-when="IMAGE">
+            <div class="col-lg-10 col-xs-10">
+                <img src={{widget.url}} width={{widget.width}}>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                    <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+            </div>
+        </div>
+        <!---TODO: Figure out youtube error-->
+        <div ng-switch-when="YOUTUBE">
+            <div class="col-lg-10 col-xs-10">
+                <!---<iframe src={{widget.url}} width={{widget.width}}></iframe>-->
+                <a href="https://piazza.com/class/j2963bd8jpz51j?cid=772">YOUTUBE LINK</a>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                    <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!---TODO:CSS needed so bottom content is not hidden underneath the footer--->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="jgr-glyph-href" href="#!/user/{{model.userId}}/">
+                <span class="pull-right glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div><!-- /.container-fluid -->
+</nav>
