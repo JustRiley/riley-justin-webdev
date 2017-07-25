@@ -3,8 +3,9 @@
         .module("WamApp")
         .factory("userService", userService);
 
-    function userService() {
+    function userService($http) {
         //JSON JavaScript object Notation
+
         var users = [
             {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
             {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
@@ -47,12 +48,7 @@
         }
 
         function findUserById(userId) {
-            for (var u in users) {
-                if (users[u]._id === userId) {
-                    return users[u];
-                }
-            }
-            return null;
+            return $http.get("http://localhost:3000/api/user/"+userId);
         }
 
         function findUserByUsername(username) {
