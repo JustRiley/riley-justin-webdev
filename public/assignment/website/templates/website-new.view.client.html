@@ -26,29 +26,9 @@
 <div class="container-fluid">
     <div class="row">
         <!--left side-->
-        <div class="col-xs-3 visible-lg jgr-split-view-left"><ul class="list-group">
-
-            <li class="list-group-item active">
-                <div class="row">
-                    <div class="col-xs-10">Name</div>
-                    <div class="col-xs-2">
-                        <a class="jgr-glyph-href" href="#!/user/{{model.userId}}/website/new/" role="button">
-                            <span class="pull-right glyphicon glyphicon-plus-sign"></span>
-                        </a>
-                    </div>
-                </div>
-
-            </li>
-
-            <li ng-repeat="website in model.websites" class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-10">{{website.name}}</div>
-                    <div class="col-xs-2">
-                        <a ng-click="model.editWebsite(website._id)" role="button">
-                            <span class="pull-right glyphicon glyphicon-pencil"> </span></a></div>
-                </div>
-            </li>
-        </ul></div>
+        <div class="col-xs-3 visible-lg jgr-split-view-left">
+            <div ng-include="'/assignment/website/templates/website-list.component.client.html'"></div>
+        </div>
         <!--right side-->
         <div class="col-xs-12 col-lg-9 jgr-split-view-right">
             <div ng-show="model.errorMessage" class="alert alert-danger">
