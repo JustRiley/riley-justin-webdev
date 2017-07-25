@@ -8,47 +8,57 @@
                 </ul>
             </div>
             <div class="col-lg-10 col-xs-8">
-                <a class="navbar-brand" href="#">Edit Website</a>
+                <a class="navbar-brand" href="#">New Website</a>
             </div>
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ng-click="model.updateWebsite()" role="button">
+                    <li><a ng-click="model.createWebsite(website)" role="button">
                         <span class="pull-right glyphicon glyphicon-check"></span></a></li>
                 </ul>
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
+<div ng-show="model.errorMessage" class="alert alert-danger">
+    {{model.errorMessage}}
+</div>
 
 <div class="container-fluid">
-
     <div class="row">
         <!--left side-->
         <div class="col-xs-3 visible-lg jgr-split-view-left">
-            <div ng-include="'/assignment/website/templates/website-list.component.client.html'"></div>
+            <div ng-include="'/assignment/views/website/templates/website-list.component.client.html'"></div>
         </div>
         <!--right side-->
         <div class="col-xs-12 col-lg-9 jgr-split-view-right">
+            <div ng-show="model.errorMessage" class="alert alert-danger">
+                {{model.errorMessage}}
+            </div>
             <label for="name">Name</label>
             <input name="name"
-                   ng-model="model.website.name"
+                   ng-model="website.name"
+                   placeholder="Facebook"
                    type="text"
                    class="form-control"
                    id="name">
 
             <label for="description">Description</label>
-            <textarea name="description"
-                      ng-model="model.website.description"
+            <textarea ng-model="website.description"
+                      name="description"
                       rows="5"
+                      placeholder="Enter your website description here!"
                       class="form-control"
                       id="description"></textarea>
 
+            <a class="btn btn-default btn-primary btn-block"
+               ng-click="model.createWebsite(website)"
+               role="button">Create</a>
+
             <a class="btn btn-default btn-danger btn-block"
-               ng-click="model.deleteWebsite()"
-               role="button">Delete</a></div>
+               href="#!/user/{{model.userId}}/website/"
+               role="button">Cancel</a></div>
     </div>
 </div>
-
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
