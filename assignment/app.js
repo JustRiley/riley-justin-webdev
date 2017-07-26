@@ -10,9 +10,10 @@ var users = [
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
 ];
 //HTML handlers should be at top
-///api/ by convention so it isn't confused wiht a url path
+///api/ by convention so it isn't confused with a url path
 app.get("/api/users", getAllUsers);
 app.get("/api/user/:userId", getUserById);
+app.get("/api/user", findUserByCredentials);
 
 
 
@@ -29,4 +30,18 @@ function getUserById(req, response) {
             response.send(users[u]);
         }
     }
+}
+
+function findUserByCredentials(req, response) {
+    var username = req.query.username;
+    var password = req.query.password;
+    for (var u in users) {
+        //can't just do var user= u; since u is just an index
+        var _user = users[u];
+        if (_user.username === username && _user.password === password) {
+            response.send(_user);
+            return;
+        }
+    }
+    response.send("0");
 }
