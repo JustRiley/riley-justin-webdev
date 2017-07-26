@@ -27,13 +27,8 @@
         //If the passwords aren't the same set user to null otherwise push to db
         //return back input
         function createUser(user) {
-            if(user.password + "" === user.verifyPassword + "") {
-                user._id = (new Date()).getTime() + "";
-                users.push(user);
-                return user;
-            } else {
-                 return null;
-            }
+            var url = "/api/user";
+            return $http.post(url, user);
         }
 
         function findUserByCredentials(username, password) {
@@ -47,12 +42,8 @@
         }
 
         function findUserByUsername(username) {
-            for (var u in users) {
-                if (users[u].username === username) {
-                    return users[u];
-                }
-            }
-            return null;
+            var url = "/api/user?username=" + username;
+            return $http.get(url);
         }
 
         function updateUser(userId, user) {

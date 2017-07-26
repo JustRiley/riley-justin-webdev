@@ -13,7 +13,8 @@ var users = [
 ///api/ by convention so it isn't confused with a url path
 app.get("/api/users", getAllUsers);
 app.get("/api/user/:userId", getUserById);
-app.get("/api/user", findUserByCredentials);
+app.get("/api/user", findUser);
+app.post("/api/user", createUser);
 
 
 
@@ -32,16 +33,39 @@ function getUserById(req, response) {
     }
 }
 
-function findUserByCredentials(req, response) {
+function findUser(req, response) {
     var username = req.query.username;
     var password = req.query.password;
-    for (var u in users) {
-        //can't just do var user= u; since u is just an index
-        var _user = users[u];
-        if (_user.username === username && _user.password === password) {
-            response.send(_user);
-            return;
+
+    if(username && password) {
+        for (var u in users) {
+            //can't just do var user= u; since u is just an index
+            var _user = users[u];
+            if (_user.username === username && _user.password === password) {
+                response.send(_user);
+                return;
+            }
         }
+        response.send("0");
     }
-    response.send("0");
+    else {
+        for (var u in users) {
+            if (users[u].username === username) {
+                response.send(users[u]);
+                return;
+            }
+        }
+        response.send("0");
+    }
+}
+
+function createUser(req, response) {
+    var user = req.body;
+    if(user.password + "" === user.verifyPassword + "") {
+        user._id = (new Date()).getTime() + "";
+        users.push(user);
+        response.send(user);
+    } else {
+        response.send("0");
+    }
 }

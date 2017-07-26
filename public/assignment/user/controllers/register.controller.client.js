@@ -17,17 +17,31 @@
         init();
 
         function createUser(user) {
-            var _user = userService.findUserByUsername(user.username);
-            if(!_user) {
-                var user1 = userService.createUser(user);
-                if(!user1) {
-                    model.error = "Passwords needs to match";
-                } else {
-                    $location.url("/user/" + user._id);
-                }
-            } else {
-                model.error = "User already exists";
-            }
+            var promise = userService.findUserByUsername(user.username);
+            promise
+                .then(function (response) {
+
+                    var _user = response.data;
+
+                    if(_user === "0") {
+
+                        var promise2 = userService.createUser(user);
+                        promise2
+                            .then(function (response){
+                                var newUser = response.data;
+                            if (newUser === "0") {
+                                model.error = "Passwords needs to match";
+                            } else {
+                                $location.url("/user/" + newUser._id);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        model.error = "User already exists";
+                    }
+                })
+            //TODO: NEEDS work
         }
     }
 })();
