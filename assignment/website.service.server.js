@@ -4,6 +4,7 @@
 var app = require("../express");
 
 app.get("/api/user/:userId/website", findWebsitesForUser);
+app.post("/api/user/:userId/website", createWebsite);
 
 var websites = [
     { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -25,5 +26,14 @@ function findWebsitesForUser(req, response) {
         }
     }
     response.json(sites);
+}
 
+function createWebsite(req, response) {
+    var website = req.body;
+    var userId = req.params.userId;
+    //TODO: check for userID and throw 404 if not
+    website.developerId = userId;
+    website._id = (new Date()).getTime() + "";
+    websites.push(website);
+    response.json(website);
 }

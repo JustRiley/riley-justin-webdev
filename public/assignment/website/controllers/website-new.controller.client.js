@@ -11,7 +11,10 @@
         model.createWebsite = createWebsite;
 
         function init() {
-            model.websites = websiteService.findWebsitesForUser(model.userId);
+            websiteService.findWebsitesForUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                })
         }
         init();
 
@@ -23,10 +26,13 @@
                 $location.url("/user/"+ model.userId +"/website/" + websiteId);
             }
         }
-
+//Race condition without the .then
         function createWebsite(website) {
-            websiteService.createWebsite(model.userId, website);
-            $location.url("/user/" + model.userId + "/website/");
+            websiteService
+                .createWebsite(model.userId, website)
+                .then(function () {
+                    $location.url("/user/" + model.userId + "/website/");
+            });
         }
     }
 })();

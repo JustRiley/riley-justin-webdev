@@ -44,10 +44,8 @@
         }
 
         function createWebsite(userId, website) {
-            website.developerId = userId;
-            website._id = (new Date()).getTime() + "";
-            websites.push(website);
-            return website;
+            var url = "/api/user/" + userId + "/website";
+            return $http.post(url, website);
         }
 
         //Unpack response in servvice not controller
