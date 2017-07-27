@@ -44,25 +44,22 @@
         }
 
         function createWebsite(userId, website) {
-            var url = "/api/user/" + userId + "/website";
+            var url = "/api/user/" + userId + "/website/";
             return $http.post(url, website);
         }
 
         //Unpack response in servvice not controller
         function findWebsitesForUser(userId) {
-            var url = "/api/user/" + userId + "/website";
+            var url = "/api/user/" + userId + "/website/";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 })
         }
 
-        function findWebsiteById(websiteId) {
-            for(var w in websites){
-                if(websites[w]._id === websiteId){
-                    return websites[w];
-                }
-        }
+        function findWebsiteById(userId, websiteId) {
+            var url = "/api/user/" + userId + "/website/" + websiteId;
+            return $http.get(url);
         }
     }
 })();

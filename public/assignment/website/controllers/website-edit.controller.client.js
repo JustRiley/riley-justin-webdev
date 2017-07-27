@@ -13,9 +13,15 @@
         model.updateWebsite = updateWebsite;
 
         function init() {
-            model.website = websiteService.findWebsiteById(model.websiteId);
-            model.websites = angular.copy(websiteService.findWebsitesForUser(model.userId));
-
+            websiteService.findWebsiteById(model.userId, model.websiteId)
+                .then(function (response) {
+                    model.website = response.data;
+            });
+            websiteService.findWebsitesForUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
+           // model.websites = angular.copy(websiteService.findWebsitesForUser(model.userId));
         }
         init();
 
