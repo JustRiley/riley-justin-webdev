@@ -39,7 +39,7 @@
                         model.error = "User already exists";
                     }
                 })
-            //TODO: NEEDS work
+            //TODO: NEEDS work Refactor in video 4.18
         }
     }
 })();
