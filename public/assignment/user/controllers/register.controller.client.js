@@ -17,16 +17,14 @@
         init();
 
         function createUser(user) {
-            var promise = userService.findUserByUsername(user.username);
-            promise
+            userService.findUserByUsername(user.username)
                 .then(function (response) {
 
                     var _user = response.data;
 
                     if(_user === "0") {
 
-                        var promise2 = userService.createUser(user);
-                        promise2
+                        userService.createUser(user)
                             .then(function (response){
                                 var newUser = response.data;
                             if (newUser === "0") {

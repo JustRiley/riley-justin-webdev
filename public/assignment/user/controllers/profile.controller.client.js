@@ -12,16 +12,19 @@
         model.deleteUser = deleteUser;
 
         function init() {
-            var promise = userService.findUserById(userId);
-            promise.then(function (response) {
-                model.user = response.data;
+            userService.findUserById(userId)
+                .then(function (response) {
+                    model.user = response.data;
             })
         }
         init();
 
         function updateUser() {
-            userService.updateUser(userId, model.user);
-            model.successMessage = model.user.username + " updated successfully!";
+            var promise = userService.updateUser(userId, model.user);
+            promise.then(function () {
+                model.successMessage = model.user.username + " updated successfully!";
+            });
+
         }
 
         function deleteUser() {
