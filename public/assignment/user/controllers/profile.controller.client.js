@@ -20,16 +20,17 @@
         init();
 
         function updateUser() {
-            var promise = userService.updateUser(userId, model.user);
-            promise.then(function () {
-                model.successMessage = model.user.username + " updated successfully!";
+            userService.updateUser(userId, model.user)
+                .then(function () {
+                    model.successMessage = model.user.username + " updated successfully!";
             });
-
         }
 
         function deleteUser() {
-            userService.deleteUser(userId);
-            $location.url("login/");
+            userService.deleteUser(userId)
+                .then(function () {
+                    $location.url("login/");
+            });
         }
     }
 })();

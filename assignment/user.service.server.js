@@ -17,8 +17,16 @@ app.get("/api/user", findUser);
 app.post("/api/user", createUser);
 //Path parameter
 app.put("/api/user/:userId", updateUser);
+app.delete("/api/user/:userId", deleteUser);
 
-
+function deleteUser(req, response) {
+    for (var u in users) {
+        if (users[u]._id === req.params.userId) {
+            users.splice(u, 1);
+            response.send();
+        }
+    }
+}
 
 //Should be towards bottom
 function getAllUsers(req, response) {
