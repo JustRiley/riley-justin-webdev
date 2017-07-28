@@ -15,13 +15,13 @@
         function init() {
             websiteService.findWebsiteById(model.userId, model.websiteId)
                 .then(function (response) {
+                    //TODO: refactor unpacking to service
                     model.website = response.data;
             });
             websiteService.findWebsitesForUser(model.userId)
                 .then(function (websites) {
                     model.websites = websites;
                 });
-           // model.websites = angular.copy(websiteService.findWebsitesForUser(model.userId));
         }
         init();
 

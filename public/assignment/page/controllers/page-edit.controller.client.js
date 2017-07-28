@@ -15,32 +15,37 @@
         function init() {
             pageService.findPageById(model.pageId)
                 .then(function (response) {
-                    model.page = response;
+                    //TODO: refactor unpacking to service
+                    model.page = response.data;
             });
-            angular.copy(pageService.findPageByWebsiteId(model.websiteId))
+            pageService.findPageByWebsiteId(model.websiteId)
                 .then(function (pages) {
                     model.pages = pages;
-            })
+            });
         }
         init();
 
         function updatePage() {
-            pageService.updatePage(model.pageId, model.page);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/");
+            pageService.updatePage(model.pageId, model.page).then(function (response) {
+                $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/");
+            });
         }
 
         function deletePage() {
-            pageService.deletePage(model.pageId);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/");
+            pageService.deletePage(model.pageId).then(function (response) {
+                $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/");
+            });
         }
 
         function editPage(pageId) {
-            var page = pageService.findPageById(pageId);
-            if (page === null) {
-                model.errorMessage = "Page not found";
-            } else {
-                $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + pageId);
-            }
+            pageService.findPageById(pageId)
+                .then(function (response) {
+                    if (response === null) {
+                        model.errorMessage = "Page not found";
+                    } else {
+                        $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + pageId);
+                    }
+                });
         }
     }
 })();

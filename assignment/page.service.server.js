@@ -12,6 +12,30 @@ var pages = [
 app.post("/api/website/:websiteId/page", createPage);
 app.get("/api/website/:websiteId/page", findPageByWebsiteId);
 app.get("/api/page/:pageId", findPageById);
+app.delete("/api/page/:pageId", deletePage);
+app.put("/api/page/:pageId", updatePage);
+
+function deletePage(req, response) {
+    var pageId = req.params.pageId;
+    for (var p in pages) {
+        if (pages[p]._id === pageId) {
+            pages.splice(p, 1);
+            response.send();
+        }
+    }
+}
+
+function updatePage(req, response) {
+    var pageId = req.params.pageId;
+    var page = req.body;
+    for(var p in pages){
+        if(pages[p]._id === pageId){
+            pages[p] =  page;
+            response.send(page);
+            return;
+        }
+    }
+}
 
 function createPage(req, response) {
     var page = req.body;
@@ -19,7 +43,7 @@ function createPage(req, response) {
     page.websiteId = websiteId;
     page._id = (new Date()).getTime() + "";
     pages.push(page);
-    response.send(page);
+    response.json(page);
 }
 
 function findPageByWebsiteId(req, response) {

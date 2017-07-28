@@ -17,7 +17,7 @@
                 .findPageByWebsiteId(model.websiteId)
                 .then(function (pages) {
                     model.pages = pages;
-            })
+            });
         }
         init();
 
@@ -29,7 +29,7 @@
                     } else {
                         $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + pageId);
                     }
-                })
+                });
         }
     }
 })();

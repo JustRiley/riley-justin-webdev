@@ -4,12 +4,6 @@
         .factory("pageService", pageService);
 
     function pageService($http) {
-        //JSON JavaScript object Notation
-        var pages = [
-                { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-                { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-                { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-            ];
 
         var api = {
             "findPageByWebsiteId": findPageByWebsiteId,
@@ -28,7 +22,7 @@
 
         function findPageByWebsiteId(websiteId) {
             var url = "/api/website/" + websiteId + "/page";
-            $http.get(url).then(function (response) {
+            return $http.get(url).then(function (response) {
                 return response.data;
             })
         }
@@ -39,19 +33,13 @@
         }
 
         function updatePage(pageId, page) {
-            for(var p in pages){
-                if(pages[p]._id === pageId){
-                    pages[p] =  page;
-                }
-            }
+            var url = "/api/page/" + pageId;
+            return $http.put(url, page);
         }
 
         function deletePage(pageId) {
-            for (var p in pages) {
-                if (pages[p]._id === pageId) {
-                    pages.splice(p, 1);
-                }
-            }
+            var url = "/api/page/" + pageId;
+            return $http.delete(url);
         }
 
     }
