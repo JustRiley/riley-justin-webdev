@@ -3,7 +3,7 @@
         .module("WamApp")
         .factory("pageService", pageService);
 
-    function pageService() {
+    function pageService($http) {
         //JSON JavaScript object Notation
         var pages = [
                 { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -22,20 +22,16 @@
         return api;
 
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = (new Date()).getTime() + "";
-            pages.push(page);
-            return page;
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.post(url, page);
         }
 
         function findPageByWebsiteId(websiteId) {
-            var pagers = [];
-            for(var p in pages){
-                if(pages[p].websiteId === websiteId){
-                    pagers.push(pages[p]);
-                }
-            }
-            return pagers;
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+            })
         }
 
         function findPageById(pageId) {
