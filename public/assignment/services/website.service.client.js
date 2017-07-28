@@ -28,11 +28,8 @@
         return api;
 
         function deleteWebsite(websiteId) {
-            for (var w in websites) {
-                if (websites[w]._id === websiteId) {
-                    websites.splice(w, 1);
-                }
-            }
+            var url = "/api/website/" + websiteId;
+            return $http.delete(url)
         }
 
         function updateWebsite(websiteId, website) {

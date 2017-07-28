@@ -6,6 +6,7 @@ var app = require("../express");
 app.get("/api/user/:userId/website", findWebsitesForUser);
 app.post("/api/user/:userId/website", createWebsite);
 app.get("/api/user/:userId/website/:websiteId", findWebsiteById);
+app.delete("/api/website/:websiteId", deleteWebsite);
 
 var websites = [
     { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -16,6 +17,15 @@ var websites = [
     { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem" },
     { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
 ];
+
+function deleteWebsite(req, response) {
+    for (var w in websites) {
+        if (websites[w]._id === req.params.websiteId) {
+            websites.splice(w, 1);
+            response.send();
+        }
+    }
+}
 
 function findWebsiteById(req, response) {
 
