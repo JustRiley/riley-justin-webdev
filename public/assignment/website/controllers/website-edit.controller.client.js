@@ -26,7 +26,7 @@
         init();
 
         function editWebsite(websiteId) {
-            websiteService.findWebsiteById(websiteId)
+            websiteService.findWebsiteById(model.userId, websiteId)
                 .then(function (website) {
                     if (website === null) {
                         model.errorMessage = "Website not found";
@@ -44,8 +44,10 @@
         }
 
         function updateWebsite() {
-            websiteService.updateWebsite(model.websiteId, model.website);
-            $location.url("/user/"+ model.userId +"/website/");
-        }
+            websiteService.updateWebsite(model.websiteId, model.website)
+                .then(function () {
+                    $location.url("/user/" + model.userId + "/website/");
+                });
+            }
     }
 })();

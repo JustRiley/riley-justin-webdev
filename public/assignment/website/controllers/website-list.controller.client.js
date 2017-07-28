@@ -22,12 +22,16 @@
         init();
 
         function editWebsite(websiteId) {
-            var website = websiteService.findWebsiteById(websiteId);
-            if (website === null) {
-                model.errorMessage = "Website not found";
-            } else {
-                $location.url("/user/"+ model.userId +"/website/" + websiteId);
-            }
+                websiteService.findWebsiteById(model.userId, websiteId)
+                    .then(function (response) {
+                        var website = response;
+                        if (website === null) {
+                            model.errorMessage = "Website not found";
+                        } else {
+                            $location.url("/user/"+ model.userId +"/website/" + websiteId);
+                        }
+                });
+
         }
     }
 })();
