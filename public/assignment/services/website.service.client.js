@@ -33,11 +33,8 @@
         }
 
         function updateWebsite(websiteId, website) {
-            for(var w in websites){
-                if(websites[w]._id === websiteId){
-                    websites[w] =  website;
-                }
-            }
+            var url = "/api/website/" + websiteId;
+            return $http.put(url, website);
         }
 
         function createWebsite(userId, website) {

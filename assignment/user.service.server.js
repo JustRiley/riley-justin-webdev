@@ -80,7 +80,7 @@ function createUser(req, response) {
         response.send("0");
     }
 }
-//Path param
+
 function updateUser(req, response) {
     var userId = req.params.userId;
     var user = req.body;

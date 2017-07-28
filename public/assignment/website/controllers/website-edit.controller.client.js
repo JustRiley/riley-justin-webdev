@@ -26,12 +26,14 @@
         init();
 
         function editWebsite(websiteId) {
-            var website = websiteService.findWebsiteById(websiteId);
-            if (website === null) {
-                model.errorMessage = "Website not found";
-            } else {
-                $location.url("/user/"+ model.userId +"/website/" + websiteId);
-            }
+            websiteService.findWebsiteById(websiteId)
+                .then(function (website) {
+                    if (website === null) {
+                        model.errorMessage = "Website not found";
+                    } else {
+                        $location.url("/user/"+ model.userId +"/website/" + websiteId);
+                    }
+            })
         }
 
         function deleteWebsite() {
