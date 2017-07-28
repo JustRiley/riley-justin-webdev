@@ -13,8 +13,14 @@
         model.editPage = editPage;
 
         function init() {
-            model.page = pageService.findPageById(model.pageId);
-            model.pages = angular.copy(pageService.findPageByWebsiteId(model.websiteId));
+            pageService.findPageById(model.pageId)
+                .then(function (response) {
+                    model.page = response;
+            });
+            angular.copy(pageService.findPageByWebsiteId(model.websiteId))
+                .then(function (pages) {
+                    model.pages = pages;
+            })
         }
         init();
 

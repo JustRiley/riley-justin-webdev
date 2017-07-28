@@ -28,18 +28,14 @@
 
         function findPageByWebsiteId(websiteId) {
             var url = "/api/website/" + websiteId + "/page";
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data;
+            $http.get(url).then(function (response) {
+                return response.data;
             })
         }
 
         function findPageById(pageId) {
-            for(var p in pages) {
-                if(pages[p]._id === pageId){
-                    return pages[p];
-                }
-            }
+            var url = "/api/page/" + pageId;
+            return $http.get(url);
         }
 
         function updatePage(pageId, page) {

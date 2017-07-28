@@ -13,7 +13,8 @@
         model.editPage = editPage;
 
         function init() {
-            pageService.findPageByWebsiteId(model.websiteId)
+            pageService
+                .findPageByWebsiteId(model.websiteId)
                 .then(function (pages) {
                     model.pages = pages;
             })
@@ -21,12 +22,14 @@
         init();
 
         function editPage(pageId) {
-            var page = pageService.findPageById(pageId);
-            if (page === null) {
-                model.errorMessage = "Page not found";
-            } else {
-                $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + pageId);
-            }
+            pageService.findPageById(pageId)
+                .then(function (response) {
+                    if (response === null) {
+                        model.errorMessage = "Page not found";
+                    } else {
+                        $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + pageId);
+                    }
+                })
         }
     }
 })();

@@ -11,6 +11,7 @@ var pages = [
 
 app.post("/api/website/:websiteId/page", createPage);
 app.get("/api/website/:websiteId/page", findPageByWebsiteId);
+app.get("/api/page/:pageId", findPageById);
 
 function createPage(req, response) {
     var page = req.body;
@@ -30,4 +31,13 @@ function findPageByWebsiteId(req, response) {
         }
     }
     response.json(pagers);
+}
+
+function findPageById(req, response) {
+    var pageId = req.params.pageId;
+    for(var p in pages) {
+        if(pages[p]._id === pageId){
+            response.json(pages[p]);
+        }
+    }
 }
