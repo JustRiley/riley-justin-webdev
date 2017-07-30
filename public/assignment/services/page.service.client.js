@@ -29,7 +29,9 @@
 
         function findPageById(pageId) {
             var url = "/api/page/" + pageId;
-            return $http.get(url);
+            return $http.get(url).then(function (response) {
+                return response.data;
+            })
         }
 
         function updatePage(pageId, page) {

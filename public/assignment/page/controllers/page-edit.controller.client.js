@@ -14,9 +14,8 @@
 
         function init() {
             pageService.findPageById(model.pageId)
-                .then(function (response) {
-                    //TODO: refactor unpacking to service
-                    model.page = response.data;
+                .then(function (page) {
+                    model.page = page;
             });
             pageService.findPageByWebsiteId(model.websiteId)
                 .then(function (pages) {
