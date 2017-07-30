@@ -15,10 +15,12 @@
         model.trustUrlResource = trustUrlResource;
 
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+             widgetService.findWidgetsByPageId(model.pageId)
+                 .then(function (widgets) {
+                    model.widgets = widgets;
+             })
         }
         init();
-//TODO:Youtube bug fix
         function trustUrlResource(url) {
             console.log(url);
             var youtubeUrl = "https://www.youtube.com/embed/";
@@ -32,5 +34,3 @@
         }
     }
 })();
-//TODO:Widget list Youtube links won't load? ""Can't interpolate: {{widget.url}}
-//Error: [$sce:insecurl] Blocked loading resource from url not allowed by $sceDelegate policy.

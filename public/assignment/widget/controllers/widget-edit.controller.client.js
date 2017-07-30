@@ -13,18 +13,22 @@
         model.deleteWidget = deleteWidget;
 
         function init() {
-            model.widget = widgetService.findWidgetById(model.wgid);
+             widgetService.findWidgetById(model.wgid).then(function (widget) {
+                 model.widget = widget;
+             })
         }
         init();
 
         function updateWidget() {
-            widgetService.updateWidget(model.wgid, model.widget);
-            $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/");
+            widgetService.updateWidget(model.wgid, model.widget).then(function (response) {
+                $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/");
+            })
         }
 
         function deleteWidget() {
-            widgetService.deleteWidget(model.wgid);
-            $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/");
+            widgetService.deleteWidget(model.wgid).then(function (response) {
+                $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/");
+            })
         }
     }
 })();

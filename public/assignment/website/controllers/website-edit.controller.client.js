@@ -14,9 +14,8 @@
 
         function init() {
             websiteService.findWebsiteById(model.userId, model.websiteId)
-                .then(function (response) {
-                    //TODO: refactor unpacking to service
-                    model.website = response.data;
+                .then(function (website) {
+                    model.website = website;
             });
             websiteService.findWebsitesForUser(model.userId)
                 .then(function (websites) {

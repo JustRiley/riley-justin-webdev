@@ -19,8 +19,11 @@
 
         function newWidget(widgetType, widget) {
             widget.widgetType = widgetType;
-            var newWidget = widgetService.createWidget(model.pageId, widget);
-            $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + newWidget._id);
+            widgetService.createWidget(model.pageId, widget)
+                .then(function (widget) {
+                    var newWidget = widget;
+                    $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + newWidget._id);
+            })
 
         }
     }
