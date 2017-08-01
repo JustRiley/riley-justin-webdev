@@ -4,15 +4,15 @@
 var app = require("../express");
 
 var widgets = [
-    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-    { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO", "pos": 0},
+    { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum", "pos": 1},
     { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-        "url": "http://lorempixel.com/400/200/"},
-    { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Loren ipsum</p>"},
-    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+        "url": "http://lorempixel.com/400/200/", "pos": 2},
+    { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Loren ipsum</p>", "pos": 3},
+    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum", "pos": 4},
     { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-        "url": "https://youtu.be/AM2Ivdi9c4E" },
-    { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+        "url": "https://youtu.be/AM2Ivdi9c4E", "pos": 5 },
+    { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>", "pos": 6}
 ];
 
 app.post("/api/page/:pageId/widget", createWidget);
@@ -20,6 +20,50 @@ app.get("/api/page/:pageId/widget", findWidgetsByPageId);
 app.get("/api/widget/:widgetId", findWidgetById);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/widget/:widgetId", deleteWidget);
+
+app.put("/api/page/:pageId/widget", sortWidget);
+
+function sortWidget(req, response) {
+    var initial = req.query.initial;
+    var final = req.query.final;
+
+    function shiftUp() {
+        for(i = initial +1; i < final; i++) {
+            for (widget in widgets) {
+                if (widget.pos === i) {
+                    widget.pos = widget.pos++;
+                }
+            }
+        }
+        for(widget in widgets) {
+            if (widget.pos === initial) {
+                widget.pos = final;
+            }
+        }
+    }
+
+    function shiftDown() {
+        for(i = initial -1; i < final; i++) {
+            for (widget in widgets) {
+                if (widget.pos === i) {
+                    widget.pos = widget.pos--;
+                }
+            }
+        }
+    }
+
+    if(initial === final) {
+        response.send();
+    }
+    if (initial > final) {
+        shiftDown();
+        response.send();
+    }
+    else {
+        shiftUp();
+        response.send();
+    }
+}
 
 
 function createWidget(req, response) {
@@ -39,6 +83,9 @@ function findWidgetsByPageId(req, response) {
             widgetlist.push(widgets[w]);
         }
     }
+    widgetlist.sort(function (a, b) {
+        return a.pos > b.pos;
+    });
     response.json(widgetlist);
 }
 
