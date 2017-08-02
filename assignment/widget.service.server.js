@@ -78,8 +78,9 @@ function sortWidget(req, response) {
         console.log("bigger");
         shiftUp();
         widgets.sort(function (a, b) {
-            return a.pos > b.pos;
+            return a.pos - b.pos;
         });
+        widgets.sort();
         console.log(widgets);
         response.send();
     }
@@ -87,8 +88,9 @@ function sortWidget(req, response) {
         console.log("smaller");
         shiftDown();
         widgets.sort(function (a, b) {
-            return a.pos > b.pos;
+            return a.pos-b.pos;
         });
+        widgets.sort();
         console.log(widgets);
         response.send();
     }
@@ -113,7 +115,7 @@ function findWidgetsByPageId(req, response) {
         }
     }
     widgetlist.sort(function (a, b) {
-        return a.pos > b.pos;
+        return a.pos - b.pos;
     });
     widgetlist.sort();
     response.json(widgetlist);

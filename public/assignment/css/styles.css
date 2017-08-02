@@ -55,3 +55,7 @@ iframe {
     width: auto;
     height: auto;
 }
+
+ul {
+    list-style: armenian;
+}
