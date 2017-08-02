@@ -26,41 +26,65 @@ app.put("/api/page/:pageId/widget", sortWidget);
 function sortWidget(req, response) {
     var initial = req.query.initial;
     var final = req.query.final;
+    console.log(initial);
+    console.log(final);
 
     function shiftUp() {
-        for(i = initial +1; i < final; i++) {
-            for (widget in widgets) {
-                if (widget.pos === i) {
-                    widget.pos = widget.pos++;
+        for(var x in widgets) {
+            if (widgets[x].pos + "" === initial) {
+                widgets[x].pos = -1;
+            }
+        }
+        for(i = parseInt(initial) -1; i >= final; i--) {
+            for (var w in widgets) {
+                if (widgets[w].pos === i) {
+                    widgets[w].pos++;
                 }
             }
         }
-        for(widget in widgets) {
-            if (widget.pos === initial) {
-                widget.pos = final;
+        for(var x in widgets) {
+            if (widgets[x].pos  === -1) {
+                widgets[x].pos = final;
+                return;
             }
         }
     }
 
     function shiftDown() {
-        for(i = initial -1; i < final; i++) {
-            for (widget in widgets) {
-                if (widget.pos === i) {
-                    widget.pos = widget.pos--;
+        for(i = initial+1; i <= final; i++) {
+            for (var w in widgets) {
+                if (widgets[w].pos === i) {
+                    widgets[w].pos--;
                 }
+            }
+        }
+        for(var x in widgets) {
+            if (widgets[x].pos + "" === initial) {
+                widgets[x].pos = final;
+                return;
             }
         }
     }
 
     if(initial === final) {
+        console.log("same");
         response.send();
     }
     if (initial > final) {
-        shiftDown();
+        console.log("bigger");
+        shiftUp();
+        widgets.sort(function (a, b) {
+            return a.pos > b.pos;
+        });
+        console.log(widgets);
         response.send();
     }
     else {
-        shiftUp();
+        console.log("smaller");
+        shiftDown();
+        widgets.sort(function (a, b) {
+            return a.pos > b.pos;
+        });
         response.send();
     }
 }
@@ -86,6 +110,7 @@ function findWidgetsByPageId(req, response) {
     widgetlist.sort(function (a, b) {
         return a.pos > b.pos;
     });
+    widgetlist.sort();
     response.json(widgetlist);
 }
 

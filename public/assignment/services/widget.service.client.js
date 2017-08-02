@@ -13,7 +13,8 @@
             "findWidgetsByPageId": findWidgetsByPageId,
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
-            "deleteWidget": deleteWidget
+            "deleteWidget": deleteWidget,
+            "sortWidget": sortWidget
         };
         return api;
 
@@ -46,6 +47,11 @@
             return $http.get(url).then(function (response) {
                 return response.data;
             })
+        }
+
+        function sortWidget(pageId, initial, final) {
+            var url = "/api/page/"+ pageId + "/widget?initial=" + initial + "&final=" + final;
+            return $http.put(url);
         }
     }
 })();
