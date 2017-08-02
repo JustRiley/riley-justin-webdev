@@ -32,4 +32,4 @@
         }
     }
 })();
-//TODO:Use CSS to hide bullet points
+//TODO:Figure out why can't use CSS to hide bullet points
