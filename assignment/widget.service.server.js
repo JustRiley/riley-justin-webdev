@@ -6,15 +6,15 @@ var multer = require('multer');
 var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
 var widgets = [
-    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO", "pos": 0},
-    { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum", "pos": 1},
+    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
+    { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
     { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-        "url": "http://lorempixel.com/400/200/", "pos": 2},
-    { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Loren ipsum</p>", "pos": 3},
-    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum", "pos": 4},
+        "url": "http://lorempixel.com/400/200/"},
+    { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Loren ipsum</p>"},
+    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
     { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-        "url": "https://youtu.be/AM2Ivdi9c4E", "pos": 5 },
-    { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>", "pos": 6}
+        "url": "https://youtu.be/AM2Ivdi9c4E"},
+    { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
 ];
 
 app.post("/api/page/:pageId/widget", createWidget);
@@ -25,75 +25,20 @@ app.delete("/api/widget/:widgetId", deleteWidget);
 
 app.put("/api/page/:pageId/widget", sortWidget);
 
-app.post ("/api/upload", upload.single('myFile'), uploadImage);
+app.post("/api/upload", upload.single('myFile'), uploadImage);
 
 function sortWidget(req, response) {
     var initial = req.query.initial;
     var final = req.query.final;
-    console.log(initial);
-    console.log(final);
-
-    function shiftUp() {
-        for(var x in widgets) {
-            if (widgets[x].pos + "" === initial) {
-                widgets[x].pos = -1;
-            }
-        }
-        for(i = parseInt(initial) -1; i >= final; i--) {
-            for (var w in widgets) {
-                if (widgets[w].pos === i) {
-                    widgets[w].pos++;
-                }
-            }
-        }
-        for(var x in widgets) {
-            if (widgets[x].pos  === -1) {
-                widgets[x].pos = final;
-                return;
-            }
-        }
-    }
-
-    function shiftDown() {
-        for(i = parseInt(initial)+1; i <= final; i++) {
-            for (var w in widgets) {
-                if (widgets[w].pos === i) {
-                    widgets[w].pos--;
-                }
-            }
-        }
-        for(var x in widgets) {
-            if (widgets[x].pos + "" === initial) {
-                widgets[x].pos = final;
-                return;
-            }
-        }
-    }
-
+    var pageId = req.params.pageId;
     if(initial === final) {
-        console.log("same");
         response.send();
+        return;
     }
-    if (initial > final) {
-        console.log("bigger");
-        shiftUp();
-        widgets.sort(function (a, b) {
-            return a.pos - b.pos;
-        });
-        widgets.sort();
-        console.log(widgets);
-        response.send();
-    }
-    else {
-        console.log("smaller");
-        shiftDown();
-        widgets.sort(function (a, b) {
-            return a.pos-b.pos;
-        });
-        widgets.sort();
-        console.log(widgets);
-        response.send();
-    }
+    var temp = widgets[initial];
+    widgets.splice(initial, 1);
+    widgets.splice(final, 0, temp);
+    response.send(widgets);
 }
 
 
@@ -114,10 +59,6 @@ function findWidgetsByPageId(req, response) {
             widgetlist.push(widgets[w]);
         }
     }
-    widgetlist.sort(function (a, b) {
-        return a.pos - b.pos;
-    });
-    widgetlist.sort();
     response.json(widgetlist);
 }
 

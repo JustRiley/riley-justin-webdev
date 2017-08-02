@@ -6,7 +6,7 @@
         .module("wbdvDirectives", [])
         .directive("widgetList", widgetListDirective);
     
-    function widgetListDirective(widgetService, $routeParams) {
+    function widgetListDirective($http, $routeParams) {
         model = this;
         model.pageId = $routeParams.pageId;
         function linkFunction(scope, element) {
@@ -18,18 +18,16 @@
                 },
                 stop: function (event, ui) {
                     stopIndex = ($(ui.item).index());
-                    widgetService.sortWidget(model.pageId, startIndex, stopIndex)
-                        .then(function (response) {
-                            console.log("" + startIndex + " " + stopIndex);
-                    });
+                    var url = "/api/page/"+ model.pageId + "/widget?initial=" + startIndex + "&final=" + stopIndex;
+                    $http.put(url);
                 },
                 axis: "y"
             });
         }
 
         return {
+            templateUrl: "/assignment/widget/templates/widget-list.component.client.html",
             link: linkFunction
         }
     }
 })();
-//TODO:Figure out why can't use CSS to hide bullet points

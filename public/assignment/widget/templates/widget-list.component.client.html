@@ -1,0 +1,54 @@
+<ul>
+    <li ng-repeat="widget in model.widgets">
+        <div ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADING">
+                <div class="container-fluid">
+                    <div class="col-lg-10 col-xs-10">
+                        <div ng-include="'/assignment/widget/templates/widget-list.component-HEADING.client.html'">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-2">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <div class="container-fluid">
+                    <div class="col-lg-10 col-xs-10">
+                        <div ng-include="'/assignment/widget/templates/widget-list.component-IMAGE.client.html'">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-2">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <div class="container-fluid">
+                    <div class="col-lg-10 col-xs-10">
+                        <div ng-include="'/assignment/widget/templates/widget-list.component-YOUTUBE.client.html'">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-2">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="HTML">
+                <div class="container-fluid">
+                    <div class="col-lg-10 col-xs-10">
+                        <div ng-include="'/assignment/widget/templates/widget-list.component-HTML.client.html'">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-2">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
