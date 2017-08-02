@@ -52,14 +52,21 @@
                 </div>
                 <div ng-switch-when="YOUTUBE">
                     <div class="col-lg-10 col-xs-10">
-                        <iframe src="{{model.trustUrlResource(widget.url)}}"></iframe>
+                        <iframe ng-src="{{model.trustUrlResource(widget.url)}}"></iframe>
                     </div>
                     <div class="col-lg-2 col-xs-2">
                         <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
                             <span class="pull-right glyphicon glyphicon-pencil"></span></a>
                     </div>
-
-
+                </div>
+                <div ng-switch-when="HTML">
+                    <div class="col-lg-10 col-xs-10">
+                        <div ng-bind-html="model.trustHtmlContent(widget.text)"></div>
+                    </div>
+                    <div class="col-lg-2 col-xs-2">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    </div>
                 </div>
             </div>
         </li>
