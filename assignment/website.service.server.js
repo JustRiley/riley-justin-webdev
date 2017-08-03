@@ -37,17 +37,20 @@ function deleteWebsite(req, response) {
         if (websites[w]._id === req.params.websiteId) {
             websites.splice(w, 1);
             response.send();
+            return;
         }
     }
+    return response.sendStatus(404);
 }
 
 function findWebsiteById(req, response) {
-
     for(var w in websites){
         if(websites[w]._id === req.params.websiteId){
             response.json(websites[w]);
+            return;
         }
     }
+    return response.sendStatus(404);
 }
 
 
@@ -66,7 +69,9 @@ function findWebsitesForUser(req, response) {
 function createWebsite(req, response) {
     var website = req.body;
     var userId = req.params.userId;
-    //TODO: check for userID and throw 404 if not
+    if(!userId){
+        return response.sendStatus(404);
+    }
     website.developerId = userId;
     website._id = (new Date()).getTime() + "";
     websites.push(website);

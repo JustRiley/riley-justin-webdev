@@ -91,4 +91,5 @@ function updateUser(req, response) {
             return;
         }
     }
+    return response.sendStatus(404);
 }

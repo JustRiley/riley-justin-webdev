@@ -28,9 +28,9 @@ app.put("/api/page/:pageId/widget", sortWidget);
 app.post("/api/upload", upload.single('myFile'), uploadImage);
 
 function sortWidget(req, response) {
+    //TODO: Improve this implimination to deal with arrays containing widgets for more than 1 page
     var initial = req.query.initial;
     var final = req.query.final;
-    var pageId = req.params.pageId;
     if(initial === final) {
         response.send();
         return;
@@ -67,8 +67,11 @@ function findWidgetById(req, response) {
     for(var w in widgets){
         if(widgets[w]._id === widgetId){
             response.json(widgets[w]);
+            return;
         }
     }
+    return response.sendStatus(404);
+
 }
 
 function updateWidget(req, response) {
@@ -78,8 +81,10 @@ function updateWidget(req, response) {
         if(widgets[w]._id === widgetId){
             widgets[w] = widget;
             response.json(widget);
+            return;
         }
     }
+    return response.sendStatus(404);
 }
 
 function deleteWidget(req, response) {
@@ -88,8 +93,10 @@ function deleteWidget(req, response) {
         if (widgets[w]._id === widgetId) {
             widgets.splice(w, 1);
             response.send();
+            return;
         }
     }
+    return response.sendStatus(404);
 }
 
 function getWidgetById(widgetId) {

@@ -21,8 +21,10 @@ function deletePage(req, response) {
         if (pages[p]._id === pageId) {
             pages.splice(p, 1);
             response.send();
+            return;
         }
     }
+    return response.sendStatus(404);
 }
 
 function updatePage(req, response) {
@@ -35,6 +37,7 @@ function updatePage(req, response) {
             return;
         }
     }
+    return response.sendStatus(404);
 }
 
 function createPage(req, response) {
@@ -62,6 +65,8 @@ function findPageById(req, response) {
     for(var p in pages) {
         if(pages[p]._id === pageId){
             response.json(pages[p]);
+            return;
         }
     }
+    return response.sendStatus(404);
 }
