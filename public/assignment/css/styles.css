@@ -59,3 +59,7 @@ iframe {
 ul {
     list-style: none;
 }
+
+button {
+    padding-bottom: 5px;
+}
