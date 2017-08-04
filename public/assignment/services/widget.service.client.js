@@ -13,7 +13,8 @@
             "findWidgetsByPageId": findWidgetsByPageId,
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
-            "deleteWidget": deleteWidget
+            "deleteWidget": deleteWidget,
+            "updateWidgetUrl": updateWidgetUrl
         };
         return api;
 
@@ -46,6 +47,11 @@
             return $http.get(url).then(function (response) {
                 return response.data;
             })
+        }
+
+        function updateWidgetUrl(widgetId, newUrl) {
+            var url = "/api/widget/" + widgetId + "/url";
+            return $http.put(url, newUrl);
         }
     }
 })();

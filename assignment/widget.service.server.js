@@ -27,6 +27,8 @@ app.put("/api/page/:pageId/widget", sortWidget);
 
 app.post("/api/upload", upload.single('myFile'), uploadImage);
 
+app.put("/api/widget/:widgetId/url", updateWidgetUrl);
+
 function sortWidget(req, response) {
     //TODO: Improve this implimination to deal with arrays containing widgets for more than 1 page
     var initial = req.query.initial;
@@ -131,4 +133,17 @@ function uploadImage(req, res) {
 
     res.redirect(callbackUrl);
 }
-//TODO: Cannot get pic after adding
+
+function updateWidgetUrl(req, response) {
+    var newUrl = req.body;
+    var widgetId = req.params.widgetId;
+    for(var w in widgets){
+        if(widgets[w]._id === widgetId){
+            widgets[w].url = newUrl.url;
+            response.json(widgets[w]);
+            return;
+        }
+    }
+    return response.sendStatus(404);
+
+}
