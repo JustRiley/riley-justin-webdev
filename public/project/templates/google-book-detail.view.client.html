@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row" ng-repeat="book in model.books">
+            <div class="col-xs-4">
+                <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}">
+            </div>
+            <div class="col-xs-4">
+                <h1>{{book.volumeInfo.title}}</h1>
+            </div>
+            <div class="col-xs-4">
+                {{book.volumeInfo.description}}
+            </div>
+    </div>
+</div>
