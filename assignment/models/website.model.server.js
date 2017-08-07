@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var websiteSchema = require("./website.schema.server");
 var db = require("./database");
 var websiteModel = mongoose.model("WebsiteModel", websiteSchema);
+var userModel = require("./user.model.server");
 websiteModel.createWebsite = createWebsite;
 websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.updateWebsite = updateWebsite;
@@ -13,7 +14,11 @@ module.exports = websiteModel;
 
 function createWebsite(userId, website) {
     website._user = userId;
-    return websiteModel.create(website);
+    return websiteModel
+        .create(website)
+        .then (function (websiteDoc) {
+            return userModel.addWebsite(userId, websiteDoc._id);
+        });
 }
 
 function findWebsiteById(websiteId) {

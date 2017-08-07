@@ -9,6 +9,7 @@ userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.updateUser = updateUser;
 userModel.findUserByCredentials = findUserByCredentials;
+userModel.addWebsite = addWebsite;
 module.exports = userModel;
 
 function findUserByCredentials(username, password) {
@@ -26,4 +27,14 @@ function findUserById(userId) {
 function updateUser(userId, user) {
     return userModel.update({_id: userId},
         {$set: user});
+}
+//Array of references
+function addWebsite(developerId, websiteId) {
+    return userModel
+            .findUserById(developerId)
+            .then(function (user) {
+                user.websites.push(websiteId);
+                //writes changes to DB
+                return user.save();
+            })
 }
