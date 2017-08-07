@@ -2,6 +2,7 @@
  * Created by Justin on 7/26/2017.
  */
 var app = require("../../express");
+var websiteModel = require("../models/website.model.server");
 
 app.get("/api/user/:userId/website", findWebsitesForUser);
 app.post("/api/user/:userId/website", createWebsite);
@@ -22,14 +23,14 @@ var websites = [
 function updateWebsite(req, response) {
     var websiteId = req.params.websiteId;
     var website = req.body;
-    for(var w in websites){
-        if(websites[w]._id === websiteId){
-            websites[w] =  website;
-            response.send(website);
-            return;
-        }
-    }
-    return "0";
+
+    websiteModel
+        .updateWebsite(websiteId, website)
+        .then(function (status) {
+            response.json(status);
+        }, function (err) {
+        response.sendStatus(404).send(err);
+    })
 }
 
 function deleteWebsite(req, response) {
@@ -44,13 +45,12 @@ function deleteWebsite(req, response) {
 }
 
 function findWebsiteById(req, response) {
-    for(var w in websites){
-        if(websites[w]._id === req.params.websiteId){
-            response.json(websites[w]);
-            return;
-        }
-    }
-    return response.sendStatus(404);
+    var websiteId = req.params.websiteId;
+    websiteModel
+        .findWebsiteById(websiteId)
+        .then(function (website) {
+            response.json(website);
+        })
 }
 
 
@@ -69,11 +69,12 @@ function findWebsitesForUser(req, response) {
 function createWebsite(req, response) {
     var website = req.body;
     var userId = req.params.userId;
-    if(!userId){
-        return response.sendStatus(404);
-    }
     website.developerId = userId;
-    website._id = (new Date()).getTime() + "";
-    websites.push(website);
-    response.json(website);
+    console.log("dev id set");
+    websiteModel
+        .createWebsite(website)
+        .then(function (website) {
+            response.json(website);
+            console.log("sent");
+        })
 }
