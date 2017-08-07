@@ -14,11 +14,16 @@ module.exports = websiteModel;
 
 function createWebsite(userId, website) {
     website._user = userId;
+    var websiteTemp = null;
     return websiteModel
         .create(website)
         .then (function (websiteDoc) {
+            websiteTemp = websiteDoc;
             return userModel.addWebsite(userId, websiteDoc._id);
-        });
+        })
+        .then(function (userDoc) {
+            return websiteTemp;
+        })
 }
 
 function findWebsiteById(websiteId) {
