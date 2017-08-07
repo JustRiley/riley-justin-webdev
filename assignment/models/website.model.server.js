@@ -8,9 +8,11 @@ var websiteModel = mongoose.model("WebsiteModel", websiteSchema);
 websiteModel.createWebsite = createWebsite;
 websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.updateWebsite = updateWebsite;
+websiteModel.findWebsitesForUser = findWebsitesForUser;
 module.exports = websiteModel;
 
-function createWebsite(website) {
+function createWebsite(userId, website) {
+    website._user = userId;
     return websiteModel.create(website);
 }
 
@@ -21,4 +23,8 @@ function findWebsiteById(websiteId) {
 function updateWebsite(websiteId, website) {
     return websiteModel.update({_id: websiteId},
         {$set: website});
+}
+
+function findWebsitesForUser(developerId) {
+    return websiteModel.find({_user: developerId});
 }

@@ -57,13 +57,11 @@ function findWebsiteById(req, response) {
 function findWebsitesForUser(req, response) {
     var userId = req.params.userId;
 
-    var sites = [];
-    for(var w in websites){
-        if(websites[w].developerId === userId){
-            sites.push(websites[w]);
-        }
-    }
-    response.json(sites);
+    websiteModel
+        .findWebsitesForUser(userId)
+        .then(function (websites) {
+            response.json(websites);
+        });
 }
 
 function createWebsite(req, response) {
@@ -71,8 +69,10 @@ function createWebsite(req, response) {
     var userId = req.params.userId;
 
     websiteModel
-        .createWebsite(website)
+        .createWebsite(userId, website)
         .then(function (newsite) {
             response.json(newsite);
+        }, function (err) {
+            response.sendStatus(404).send(err);
         })
 }
