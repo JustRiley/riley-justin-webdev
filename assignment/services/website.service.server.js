@@ -1,7 +1,7 @@
 /**
  * Created by Justin on 7/26/2017.
  */
-var app = require("../express");
+var app = require("../../express");
 
 app.get("/api/user/:userId/website", findWebsitesForUser);
 app.post("/api/user/:userId/website", createWebsite);

@@ -1,7 +1,8 @@
 /**
  * Created by Justin on 7/24/2017.
  */
-var app = require("../express");
+var app = require("../../express");
+var userModel = require("../models/user.model.server");
 //JSON
 var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
@@ -36,11 +37,11 @@ function getAllUsers(req, response) {
 //Path parameter
 //As opposed to a query parameter ex ?1234=132
 function getUserById(req, response) {
-    for (var u in users) {
-        if(users[u]._id === req.params.userId) {
-            response.send(users[u]);
-        }
-    }
+    userModel
+        .findUserById(req.params.userId)
+        .then(function (user) {
+            response.json(user);
+        })
 }
 
 function findUser(req, response) {
@@ -49,15 +50,14 @@ function findUser(req, response) {
     var password = req.query.password;
 
     if(username && password) {
-        for (var u in users) {
-            //can't just do var user= u; since u is just an index
-            var _user = users[u];
-            if (_user.username === username && _user.password === password) {
-                response.send(_user);
+        userModel
+            .findUserByCredentials(username, password)
+            .then(function (user) {
+                response.json(user);
                 return;
-            }
-        }
-        response.send("0");
+            }, function (err) {
+                response.sendStatus(404).send(err);
+        })
     }
     else {
         for (var u in users) {
@@ -73,9 +73,11 @@ function findUser(req, response) {
 function createUser(req, response) {
     var user = req.body;
     if(user.password + "" === user.verifyPassword + "") {
-        user._id = (new Date()).getTime() + "";
-        users.push(user);
-        response.send(user);
+        userModel
+            .createUser(user)
+            .then(function (user) {
+                response.json(user);
+        })
     } else {
         response.send("0");
     }
@@ -84,12 +86,12 @@ function createUser(req, response) {
 function updateUser(req, response) {
     var userId = req.params.userId;
     var user = req.body;
-    for (var u in users) {
-        if (users[u]._id === userId) {
-            users[u] = user;
-            response.send(user);
-            return;
-        }
-    }
-    return response.sendStatus(404);
+
+    userModel
+        .updateUser(userId, user)
+        .then(function (status) {
+            response.json(status);
+        }, function (err) {
+            response.sendStatus(404).send(err);
+        })
 }

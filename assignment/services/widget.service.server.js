@@ -1,9 +1,9 @@
 /**
  * Created by Justin on 7/30/2017.
  */
-var app = require("../express");
+var app = require("../../express");
 var multer = require('multer');
-var upload = multer({ dest: __dirname+'/../public/uploads' });
+var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
 var widgets = [
     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
