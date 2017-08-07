@@ -10,7 +10,8 @@ websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.updateWebsite = updateWebsite;
 module.exports = websiteModel;
 
-function createWebsite(websiteId, website) {
+function createWebsite(website) {
+    console.log("website model server: calling create");
     return websiteModel.create(website);
 }
 

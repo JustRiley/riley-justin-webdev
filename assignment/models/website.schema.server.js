@@ -4,7 +4,6 @@
 var mongoose = require("mongoose");
 var websiteSchema = mongoose.Schema({
     name: String,
-    developerId: Number,
     description: String
 }, {collection: "website"});
 module.exports = websiteSchema;

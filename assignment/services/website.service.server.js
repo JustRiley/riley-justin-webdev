@@ -69,12 +69,10 @@ function findWebsitesForUser(req, response) {
 function createWebsite(req, response) {
     var website = req.body;
     var userId = req.params.userId;
-    website.developerId = userId;
-    console.log("dev id set");
+
     websiteModel
         .createWebsite(website)
-        .then(function (website) {
-            response.json(website);
-            console.log("sent");
+        .then(function (newsite) {
+            response.json(newsite);
         })
 }
