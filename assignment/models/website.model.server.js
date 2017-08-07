@@ -11,7 +11,6 @@ websiteModel.updateWebsite = updateWebsite;
 module.exports = websiteModel;
 
 function createWebsite(website) {
-    console.log("website model server: calling create");
     return websiteModel.create(website);
 }
 

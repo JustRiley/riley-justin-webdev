@@ -6,6 +6,11 @@ var userSchema = mongoose.Schema({
     username: String,
     password: String,
     firstName: String,
-    lastName: String
+    lastName: String,
+    websites: [{type: mongoose.Schema.Types.ObjectId, ref:"WebsiteModel"}]
 }, {collection: "user"});
 module.exports = userSchema;
+/*
+    Embeded schemas is preferred if possible
+    Not on this assignment, because schemas must be separate
+ */
