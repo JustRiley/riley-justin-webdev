@@ -18,10 +18,9 @@
         init();
 
         function newWidget(widgetType, widget) {
-            widget.widgetType = widgetType;
+            widget.type = widgetType;
             widgetService.createWidget(model.pageId, widget)
-                .then(function (widget) {
-                    var newWidget = widget;
+                .then(function (newWidget) {
                     $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + newWidget._id);
             })
 
