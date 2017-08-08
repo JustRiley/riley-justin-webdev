@@ -45,5 +45,8 @@ function updateWebsite(websiteId, website) {
 }
 
 function findWebsitesForUser(developerId) {
-    return websiteModel.find({_user: developerId});
+    return websiteModel
+        .find({_user: developerId})
+        .populate("_user", "username")
+        .exec();
 }
