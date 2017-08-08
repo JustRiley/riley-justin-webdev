@@ -10,7 +10,16 @@ websiteModel.createWebsite = createWebsite;
 websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.updateWebsite = updateWebsite;
 websiteModel.findWebsitesForUser = findWebsitesForUser;
+websiteModel.deleteWebsite = deleteWebsite;
 module.exports = websiteModel;
+
+function deleteWebsite(developerId, websiteId) {
+    return websiteModel
+        .remove({_id: websiteId})
+        .then(function (status) {
+            return userModel.removeWebsite(developerId, websiteId);
+        })
+}
 
 function createWebsite(userId, website) {
     website._user = userId;

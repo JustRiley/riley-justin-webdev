@@ -7,7 +7,7 @@ var websiteModel = require("../models/website.model.server");
 app.get("/api/user/:userId/website", findWebsitesForUser);
 app.post("/api/user/:userId/website", createWebsite);
 app.get("/api/user/:userId/website/:websiteId", findWebsiteById);
-app.delete("/api/website/:websiteId", deleteWebsite);
+app.delete("/api/user/:userId/website/:websiteId", deleteWebsite);
 app.put("/api/website/:websiteId", updateWebsite);
 
 var websites = [
@@ -34,14 +34,13 @@ function updateWebsite(req, response) {
 }
 
 function deleteWebsite(req, response) {
-    for (var w in websites) {
-        if (websites[w]._id === req.params.websiteId) {
-            websites.splice(w, 1);
-            response.send();
-            return;
-        }
-    }
-    return response.sendStatus(404);
+    var websiteId = req.params.websiteId;
+    var developerId = req.params.userId;
+    websiteModel
+        .deleteWebsite(developerId, websiteId)
+        .then(function (status) {
+            response.json(status);
+        });
 }
 
 function findWebsiteById(req, response) {
