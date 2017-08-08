@@ -21,12 +21,21 @@ app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 
 function deleteUser(req, response) {
+
+    userModel
+        .deleteUser(req.params.userId)
+        .then(function (user) {
+            response.json(user);
+        })
+
+    /*
     for (var u in users) {
         if (users[u]._id === req.params.userId) {
             users.splice(u, 1);
             response.send();
         }
     }
+    */
 }
 
 //Should be towards bottom

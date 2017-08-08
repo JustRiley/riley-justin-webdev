@@ -11,7 +11,19 @@ userModel.updateUser = updateUser;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
+userModel.findUserByUsername = findUserByUsername;
+userModel.deleteUser = deleteUser;
 module.exports = userModel;
+
+function deleteUser(userId) {
+    return userModel
+        .findById(userId)
+        .remove();
+}
+
+function findUserByUsername(username) {
+    return userModel.findOne({username: username});
+}
 
 function removeWebsite(developerId, websiteId) {
     return userModel

@@ -7,7 +7,10 @@ var userSchema = mongoose.Schema({
     password: String,
     firstName: String,
     lastName: String,
-    websites: [{type: mongoose.Schema.Types.ObjectId, ref:"WebsiteModel"}]
+    email: String,
+    phone: String,
+    websites: [{type: mongoose.Schema.Types.ObjectId, ref:"WebsiteModel"}],
+    dateCreated: {type: Date, default: Date.now}
 }, {collection: "user"});
 module.exports = userSchema;
 /*
