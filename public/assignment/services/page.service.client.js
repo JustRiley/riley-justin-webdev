@@ -22,8 +22,9 @@
 
         function findPageByWebsiteId(websiteId) {
             var url = "/api/website/" + websiteId + "/page";
-            return $http.get(url).then(function (response) {
-                return response.data;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
             })
         }
 
@@ -39,8 +40,8 @@
             return $http.put(url, page);
         }
 
-        function deletePage(pageId) {
-            var url = "/api/page/" + pageId;
+        function deletePage(websiteId, pageId) {
+            var url = "/api/website/" + websiteId + "/page/" + pageId;
             return $http.delete(url);
         }
 
