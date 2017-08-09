@@ -111,7 +111,7 @@ function uploadImage(req, res) {
             widget.url = '/uploads/' + filename;
             return widget.save();})
         .then(function (widget) {
-        
+
         var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
 
         res.redirect(callbackUrl);
