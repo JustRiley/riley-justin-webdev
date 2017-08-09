@@ -24,8 +24,9 @@
                     improvedWidget.url = url;
                     return widgetService.updateWidget(model.wgid, improvedWidget);
                 })
-                .then($location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.wgid));
-
+                .then(function (status) {
+                    $location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.wgid);
+                })
         }
 
         function searchPhotos(searchTerm) {
