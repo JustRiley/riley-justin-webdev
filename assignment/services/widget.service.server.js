@@ -109,11 +109,12 @@ function uploadImage(req, res) {
         .then(function (widget) {
             console.log(widget);
             widget.url = '/uploads/' + filename;
-            return widget.save();
-    });
+            return widget.save();})
+        .then(function (widget) {
+        
+        var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
 
+        res.redirect(callbackUrl);
+    })
 
-    var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
-
-    res.redirect(callbackUrl);
 }
