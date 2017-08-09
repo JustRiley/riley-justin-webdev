@@ -8,7 +8,7 @@
                 </ul>
             </div>
             <div class="col-lg-10 col-xs-8">
-                <a class="navbar-brand" href="#">HTML Widget</a>
+                <a class="navbar-brand" href="#">Text Widget</a>
             </div>
             <div class="col-lg-1 col-xs-2">
                 <ul class="nav navbar-nav navbar-right">
@@ -19,19 +19,19 @@
         </div>
     </div><!-- /.container-fluid -->
 </nav>
-
 <div class="container-fluid">
-    <div ng-model="model.widget.text"
-         text-angular
-         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
-        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
-        ['indent','outdent'],['html']]">
-    </div>
+    Text
+    <input ng-model="model.widget.text" class="form-control"/>
+    Rows
+    <input ng-model="model.widget.rows" class="form-control" type="number"/>
+    Placeholder
+    <input ng-model="model.widget.placeholder" class="form-control"/>
+    Formatted
+    <input ng-model="model.widget.formatted" type="checkbox"/>
 
     <a class="btn btn-default btn-danger btn-block"
        ng-click="model.deleteWidget()"
        role="button">Delete</a>
-
 </div>
 
 <nav class="navbar navbar-default navbar-static-bottom">

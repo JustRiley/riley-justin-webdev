@@ -50,6 +50,28 @@
                     </div>
                 </div>
             </div>
+            <div ng-switch-when="TEXT">
+                <div class="container-fluid">
+                    <div class="col-lg-11 col-xs-11">
+                        <div ng-if="widget.formatted" text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                                                                                ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                                                                                ['indent','outdent'],['html']]"></div>
+
+                        <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                               placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
+
+                        <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                                  rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                                  class="form-control">{{widget.text}}</textarea>
+                    </div>
+
+                </div>
+                    <div class="col-lg-1 col-xs-1">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
+
         </div>
     </li>
 </ul>

@@ -13,6 +13,7 @@
         model.image = "IMAGE";
         model.youtube = "YOUTUBE";
         model.html = "HTML";
+        model.text = "TEXT";
 
         function init() {
         }
