@@ -3,6 +3,15 @@
  */
 var app = require("../../express");
 var userModel = require("../models/user.model.server");
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(localStrategy));
+
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
+
+
+
 //JSON
 var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
@@ -14,7 +23,8 @@ var users = [
 ///api/ by convention so it isn't confused with a url path
 app.get("/api/users", getAllUsers);
 app.get("/api/user/:userId", getUserById);
-app.get("/api/user", findUser);
+//app.get("/api/user", findUser);
+app.post('/api/login', passport.authenticate('local'), login);
 app.post("/api/user", createUser);
 //Path parameter
 app.put("/api/user/:userId", updateUser);
@@ -27,15 +37,6 @@ function deleteUser(req, response) {
         .then(function (user) {
             response.json(user);
         })
-
-    /*
-    for (var u in users) {
-        if (users[u]._id === req.params.userId) {
-            users.splice(u, 1);
-            response.send();
-        }
-    }
-    */
 }
 
 //Should be towards bottom
@@ -53,10 +54,32 @@ function getUserById(req, response) {
         })
 }
 
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username, password)
+        .then(
+            function(user) {
+                if (!user) { return done(null, false); }
+                return done(null, user);
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        );
+}
+//Continues to here if passport gets a valid user object
+//At this point should be successfully logged in
+function login(req, res) {
+    var user = req.user;
+    res.json(user);
+}
+
+
 function findUser(req, response) {
     //query parameter
-    var username = req.query.username;
-    var password = req.query.password;
+    var user = req.body;
+    var username = user.username;
+    var password = user.password;
 
     if(username && password) {
         userModel
@@ -103,4 +126,21 @@ function updateUser(req, response) {
         }, function (err) {
             response.sendStatus(404).send(err);
         })
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
 }

@@ -7,7 +7,7 @@
         //JSON JavaScript object Notation
 
         var api = {
-            "findUserByCredentials": findUserByCredentials,
+            "findUserByCredentials": login,
             "findUserById": findUserById,
             "createUser": createUser,
             "findUserByUsername": findUserByUsername,
@@ -24,9 +24,9 @@
             return $http.post(url, user);
         }
 
-        function findUserByCredentials(username, password) {
-            var url = "/api/user/?username="+ username + "&password=" + password;
-            return $http.get(url);
+        function login(username, password) {
+            var url = "/api/login";
+            return $http.post(url, {username: username, password: password});
         }
 
         function findUserById(userId) {
