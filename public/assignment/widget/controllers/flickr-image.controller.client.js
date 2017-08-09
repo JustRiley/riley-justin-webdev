@@ -18,7 +18,12 @@
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             widgetService
-                .updateWidgetUrl(model.wgid, {url: url})
+                .findWidgetById(model.wgid)
+                .then(function (widget) {
+                    var improvedWidget = widget;
+                    improvedWidget.url = url;
+                    return widgetService.updateWidget(model.wgid, improvedWidget);
+                })
                 .then($location.url("/user/"+ model.userId +"/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.wgid));
 
         }

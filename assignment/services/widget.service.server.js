@@ -28,8 +28,6 @@ app.put("/api/page/:pageId/widget", reorderWidget);
 
 app.post("/api/upload", upload.single('myFile'), uploadImage);
 
-app.put("/api/widget/:widgetId/url", updateWidgetUrl);
-
 function reorderWidget(req, response) {
     var pageId = req.params.pageId;
     var start = req.query.start;
@@ -100,13 +98,6 @@ function deleteWidget(req, response) {
         })
 }
 
-function getWidgetById(widgetId) {
-    for (var w in widgets) {
-        if (widgets[w]._id === widgetId) {
-            return widgets[w];
-        }
-    }
-}
 
 function uploadImage(req, res) {
     
@@ -125,24 +116,16 @@ function uploadImage(req, res) {
     var size = myFile.size;
     var mimetype = myFile.mimetype;
 
-    widget = getWidgetById(widgetId);
-    widget.url = '/uploads/' + filename;
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function (widget) {
+            console.log(widget);
+            widget.url = '/uploads/' + filename;
+            return widget.save();
+    });
+
 
     var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
 
     res.redirect(callbackUrl);
-}
-
-function updateWidgetUrl(req, response) {
-    var newUrl = req.body;
-    var widgetId = req.params.widgetId;
-    for(var w in widgets){
-        if(widgets[w]._id === widgetId){
-            widgets[w].url = newUrl.url;
-            response.json(widgets[w]);
-            return;
-        }
-    }
-    return response.sendStatus(404);
-
 }
