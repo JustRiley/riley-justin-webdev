@@ -14,7 +14,8 @@
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
             "deleteWidget": deleteWidget,
-            "updateWidgetUrl": updateWidgetUrl
+            "updateWidgetUrl": updateWidgetUrl,
+            "reorderWidget": reorderWidget
         };
         return api;
 
@@ -52,6 +53,15 @@
         function updateWidgetUrl(widgetId, newUrl) {
             var url = "/api/widget/" + widgetId + "/url";
             return $http.put(url, newUrl);
+        }
+
+        function reorderWidget(pageId, start, end) {
+            var url = "/api/page/" + pageId + "/widget?start=" + start + "&end=" + end;
+            return $http.put(url)
+                .then(function (status) {
+                    return status.data;
+                })
+
         }
     }
 })();

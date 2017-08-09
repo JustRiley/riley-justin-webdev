@@ -24,24 +24,22 @@ app.get("/api/widget/:widgetId", findWidgetById);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/page/:pageId/widget/:widgetId", deleteWidget);
 
-app.put("/api/page/:pageId/widget", sortWidget);
+app.put("/api/page/:pageId/widget", reorderWidget);
 
 app.post("/api/upload", upload.single('myFile'), uploadImage);
 
 app.put("/api/widget/:widgetId/url", updateWidgetUrl);
 
-function sortWidget(req, response) {
-    //TODO: Improve this implimination to deal with arrays containing widgets for more than 1 page
-    var initial = req.query.initial;
-    var final = req.query.final;
-    if(initial === final) {
-        response.send();
-        return;
-    }
-    var temp = widgets[initial];
-    widgets.splice(initial, 1);
-    widgets.splice(final, 0, temp);
-    response.send(widgets);
+function reorderWidget(req, response) {
+    var pageId = req.params.pageId;
+    var start = req.query.start;
+    var end = req.query.end;
+
+    widgetModel
+        .reorderWidget(pageId, start, end)
+        .then(function (status) {
+            return response.sendStatus(200);
+        })
 }
 
 

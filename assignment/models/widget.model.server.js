@@ -11,9 +11,20 @@ widgetModel.findWidgetById = findWidgetById;
 widgetModel.updateWidget = updateWidget;
 widgetModel.findWidgetsForPage = findWidgetsForPage;
 widgetModel.deleteWidget = deleteWidget;
-
+widgetModel.reorderWidget = reorderWidget;
 
 module.exports = widgetModel;
+
+function reorderWidget(pageId, start, end) {
+    return pageModel
+        .findOne({_id: pageId})
+        .then(function (page) {
+            var widget = page.widgets.splice(start, 1);
+            page.widgets.splice(end, 0, widget);
+            return page.save();
+        })
+}
+
 
 function createWidget(pageId, widget) {
     widget._page = pageId;
@@ -39,10 +50,14 @@ function updateWidget(widgetId, widget) {
 }
 
 function findWidgetsForPage(pageId) {
-    return widgetModel
-        .find({_page: pageId})
-        .populate("_page", "name")
-        .exec();
+    //Needed to use findOne, instead of find
+    return pageModel
+        .findOne({_id: pageId})
+        .populate("widgets")
+        .exec()
+        .then(function (page) {
+            return page.widgets;
+        });
 }
 
 function deleteWidget(pageId, widgetId) {
