@@ -14,7 +14,6 @@
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
             "deleteWidget": deleteWidget,
-            "updateWidgetUrl": updateWidgetUrl,
             "reorderWidget": reorderWidget
         };
         return api;
@@ -48,11 +47,6 @@
             return $http.get(url).then(function (response) {
                 return response.data;
             })
-        }
-
-        function updateWidgetUrl(widgetId, newUrl) {
-            var url = "/api/widget/" + widgetId + "/url";
-            return $http.put(url, newUrl);
         }
 
         function reorderWidget(pageId, start, end) {
