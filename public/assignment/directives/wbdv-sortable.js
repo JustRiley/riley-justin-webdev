@@ -18,7 +18,7 @@
                 },
                 stop: function (event, ui) {
                     stopIndex = ($(ui.item).index());
-                    var url = "/api/page/"+ model.pageId + "/widget?initial=" + startIndex + "&final=" + stopIndex;
+                    var url = "/api/page/"+ model.pageId + "/widget?start=" + startIndex + "&end=" + stopIndex;
                     $http.put(url);
                 },
                 axis: "y"
