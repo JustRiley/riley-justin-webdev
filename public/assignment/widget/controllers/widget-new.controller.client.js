@@ -12,6 +12,7 @@
         model.heading = "HEADING";
         model.image = "IMAGE";
         model.youtube = "YOUTUBE";
+        model.html = "HTML";
 
         function init() {
         }
