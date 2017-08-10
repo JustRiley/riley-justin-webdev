@@ -29,6 +29,7 @@ app.post("/api/user", createUser);
 //Path parameter
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
+app.get("/api/checkLogin", checkLogin);
 
 function deleteUser(req, response) {
 
@@ -127,6 +128,11 @@ function updateUser(req, response) {
             response.sendStatus(404).send(err);
         })
 }
+
+function checkLogin(req, response) {
+    response.send(req.isAuthenticated() ? req.user : '0');
+}
+
 
 function serializeUser(user, done) {
     done(null, user);

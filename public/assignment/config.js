@@ -29,7 +29,10 @@
             .when("/user/:userId", {
                 templateUrl: "user/templates/profile.view.client.html",
                 controller: "profileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    squqdaktaet: checkLogin
+                }
             })
             //website routes
             .when("/user/:userId/website", {
@@ -82,5 +85,20 @@
                 controller: "flickrController",
                 controllerAs: "model"
             })
+    }
+
+    function checkLogin(userService, $q, $location) {
+        var deferred = $q.defer();
+        userService
+            .checkLogin()
+            .then(function (user) {
+               if(user === '0') {
+                   deferred.reject();
+                   $location.url("/login");
+               } else {
+                   deferred.resolve(user);
+               }
+            });
+        return deferred.promise;
     }
 })();

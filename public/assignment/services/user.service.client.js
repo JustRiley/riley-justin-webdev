@@ -12,10 +12,18 @@
             "createUser": createUser,
             "findUserByUsername": findUserByUsername,
             "updateUser": updateUser,
-            "deleteUser": deleteUser
+            "deleteUser": deleteUser,
+            "checkLogin": checkLogin
         };
 
         return api;
+
+        function checkLogin() {
+            return $http.get("/api/checkLogin")
+                .then(function (response) {
+                    return response.data;
+                })
+        }
 
         //If the passwords aren't the same set user to null otherwise push to db
         //return back input
