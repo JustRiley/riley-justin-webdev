@@ -5,10 +5,10 @@
     angular.module("WamApp")
         .controller("websiteListController", websiteListController);
 
-    function websiteListController($location, $routeParams, websiteService) {
+    function websiteListController($location, $routeParams, websiteService, user) {
         var model = this;
 
-        model.userId = $routeParams.userId;
+        model.userId = user._id;
 
         model.editWebsite = editWebsite;
 

@@ -26,16 +26,22 @@
                 controller: "registerController",
                 controllerAs: "model"
             })
-            .when("/user/:userId", {
+            .when("/user", {
                 templateUrl: "user/templates/profile.view.client.html",
                 controller: "profileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
             //website routes
-            .when("/user/:userId/website", {
+            .when("/website", {
                 templateUrl: "website/templates/website-list.view.client.html",
                 controller: "websiteListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
             .when("/user/:userId/website/new", {
                 templateUrl: "website/templates/website-new.view.client.html",
@@ -82,5 +88,20 @@
                 controller: "flickrController",
                 controllerAs: "model"
             })
+    }
+
+    function checkLogin(userService, $q, $location) {
+        var deferred = $q.defer();
+        userService
+            .checkLogin()
+            .then(function (user) {
+               if(user === '0') {
+                   deferred.reject();
+                   $location.url("/login");
+               } else {
+                   deferred.resolve(user);
+               }
+            });
+        return deferred.promise;
     }
 })();
