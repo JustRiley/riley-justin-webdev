@@ -4,9 +4,9 @@
         .module("WamApp")
         .controller("profileController", profileController);
 
-    function profileController($location, $routeParams, userService) {
+    function profileController($location, $routeParams, userService, user) {
         var model = this;
-        var userId = $routeParams["userId"];
+        var userId = user._id;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;

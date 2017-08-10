@@ -26,19 +26,22 @@
                 controller: "registerController",
                 controllerAs: "model"
             })
-            .when("/user/:userId", {
+            .when("/user", {
                 templateUrl: "user/templates/profile.view.client.html",
                 controller: "profileController",
                 controllerAs: "model",
                 resolve: {
-                    squqdaktaet: checkLogin
+                    user: checkLogin
                 }
             })
             //website routes
-            .when("/user/:userId/website", {
+            .when("/website", {
                 templateUrl: "website/templates/website-list.view.client.html",
                 controller: "websiteListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
             .when("/user/:userId/website/new", {
                 templateUrl: "website/templates/website-new.view.client.html",

@@ -26,7 +26,7 @@
                         model.errorMessage = "User not found";
                     } else {
                         $rootScope.currentUser = user;
-                        $location.url("user/" + user._id);
+                        $location.url("user/");
                     }
                 });
         }
