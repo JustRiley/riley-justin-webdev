@@ -14,6 +14,7 @@ app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/book", addaBook);
 app.delete("/api/user/:userId/book/:bookId", removeBook);
+app.post("/api/user/:userId/friend/:username", addFriend);
 
 function deleteUser(req, response) {
 
@@ -94,6 +95,17 @@ function updateUser(req, response) {
             response.json(status);
         }, function (err) {
             response.sendStatus(404).send(err);
+        })
+}
+
+function addFriend(req, response) {
+    var userId = req.params.userId;
+    var username = req.params.username;
+
+    userModel
+        .addFriend(userId, username)
+        .then(function (user){
+            response.json(user);
         })
 }
 

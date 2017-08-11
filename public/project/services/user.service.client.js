@@ -12,10 +12,16 @@
             "createUser": createUser,
             "findUserByUsername": findUserByUsername,
             "updateUser": updateUser,
-            "deleteUser": deleteUser
+            "deleteUser": deleteUser,
+            "addFriend": addFriend
         };
 
         return api;
+
+        function addFriend(userId, username) {
+            var url = "/api/user/"+ userId + "/friend/" + username;
+            return $http.post(url);
+        }
 
         //If the passwords aren't the same set user to null otherwise push to db
         //return back input

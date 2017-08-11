@@ -10,6 +10,7 @@
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.addFriend = addFriend;
 
         function init() {
             userService.findUserById(model.userId)
@@ -18,6 +19,13 @@
             })
         }
         init();
+
+        function addFriend(searchText) {
+            userService.addFriend(model.userId, searchText)
+                .then(function () {
+                $location.url("login/");
+            })
+        }
 
         function updateUser() {
             userService.updateUser(model.userId, model.user)

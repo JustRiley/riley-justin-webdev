@@ -10,12 +10,30 @@ userModel.addBook = addBook;
 userModel.removeBook = removeBook;
 userModel.findUserByUsername = findUserByUsername;
 userModel.deleteUser = deleteUser;
+userModel.addFriend = addFriend;
 module.exports = userModel;
 
 function deleteUser(userId) {
     return userModel
         .findById(userId)
         .remove();
+}
+
+function addFriend(userId, username) {
+    return userModel
+        .findUserByUsername(username)
+        .then(function (user) {
+            if(!user){
+                return;
+            }else{
+                return userModel
+                    .findUserById(userId)
+                    .then(function (user) {
+                        user.friends.push(username);
+                        return user.save();
+                    })
+            }
+        })
 }
 
 function findUserByUsername(username) {

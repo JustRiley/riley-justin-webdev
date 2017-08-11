@@ -58,6 +58,25 @@
     <a class="btn btn-default btn-danger btn-block"
        ng-click="model.deleteUser()"
        role="button">Unregister</a>
+
+    Enter friend's username to add as friend:
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.addFriend(searchText)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
+        </span>
+    </div>
+    Friends:
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="friend in model.user.friends">
+            {{friend}}
+        </li>
+    </ul>
+
 </div>
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">

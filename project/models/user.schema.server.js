@@ -8,7 +8,8 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     dateCreated: {type: Date, default: Date.now},
-    books: []
+    books: [],
+    friends: []
 }, {collection: "user"});
 module.exports = userSchema;
 /*
