@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
 var db = require("./database");
-var userModel = mongoose.model("UserModel", userSchema);
+var userModel = mongoose.model("userModel", userSchema);
 userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.updateUser = updateUser;
@@ -22,14 +22,14 @@ function deleteUser(userId) {
 function addFriend(userId, username) {
     return userModel
         .findUserByUsername(username)
-        .then(function (user) {
-            if(!user){
+        .then(function (user1) {
+            if(!user1){
                 return;
             }else{
                 return userModel
                     .findUserById(userId)
                     .then(function (user) {
-                        user.friends.push(username);
+                        user.friends.push(user1._id);
                         return user.save();
                     })
             }
@@ -60,7 +60,9 @@ function createUser(user) {
 
 function findUserById(userId) {
     return userModel
-        .findById(userId);
+        .findById(userId)
+        .populate("friends", "firstName")
+        .exec();
 }
 
 function updateUser(userId, user) {

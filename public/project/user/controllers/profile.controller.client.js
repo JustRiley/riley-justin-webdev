@@ -23,7 +23,8 @@
         function addFriend(searchText) {
             userService.addFriend(model.userId, searchText)
                 .then(function () {
-                $location.url("login/");
+                    console.log("friend added");
+                $location.url("user/"+ model.userId);
             })
         }
 

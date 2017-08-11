@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
     lastName: String,
     dateCreated: {type: Date, default: Date.now},
     books: [],
-    friends: []
+    friends: [{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}]
 }, {collection: "user"});
 module.exports = userSchema;
 /*
