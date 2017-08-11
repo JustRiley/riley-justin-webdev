@@ -13,6 +13,7 @@ app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/book", addaBook);
+app.delete("/api/user/:userId/book/:bookId", removeBook);
 
 function deleteUser(req, response) {
 
@@ -97,11 +98,21 @@ function updateUser(req, response) {
 }
 
 function addaBook(req, response) {
-    console.log("user service server");
     var book = req.body;
     var userId = req.params.userId;
+    //TODO: store the book reference properly, currently its just in an array
     userModel.addBook(userId, book.volumeInfo.industryIdentifiers[0].identifier)
         .then(function (book) {
             response.json(book);
     })
+}
+
+function removeBook(req, response) {
+    var userId = req.params.userId;
+    var bookId = req.params.bookId;
+    userModel
+        .removeBook(userId, bookId)
+        .then(function (status) {
+            response.send(status);
+        })
 }

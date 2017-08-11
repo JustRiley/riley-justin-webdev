@@ -36,7 +36,7 @@
                 controller: "googleController",
                 controllerAs: "model"
             })
-            .when("/test/:isbn", {
+            .when("/user/:userId/books/:isbn", {
                 templateUrl: "templates/google-book-detail.view.client.html",
                 controller: "googleDetailController",
                 controllerAs: "model"

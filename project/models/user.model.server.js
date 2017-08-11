@@ -51,13 +51,10 @@ function updateUser(userId, user) {
 }
 //Array of references
 function addBook(userId, bookId) {
-    console.log("user model.server");
     return userModel
         .findUserById(userId)
         .then(function (user) {
-            console.log(user.books);
             user.books.push(bookId);
-            console.log(user);
             //writes changes to DB
             return user.save();
         })

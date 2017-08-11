@@ -6,6 +6,7 @@
     function googleService($http) {
         this.searchBooks = searchBooks;
         this.addBook = addBook;
+        this.removeBook = removeBook;
 
         var key = "AIzaSyBTV1n5BxhkhDFRK-IPqlRBkpSvQwboq_k";
         var urlBase = "https://www.googleapis.com/books/v1/volumes?q=isbn:TEXT&key=API_KEY";
@@ -22,6 +23,12 @@
             console.log("google book service client");
             var url = "/api/user/" + userId + "/book/";
             return $http.post(url, book);
+        }
+
+        function removeBook(userId, book) {
+            var url = "/api/user/" + userId + "/book/" + book;
+            return $http.delete(url);
+
         }
 
     }
