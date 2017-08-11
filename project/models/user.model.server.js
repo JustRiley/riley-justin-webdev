@@ -6,8 +6,8 @@ userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.updateUser = updateUser;
 userModel.findUserByCredentials = findUserByCredentials;
-userModel.addWebsite = addWebsite;
-userModel.removeWebsite = removeWebsite;
+userModel.addBook = addBook;
+userModel.removeBook = removeBook;
 userModel.findUserByUsername = findUserByUsername;
 userModel.deleteUser = deleteUser;
 module.exports = userModel;
@@ -22,12 +22,12 @@ function findUserByUsername(username) {
     return userModel.findOne({username: username});
 }
 
-function removeWebsite(developerId, websiteId) {
+function removeBook(userId, bookId) {
     return userModel
-        .findUserById(developerId)
+        .findUserById(userId)
         .then(function (user) {
-            var index = user.websites.indexOf(websiteId);
-            user.websites.splice(index, 1);
+            var index = user.books.indexOf(bookId);
+            user.books.splice(index, 1);
             return user.save();
         })
 }
@@ -42,9 +42,7 @@ function createUser(user) {
 
 function findUserById(userId) {
     return userModel
-        .findById(userId)
-        .populate("websites", "name")
-        .exec();
+        .findById(userId);
 }
 
 function updateUser(userId, user) {
@@ -52,11 +50,14 @@ function updateUser(userId, user) {
         {$set: user});
 }
 //Array of references
-function addWebsite(developerId, websiteId) {
+function addBook(userId, bookId) {
+    console.log("user model.server");
     return userModel
-        .findUserById(developerId)
+        .findUserById(userId)
         .then(function (user) {
-            user.websites.push(websiteId);
+            console.log(user.books);
+            user.books.push(bookId);
+            console.log(user);
             //writes changes to DB
             return user.save();
         })

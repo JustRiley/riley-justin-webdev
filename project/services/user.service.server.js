@@ -12,6 +12,7 @@ app.post("/api/user", createUser);
 //Path parameter
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
+app.post("/api/user/:userId/book", addaBook);
 
 function deleteUser(req, response) {
 
@@ -50,7 +51,6 @@ function findUser(req, response) {
         userModel
             .findUserByCredentials(username, password)
             .then(function (user) {
-                console.log(user);
                 response.json(user);
             }, function (err) {
                 response.sendStatus(404).send(err);
@@ -94,4 +94,14 @@ function updateUser(req, response) {
         }, function (err) {
             response.sendStatus(404).send(err);
         })
+}
+
+function addaBook(req, response) {
+    console.log("user service server");
+    var book = req.body;
+    var userId = req.params.userId;
+    userModel.addBook(userId, book.volumeInfo.industryIdentifiers[0].identifier)
+        .then(function (book) {
+            response.json(book);
+    })
 }

@@ -21,6 +21,16 @@
                 controller: "profileController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/books", {
+                templateUrl: "book/templates/book-list.view.client.html",
+                controller: "bookListController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/books/add", {
+                templateUrl: "book/templates/book-new.view.client.html",
+                controller: "bookNewController",
+                controllerAs: "model"
+            })
             .when("/test", {
                 templateUrl: "templates/google-book-search.view.client.html",
                 controller: "googleController",

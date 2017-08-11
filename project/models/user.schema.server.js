@@ -7,7 +7,8 @@ var userSchema = mongoose.Schema({
     password: String,
     firstName: String,
     lastName: String,
-    dateCreated: {type: Date, default: Date.now}
+    dateCreated: {type: Date, default: Date.now},
+    books: []
 }, {collection: "user"});
 module.exports = userSchema;
 /*

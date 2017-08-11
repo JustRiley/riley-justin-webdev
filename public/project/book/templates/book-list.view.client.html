@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="book in model.user.books">
+        {{book}}
+    </li>
+</ul>
+
+<a class="btn btn-default btn-primary btn-block"
+   href="#!/user/{{model.userId}}/books/add"
+   role="button">Add a Book</a>

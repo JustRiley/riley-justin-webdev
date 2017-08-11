@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.searchBooks(searchText)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4" ng-repeat="book in model.books">
+            <a ng-click="model.addBook(book)" type="button"> {{book.volumeInfo.title}} </a>
+        </div>
+    </div>
+
+
+</div>
