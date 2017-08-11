@@ -71,13 +71,10 @@ function findUser(req, response) {
 
 function createUser(req, response) {
     var user = req.body;
-    console.log("server service" + user);
     if(user.password + "" === user.verifyPassword + "") {
-        console.log("passwords amatch" + user);
         userModel
             .createUser(user)
             .then(function (user) {
-                console.log(user);
                 response.json(user);
         })
     } else {
