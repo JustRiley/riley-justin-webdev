@@ -7,23 +7,15 @@
         //JSON JavaScript object Notation
 
         var api = {
-            "findUserByCredentials": login,
+            "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
             "createUser": createUser,
             "findUserByUsername": findUserByUsername,
             "updateUser": updateUser,
-            "deleteUser": deleteUser,
-            "checkLogin": checkLogin
+            "deleteUser": deleteUser
         };
 
         return api;
-
-        function checkLogin() {
-            return $http.get("/api/checkLogin")
-                .then(function (response) {
-                    return response.data;
-                })
-        }
 
         //If the passwords aren't the same set user to null otherwise push to db
         //return back input
@@ -32,9 +24,9 @@
             return $http.post(url, user);
         }
 
-        function login(username, password) {
-            var url = "/api/login";
-            return $http.post(url, {username: username, password: password});
+        function findUserByCredentials(username, password) {
+            var url = "/api/user/?username="+ username + "&password=" + password;
+            return $http.get(url);
         }
 
         function findUserById(userId) {

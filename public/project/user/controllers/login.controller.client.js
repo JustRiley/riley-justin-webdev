@@ -4,8 +4,10 @@
         .module("BookApp")
         .controller("loginController", loginController);
 
-    function loginController($location, userService, $rootScope) {
+    function loginController($location, userService, $rootScope, $routeParams) {
         var model = this;
+
+        model.userId  = $routeParams["userId"];
 
         model.login = login;
 
@@ -26,7 +28,7 @@
                         model.errorMessage = "User not found";
                     } else {
                         $rootScope.currentUser = user;
-                        $location.url("user/");
+                        $location.url("user/" + user._id);
                     }
                 });
         }

@@ -16,13 +16,10 @@
                 controller: "loginController",
                 controllerAs: "model"
             })
-            .when("/user", {
+            .when("/user/:userId", {
                 templateUrl: "user/templates/profile.view.client.html",
                 controller: "profileController",
-                controllerAs: "model",
-                resolve: {
-                    user: checkLogin
-                }
+                controllerAs: "model"
             })
             .when("/test", {
                 templateUrl: "templates/google-book-search.view.client.html",
@@ -36,19 +33,5 @@
             })
     }
 
-    function checkLogin(userService, $q, $location) {
-        var deferred = $q.defer();
-        userService
-            .checkLogin()
-            .then(function (user) {
-                if(user === '0') {
-                    deferred.reject();
-                    $location.url("/login");
-                } else {
-                    deferred.resolve(user);
-                }
-            });
-        return deferred.promise;
-    }
 
 })();

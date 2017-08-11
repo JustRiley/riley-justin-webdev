@@ -17,28 +17,12 @@
         init();
 
         function createUser(user) {
-            userService.findUserByUsername(user.username)
-                .then(function (response) {
-
-                    var _user = response.data;
-
-                    if(_user === "0") {
-
-                        userService.createUser(user)
-                            .then(function (response){
-                                var newUser = response.data;
-                            if (newUser === "0") {
-                                model.error = "Passwords needs to match";
-                            } else {
-                                $location.url("/user/" + newUser._id);
-                            }
-                        });
-                    }
-                    else
-                    {
-                        model.error = "User already exists";
-                    }
-                })
+            console.log(user);
+            userService.createUser(user)
+                .then(function (response){
+                    console.log("before reoute" + response);
+                    $location.url("/login");
+                });
         }
     }
 })();

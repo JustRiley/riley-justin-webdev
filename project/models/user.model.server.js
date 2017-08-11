@@ -1,6 +1,3 @@
-/**
- * Created by Justin on 8/7/2017.
- */
 var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
 var db = require("./database");
@@ -57,10 +54,10 @@ function updateUser(userId, user) {
 //Array of references
 function addWebsite(developerId, websiteId) {
     return userModel
-            .findUserById(developerId)
-            .then(function (user) {
-                user.websites.push(websiteId);
-                //writes changes to DB
-                return user.save();
-            })
+        .findUserById(developerId)
+        .then(function (user) {
+            user.websites.push(websiteId);
+            //writes changes to DB
+            return user.save();
+        })
 }
