@@ -104,20 +104,6 @@ function addFriend(req, response) {
             response.json(user);
         })
 }
-/*
-function addaBook(req, response) {
-    var book = req.body;
-    var userId = req.params.userId;
-    //TODO: store the book reference properly, currently its just in an array
-    bookModel.createBook(book)
-        .then(function (book) {
-            userModel.addBook(userId, book._id)
-                .then(function (book) {
-                    response.json(book);
-                })
-    })
-}
-*/
 function removeBook(req, response) {
     var userId = req.params.userId;
     var bookId = req.params.bookId;

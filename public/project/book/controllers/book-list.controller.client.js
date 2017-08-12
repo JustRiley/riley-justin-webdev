@@ -25,13 +25,6 @@
                 .then(function (response) {
                     model.user = response.data;
                 })
-            /*
-            bookService
-                .findBooksForUser(model.userId)
-                .then(function (books) {
-                    model.books = books;
-                })
-                */
         }
         init();
 

@@ -57,12 +57,12 @@ function findUserByCredentials(username, password) {
 function createUser(user) {
     return userModel.create(user);
 }
-
+//TODO: Choose to selectively populate the books field to save netowork
 function findUserById(userId) {
     return userModel
         .findById(userId)
         .populate("friends", "firstName")
-        .populate("books", "title")
+        .populate("books")
         .exec();
 }
 

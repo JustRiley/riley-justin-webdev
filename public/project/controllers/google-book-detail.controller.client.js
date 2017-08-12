@@ -2,16 +2,21 @@
     angular.module("BookApp")
         .controller("googleDetailController", googleDetailController);
 
-    function googleDetailController(googleService, $routeParams) {
+    function googleDetailController(userService, $routeParams) {
         var model = this;
-        model.isbn = $routeParams.isbn;
+        model.userId = $routeParams.userId;
+        model.bookId = $routeParams.bookId;
 
         function init() {
-            model.books = googleService.searchBooks(model.isbn)
-                .then(function(response) {
-                    model.books = response.data.items;
-                    console.log(response.data.items[0].volumeInfo);
-                });
+            //TODO: Find book by bookId so we only need to render one of em.
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    console.log(response);
+                    model.user = response.data;
+                    model.books = model.user.books;
+                    console.log(model.books);
+                })
         }
         init();
     }

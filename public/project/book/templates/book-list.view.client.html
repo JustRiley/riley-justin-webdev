@@ -1,8 +1,11 @@
 <div class="container-fluid">
     <ul>
         <li ng-repeat="book in model.user.books">
-            <div class="list-group-item col-lg-10 col-xs-10" >
-                <a href="#!/user/{{model.userId}}/books/{{book}}"> {{book.title}} </a>
+            <div class="list-group-item col-lg-6 col-xs-6" >
+                <a href="#!/user/{{model.userId}}/books/{{book._id}}"> {{book.title}} </a>
+            </div>
+            <div class="list-group-item col-lg-4 col-xs-4" >
+                {{book.pageCount}}
             </div>
             <div class="col-lg-2 col-xs-2">
                 <a ng-click="model.removeBook(book)">

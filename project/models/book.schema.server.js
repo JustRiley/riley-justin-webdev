@@ -5,8 +5,13 @@ var mongoose = require("mongoose");
 var bookSchema = mongoose.Schema({
     title: String,
     authors: [],
-    isbn: String,
+    description: String,
+    industryIdentifiers: [],
     pageCount: Number,
-    smallThumbnail: String
+    categories: [],
+    imageLinks: {
+        smallThumbnail: String,
+        thumbnail:  String
+    }
 }, {collection: "book"});
 module.exports = bookSchema;
