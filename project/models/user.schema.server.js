@@ -8,11 +8,7 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     dateCreated: {type: Date, default: Date.now},
-    books: [],
+    books: [{type: mongoose.Schema.Types.ObjectId, ref:"bookModel"}],
     friends: [{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}]
 }, {collection: "user"});
 module.exports = userSchema;
-/*
-    Embeded schemas is preferred if possible
-    Not on this assignment, because schemas must be separate
- */

@@ -5,7 +5,7 @@
     angular.module("BookApp")
         .controller("bookNewController", bookNewController);
 
-    function bookNewController($location, $routeParams, googleService) {
+    function bookNewController($location, $routeParams, googleService, bookService) {
         var model = this;
 
         model.userId = $routeParams["userId"];
@@ -17,8 +17,8 @@
         init();
 
         function addBook(book) {
-            googleService
-                .addBook(model.userId, book)
+            bookService
+                .addBook(model.userId, book.volumeInfo)
                 .then(function (response) {
                     console.log(response);
                     $location.url("/user/" + model.userId + "/books");

@@ -12,7 +12,6 @@ app.post("/api/user", createUser);
 //Path parameter
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
-app.post("/api/user/:userId/book", addaBook);
 app.delete("/api/user/:userId/book/:bookId", removeBook);
 app.post("/api/user/:userId/friend/:username", addFriend);
 
@@ -105,17 +104,20 @@ function addFriend(req, response) {
             response.json(user);
         })
 }
-
+/*
 function addaBook(req, response) {
     var book = req.body;
     var userId = req.params.userId;
     //TODO: store the book reference properly, currently its just in an array
-    userModel.addBook(userId, book.volumeInfo.industryIdentifiers[0].identifier)
+    bookModel.createBook(book)
         .then(function (book) {
-            response.json(book);
+            userModel.addBook(userId, book._id)
+                .then(function (book) {
+                    response.json(book);
+                })
     })
 }
-
+*/
 function removeBook(req, response) {
     var userId = req.params.userId;
     var bookId = req.params.bookId;

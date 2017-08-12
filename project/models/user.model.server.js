@@ -62,6 +62,7 @@ function findUserById(userId) {
     return userModel
         .findById(userId)
         .populate("friends", "firstName")
+        .populate("books", "title")
         .exec();
 }
 
