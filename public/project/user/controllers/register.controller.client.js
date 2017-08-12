@@ -17,11 +17,9 @@
         init();
 
         function createUser(user) {
-            console.log(user);
             userService.createUser(user)
-                .then(function (response){
-                    console.log("before reoute" + response);
-                    $location.url("/login");
+                .then(function (user){
+                    $location.url("/user/"+user.data._id);
                 });
         }
     }

@@ -21,7 +21,7 @@ function findBookById(req, response) {
 function createBook(req, response) {
     var book = req.body;
     var userId = req.params.userId;
-    console.log("got post in book service server");
+    console.log(book);
     bookModel
         .createBook(userId, book)
         .then(function (book) {

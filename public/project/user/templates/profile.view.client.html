@@ -46,7 +46,7 @@
     <label for="pageSum">Total Pages Read</label>
     <input name="pageSum"
            readonly
-           ng-model="model.pageSum"
+           ng-model="model.user.pageSum"
            type="number"
            class="form-control"
            id="pageSum">
@@ -81,7 +81,7 @@
     Friends:
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="friend in model.user.friends">
-            {{friend.firstName}}
+            {{friend._id}} = {{friend.pageSum}}
         </li>
     </ul>
 

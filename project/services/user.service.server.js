@@ -36,6 +36,7 @@ function getUserById(req, response) {
     userModel
         .findUserById(req.params.userId)
         .then(function (user) {
+            console.log(user);
             response.json(user);
         })
 }
@@ -70,6 +71,7 @@ function findUser(req, response) {
 
 function createUser(req, response) {
     var user = req.body;
+    //user.pageSum = 0;
     if(user.password + "" === user.verifyPassword + "") {
         userModel
             .createUser(user)

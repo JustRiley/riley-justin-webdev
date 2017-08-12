@@ -1,18 +1,16 @@
 <div class="container-fluid">
-    <ul>
-        <li ng-repeat="book in model.user.books">
-            <div class="list-group-item col-lg-6 col-xs-6" >
-                <a href="#!/user/{{model.userId}}/books/{{book._id}}"> {{book.title}} </a>
-            </div>
-            <div class="list-group-item col-lg-4 col-xs-4" >
-                {{book.pageCount}}
-            </div>
-            <div class="col-lg-2 col-xs-2">
-                <a ng-click="model.removeBook(book)">
-                <span class="pull-right glyphicon glyphicon-pencil"></span></a>
-            </div>
-        </li>
-    </ul>
+    <div ng-repeat="book in model.user.books">
+        <div class="col-lg-6 col-xs-6" >
+            <a href="#!/user/{{model.userId}}/books/{{book._id}}"> {{book.title}} </a>
+        </div>
+        <div class="col-lg-4 col-xs-4" >
+            {{book.industryIdentifiers[0].identifier}}
+        </div>
+        <div class="col-lg-2 col-xs-2">
+            <a ng-click="model.removeBook(book)">
+            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+        </div>
+    </div>
 </div>
 
 
@@ -20,8 +18,9 @@
 <a class="btn btn-default btn-primary btn-block"
    href="#!/user/{{model.userId}}/books/add"
    role="button">Add a Book</a>
-</div>
+
 
 <a class="btn btn-default btn-danger btn-block"
    href="#!/user/{{model.userId}}"
    role="button">Back</a>
+</div>

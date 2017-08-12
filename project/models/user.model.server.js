@@ -57,11 +57,12 @@ function findUserByCredentials(username, password) {
 function createUser(user) {
     return userModel.create(user);
 }
-//TODO: Choose to selectively populate the books field to save netowork
+//TODO: Choose to selectively populate the books field to save network
+//TODO: Figure out how to populate multiple fields
 function findUserById(userId) {
     return userModel
         .findById(userId)
-        .populate("friends", "firstName")
+        .populate("friends", "pageSum")
         .populate("books")
         .exec();
 }
@@ -71,11 +72,20 @@ function updateUser(userId, user) {
         {$set: user});
 }
 //Array of references
-function addBook(userId, bookId) {
+function addBook(userId, book) {
+    var bookId = book._id;
+    var pageCount = book.pageCount;
+    var pageSumTmp = 0;
+    console.log("before being added to user");
+    console.log(book);
+
     return userModel
         .findUserById(userId)
         .then(function (user) {
             user.books.push(bookId);
+            pageSumTmp = user.pageSum;
+            pageSumTmp += pageCount;
+            user.pageSum = pageSumTmp;
             //writes changes to DB
             return user.save();
         })

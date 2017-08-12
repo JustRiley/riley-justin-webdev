@@ -15,13 +15,10 @@ function deleteBook(bookId) {
 }
 
 function createBook(userId, book) {
-    console.log("book model server");
-    console.log(book);
-    return bookModel
+return bookModel
         .create(book)
         .then(function (book) {
-            console.log(book);
-            return userModel.addBook(userId, book._id);
+            return userModel.addBook(userId, book);
         });
 }
 

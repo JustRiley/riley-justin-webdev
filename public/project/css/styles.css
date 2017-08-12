@@ -1,0 +1,73 @@
+input, textarea{
+    margin-bottom: 5px;
+}
+.navbar-static-bottom {
+    margin-top: 10px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+}
+
+.navbar-default {
+    background-color: crimson;
+    border-color: darkred;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+.jgr .jgr-split-view-left {
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    z-index: 1;
+    overflow-y: scroll;
+}
+
+
+@media (min-width: 1200px) {
+    .col-lg-9.jgr-split-view-right {
+        width: 75%;
+        position: absolute;
+        right: 0px;
+        overflow-y: scroll;
+        top: 60px;
+        bottom: 0px;
+    }
+}
+
+a.jgr-glyph-href {
+    color: white;
+}
+/* Remove underline from links. TODO: Figure out why it doesn't work without !important */
+a {
+    text-decoration: none!important;
+}
+
+ul {
+    list-style: none;
+}
+
+form {
+    padding-bottom: 5px;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
