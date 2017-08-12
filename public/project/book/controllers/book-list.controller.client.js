@@ -5,14 +5,14 @@
     angular.module("BookApp")
         .controller("bookListController", bookListController);
 
-    function bookListController($location, $routeParams, userService, googleService) {
+    function bookListController($location, $routeParams, userService, bookService) {
         var model = this;
 
         model.userId = $routeParams["userId"];
         model.removeBook = removeBook;
 
         function removeBook(book) {
-            googleService
+            bookService
                 .removeBook(model.userId, book)
                 .then(function (response) {
                     $location.url("/user/" + model.userId);
