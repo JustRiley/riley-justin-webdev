@@ -1,15 +1,15 @@
 <div class="container-fluid">
-    <div class="row" ng-repeat="book in model.books">
+        <div class="col-xs-4">
+            <img src="{{model.book.imageLinks.smallThumbnail}}">
+        </div>
+        <div class="col-xs-4">
+            <h1>{{model.book.title}}</h1>
+        </div>
+        <div ng-repeat="author in model.book.authors">
             <div class="col-xs-4">
-                <img src="{{book.imageLinks.smallThumbnail}}">
+                {{author}}
             </div>
-            <div class="col-xs-4">
-                <h1>{{book.title}}</h1>
-            </div>
-            <div class="col-xs-4">
-                {{book.description}}
-            </div>
-    </div>
+        </div>
 </div>
 
 <a class="btn btn-default btn-danger btn-block"

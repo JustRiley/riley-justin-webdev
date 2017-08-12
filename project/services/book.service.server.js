@@ -5,6 +5,18 @@ var app = require("../../express");
 var bookModel = require("../models/book.model.server");
 
 app.post("/api/user/:userId/book/", createBook);
+app.get("/api/book/:bookId", findBookById);
+
+
+function findBookById(req, response) {
+    var bookId = req.params.bookId;
+
+    bookModel
+        .findBookById(bookId)
+        .then(function (book) {
+            response.json(book);
+        })
+}
 
 function createBook(req, response) {
     var book = req.body;
