@@ -25,6 +25,7 @@
                 .then(function (response) {
                     model.user = response.data;
                 })
+
         }
         init();
 

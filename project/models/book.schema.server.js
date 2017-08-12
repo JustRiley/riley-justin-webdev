@@ -8,7 +8,7 @@ var bookSchema = mongoose.Schema({
     description: String,
     industryIdentifiers: [],
     pageCount: Number,
-    categories: [],
+    dateCompleted: {type: Date, default: Date.now},
     imageLinks: {
         smallThumbnail: String,
         thumbnail:  String

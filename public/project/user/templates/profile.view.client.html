@@ -43,6 +43,14 @@
            class="form-control"
            id="username">
 
+    <label for="pageSum">Total Pages Read</label>
+    <input name="pageSum"
+           readonly
+           ng-model="model.pageSum"
+           type="number"
+           class="form-control"
+           id="pageSum">
+
     <a class="btn btn-default btn-primary btn-block"
        href="#!/user/{{model.user._id}}/books"
        role="button">Books I've read</a>
