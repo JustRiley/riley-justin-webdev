@@ -57,13 +57,13 @@ function findUserByCredentials(username, password) {
 function createUser(user) {
     return userModel.create(user);
 }
-//TODO: Choose to selectively populate the books field to save network
-//TODO: Figure out how to populate multiple fields
+//Figure out how to populate multiple fields
+//DONE: space seperated values in second param
 function findUserById(userId) {
     return userModel
         .findById(userId)
         .populate("friends", "pageSum")
-        .populate("books")
+        .populate("books", "title industryIdentifiers")
         .exec();
 }
 
@@ -76,8 +76,6 @@ function addBook(userId, book) {
     var bookId = book._id;
     var pageCount = book.pageCount;
     var pageSumTmp = 0;
-    console.log("before being added to user");
-    console.log(book);
 
     return userModel
         .findUserById(userId)
