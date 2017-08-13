@@ -12,7 +12,6 @@ app.post("/api/user", createUser);
 //Path parameter
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
-app.delete("/api/user/:userId/book/:bookId", removeBook);
 app.post("/api/user/:userId/friend/:username", addFriend);
 
 function deleteUser(req, response) {
@@ -104,14 +103,5 @@ function addFriend(req, response) {
         .addFriend(userId, username)
         .then(function (user){
             response.json(user);
-        })
-}
-function removeBook(req, response) {
-    var userId = req.params.userId;
-    var bookId = req.params.bookId;
-    userModel
-        .removeBook(userId, bookId)
-        .then(function (status) {
-            response.send(status);
         })
 }

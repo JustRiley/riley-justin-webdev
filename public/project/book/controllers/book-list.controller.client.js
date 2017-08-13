@@ -13,7 +13,7 @@
 
         function removeBook(book) {
             bookService
-                .removeBook(model.userId, book)
+                .removeBook(model.userId, book._id)
                 .then(function (response) {
                     $location.url("/user/" + model.userId);
                 })

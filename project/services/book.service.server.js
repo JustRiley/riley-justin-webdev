@@ -6,6 +6,7 @@ var bookModel = require("../models/book.model.server");
 
 app.post("/api/user/:userId/book/", createBook);
 app.get("/api/book/:bookId", findBookById);
+app.delete("/api/user/:userId/book/:bookId", removeBook);
 
 
 function findBookById(req, response) {
@@ -28,3 +29,14 @@ function createBook(req, response) {
             response.json(book);
         })
 }
+
+function removeBook(req, response) {
+    var bookId = req.params.bookId;
+    var userId = req.params.userId;
+    bookModel
+        .deleteBook(userId, bookId)
+        .then(function (status) {
+            response.send(status);
+        })
+}
+
