@@ -35,7 +35,6 @@ function getUserById(req, response) {
     userModel
         .findUserById(req.params.userId)
         .then(function (user) {
-            console.log(user);
             response.json(user);
         })
 }

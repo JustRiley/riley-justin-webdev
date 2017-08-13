@@ -8,12 +8,17 @@ bookModel.findBookById = findBookById;
 bookModel.deleteBook = deleteBook;
 module.exports = bookModel;
 
-function deleteBook(userId, bookId) {
+function deleteBook(userId, bookId, pageCount) {
     return bookModel
         .findById(bookId)
         .remove()
         .then(function (status) {
-            //return userModel.removeBook(userId, bookId);
+            return userModel
+                .removeBook(userId, bookId)
+                .then(function (user) {
+                    return userModel
+                        .removeBookCount(userId, pageCount);
+                });
         });
 }
 

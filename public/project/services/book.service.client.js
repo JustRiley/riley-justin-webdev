@@ -18,8 +18,8 @@
             return $http.post(url, book);
         }
 
-        function removeBook(userId, bookId) {
-            var url = "/api/user/" + userId + "/book/" + bookId;
+        function removeBook(userId, bookId, pageCount) {
+            var url = "/api/user/" + userId + "/book/" + bookId + "/pages/" + pageCount;
             return $http.delete(url);
 
         }

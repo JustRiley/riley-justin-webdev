@@ -14,7 +14,6 @@
             googleService.searchBooks(searchTerm)
                 .then(function(response) {
                     model.books = response.data.items;
-                    console.log(response.data.items[0].volumeInfo);
                 });
         }
 

@@ -20,7 +20,6 @@
             bookService
                 .addBook(model.userId, book.volumeInfo)
                 .then(function (response) {
-                    console.log(response);
                     $location.url("/user/" + model.userId + "/books");
                 })
         }
@@ -30,7 +29,6 @@
                 .searchBooks(searchTerm)
                 .then(function(response) {
                     model.books = response.data.items;
-                    console.log(response.data.items[0].volumeInfo);
                 });
         }
     }

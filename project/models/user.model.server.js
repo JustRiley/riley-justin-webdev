@@ -11,7 +11,20 @@ userModel.removeBook = removeBook;
 userModel.findUserByUsername = findUserByUsername;
 userModel.deleteUser = deleteUser;
 userModel.addFriend = addFriend;
+userModel.removeBookCount = removeBookCount;
 module.exports = userModel;
+
+function removeBookCount(userId, pageCount) {
+    var pageSumTmp = 0;
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            pageSumTmp = user.pageSum;
+            pageSumTmp -= pageCount;
+            user.pageSum = pageSumTmp;
+            return user.save();
+        })
+}
 
 function deleteUser(userId) {
     return userModel
@@ -63,7 +76,7 @@ function findUserById(userId) {
     return userModel
         .findById(userId)
         .populate("friends", "firstName pageSum")
-        .populate("books", "title industryIdentifiers")
+        .populate("books", "title industryIdentifiers pageCount")
         .exec();
 }
 
