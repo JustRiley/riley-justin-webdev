@@ -81,7 +81,19 @@
     Friends:
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="friend in model.user.friends">
-            {{friend.firstName}} = {{friend.pageSum}}
+            <div ng-if="friend.pageSum === model.user.pageSum">
+                <!--Yellow-->
+                {{friend.firstName}} = <a class="jgr-leaderboard-yellow">{{friend.pageSum}}</a>
+            </div>
+            <div ng-if="friend.pageSum > model.user.pageSum">
+                <!--Red-->
+                {{friend.firstName}} = <a class="jgr-leaderboard-red">{{friend.pageSum}}</a>
+            </div>
+            <div ng-if="friend.pageSum < model.user.pageSum">
+                <!--Green-->
+                {{friend.firstName}} = <a class="jgr-leaderboard-green">{{friend.pageSum}}</a>
+            </div>
+
         </li>
     </ul>
 

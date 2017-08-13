@@ -11,18 +11,22 @@
 </nav>
 
 <div class="container-fluid">
-    <div ng-repeat="book in model.user.books">
-        <div class="col-lg-6 col-xs-6" >
-            <a href="#!/user/{{model.userId}}/books/{{book._id}}"> {{book.title}} </a>
-        </div>
-        <div class="col-lg-4 col-xs-4" >
-            {{book.industryIdentifiers[0].identifier}}
-        </div>
-        <div class="col-lg-2 col-xs-2">
-            <a ng-click="model.removeBook(book)">
-            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
-        </div>
-    </div>
+    <ul class="list-group">
+        <li ng-repeat="book in model.user.books" class="list-group-item">
+            <div class="row">
+                    <div class="col-lg-6 col-xs-6" >
+                    <a href="#!/user/{{model.userId}}/books/{{book._id}}"> {{book.title}} </a>
+                    </div>
+                    <div class="col-lg-4 col-xs-4" >
+                        {{book.industryIdentifiers[0].identifier}}
+                    </div>
+                    <div class="col-lg-2 col-xs-2">
+                        <a ng-click="model.removeBook(book)">
+                            <span class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
+        </li>
+    </ul>
 </div>
 
 
