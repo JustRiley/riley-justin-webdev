@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10">
+                <a class="navbar-brand">{{model.book.title}} details</a>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-4">
+            <h2>Cover</h2>
+        </div>
+        <div class="col-xs-4">
+            <h2>Title</h2>
+        </div>
+        <div class="col-xs-4">
+            <h2>Author(s)</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-4">
+            <img src="{{model.book.imageLinks.smallThumbnail}}">
+        </div>
+        <div class="col-xs-4">
+            <h4>{{model.book.title}}</h4>
+        </div>
+        <div class="col-xs-4">
+                <ul  ng-repeat="author in model.book.authors">
+                    <li class="list-group-item-info">{{author}}</li>
+                </ul>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<a class="btn btn-default btn-danger btn-block"
+   href="#!/user/{{model.userId}}/books"
+   role="button">Back</a>

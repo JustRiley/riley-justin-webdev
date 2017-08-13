@@ -5,6 +5,7 @@
     function googleDetailController(bookService, $routeParams) {
         var model = this;
         model.bookId = $routeParams["bookId"];
+        model.userId = $routeParams["userId"];
 
         function init() {
             bookService

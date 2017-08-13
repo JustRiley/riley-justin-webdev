@@ -32,12 +32,12 @@
                 controllerAs: "model"
             })
             .when("/test", {
-                templateUrl: "templates/google-book-search.view.client.html",
+                templateUrl: "book/templates/google-book-search.view.client.html",
                 controller: "googleController",
                 controllerAs: "model"
             })
             .when("/user/:userId/books/:bookId", {
-                templateUrl: "templates/google-book-detail.view.client.html",
+                templateUrl: "book/templates/google-book-detail.view.client.html",
                 controller: "googleDetailController",
                 controllerAs: "model"
             })
