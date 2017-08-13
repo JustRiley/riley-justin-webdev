@@ -25,10 +25,19 @@
         </span>
     </div>
 
-    <div class="row">
-        <div class="col-xs-4" ng-repeat="book in model.books">
-            <a ng-click="model.addBook(book)" type="button"> {{book.volumeInfo.title}} </a>
-        </div>
+    <div class="container-fluid">
+        <ul class="list-group">
+            <li ng-repeat="book in model.books" class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <a ng-click="model.addBook(book)" type="button"> {{book.volumeInfo.title}} </a>
+                    </div>
+                    <div class="col-xs-8">
+                        {{book.volumeInfo.description}}
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 <a class="btn btn-default btn-danger btn-block"
