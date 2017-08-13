@@ -7,7 +7,7 @@ var userSchema = mongoose.Schema({
     password: String,
     firstName: String,
     lastName: String,
-    pageSum: Number,
+    pageSum: {type: Number, default: 0},
     dateCreated: {type: Date, default: Date.now},
     books: [{type: mongoose.Schema.Types.ObjectId, ref:"bookModel"}],
     friends: [{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}]

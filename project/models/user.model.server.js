@@ -62,7 +62,7 @@ function createUser(user) {
 function findUserById(userId) {
     return userModel
         .findById(userId)
-        .populate("friends", "pageSum")
+        .populate("friends", "firstName pageSum")
         .populate("books", "title industryIdentifiers")
         .exec();
 }

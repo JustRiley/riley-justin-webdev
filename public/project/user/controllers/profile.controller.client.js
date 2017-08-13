@@ -7,7 +7,6 @@
     function profileController($location, $routeParams, userService) {
         var model = this;
         model.userId = $routeParams["userId"];
-        //model.pageSum = 0;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
@@ -17,9 +16,6 @@
             userService.findUserById(model.userId)
                 .then(function (response) {
                     model.user = response.data;
-                    /*for(var p in model.user.books){
-                        model.pageSum += model.user.books[p].pageCount;
-                    }*/
             })
         }
         init();
@@ -28,7 +24,7 @@
             userService.addFriend(model.userId, searchText)
                 .then(function () {
                     console.log("friend added");
-                $location.url("user/"+ model.userId);
+                    $location.url("user/"+ model.userId);
             })
         }
 
