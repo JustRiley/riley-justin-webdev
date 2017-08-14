@@ -6,6 +6,11 @@
 
     function configuration($routeProvider) {
         $routeProvider
+            .when("/", {
+                templateUrl: "home.html",
+                controller: "googleController",
+                controllerAs: "model"
+            })
             .when("/register", {
                 templateUrl: "user/templates/register.view.client.html",
                 controller: "registerController",

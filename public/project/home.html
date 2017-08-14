@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10">
+                <a class="navbar-brand" href="#">Home</a>
+            </div>
+            <div class="col-lg-2">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>
+                        <span class="pull-right glyphicon glyphicon-check"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1>Book Tracking</h1>
+        <p>With this app you can search for and keep track of books you've read</p>
+    </div>
+
+    <h3>
+        Try entering your favorite book in the box below:
+    </h3>
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.searchBooksByTitle(searchText)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+
+    <hr>
+
+    <ul class="list-group">
+        <li ng-repeat="book in model.books" class="list-group-item">
+            <div class="row">
+                <div class="col-lg-4 col-xs-4" >
+                    {{book.volumeInfo.title}}
+                </div>
+                <div class="col-lg-4 col-xs-4" >
+                    {{book.volumeInfo.description}}
+                </div>
+                <div class="col-lg-4 col-xs-4">
+                    <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}">
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

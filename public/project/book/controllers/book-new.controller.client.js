@@ -25,8 +25,9 @@
         }
 
         function searchBooks(searchTerm) {
+            var query = "isbn";
             googleService
-                .searchBooks(searchTerm)
+                .searchBooks(searchTerm, query)
                 .then(function(response) {
                     model.books = response.data.items;
                 });
