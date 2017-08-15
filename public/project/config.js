@@ -21,10 +21,13 @@
                 controller: "loginController",
                 controllerAs: "model"
             })
-            .when("/user/:userId", {
+            .when("/user", {
                 templateUrl: "user/templates/profile.view.client.html",
                 controller: "profileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
             .when("/user/:userId/books", {
                 templateUrl: "book/templates/book-list.view.client.html",
@@ -47,6 +50,21 @@
                 controllerAs: "model"
             })
     }
-
+    
+    function checkLogin(userService, $q, $location) {
+        var deferred = $q.defer();
+        userService
+            .checkLogin()
+            .then(function (user) {
+                if(user === '0'){
+                    deferred.reject();
+                    $location.url("/login");
+                }
+                else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
 
 })();

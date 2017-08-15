@@ -4,9 +4,9 @@
         .module("BookApp")
         .controller("profileController", profileController);
 
-    function profileController($location, $routeParams, userService) {
+    function profileController($location, user, userService) {
         var model = this;
-        model.userId = $routeParams["userId"];
+        model.userId = user._id;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;

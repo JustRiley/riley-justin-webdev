@@ -13,10 +13,18 @@
             "findUserByUsername": findUserByUsername,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
-            "addFriend": addFriend
+            "addFriend": addFriend,
+            "checkLogin": checkLogin
         };
 
         return api;
+
+        function checkLogin() {
+            return $http.get("/api/checkLogin")
+                .then(function (response) {
+                    return response.data;
+            });
+        }
 
         function addFriend(userId, username) {
             var url = "/api/user/"+ userId + "/friend/" + username;

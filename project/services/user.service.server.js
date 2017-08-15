@@ -13,10 +13,14 @@ app.get("/api/user/:userId", getUserById);
 app.get("/api/user", findUser);
 app.post("/api/login", passport.authenticate('local'), login);
 app.post("/api/user", createUser);
-//Path parameter
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/friend/:username", addFriend);
+app.get("/api/checkLogin", checkLogin);
+
+function checkLogin(req, response) {
+    response.send(req.isAuthenticated() ? req.user : '0');
+}
 
 function serializeUser(user, done) {
     done(null, user);

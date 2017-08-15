@@ -29,7 +29,7 @@
                     } else {
                         $rootScope.currentUser = user;
                         console.log(user);
-                        $location.url("user/" + user._id);
+                        $location.url("/user");
                     }
                 });
         }
