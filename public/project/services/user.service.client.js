@@ -35,7 +35,7 @@
         //If the passwords aren't the same set user to null otherwise push to db
         //return back input
         function createUser(user) {
-            var url = "/api/user";
+            var url = "/api/register";
             return $http.post(url, user);
         }
 

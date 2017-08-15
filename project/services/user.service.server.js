@@ -12,7 +12,7 @@ passport.deserializeUser(deserializeUser);
 app.get("/api/user/:userId", getUserById);
 app.get("/api/user", findUser);
 app.post("/api/login", passport.authenticate('local'), login);
-app.post("/api/user", createUser);
+app.post("/api/register", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/friend/:username", addFriend);
@@ -128,9 +128,17 @@ function createUser(req, response) {
     if(user.password + "" === user.verifyPassword + "") {
         userModel
             .createUser(user)
-            .then(function (user) {
-                response.json(user);
-        })
+            .then(function(user){
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                response.status(400).send(err);
+                            } else {
+                                response.json(user);
+                            }
+                        });
+                    }
+                });
     } else {
         response.send("0");
     }
