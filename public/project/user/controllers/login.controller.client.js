@@ -4,10 +4,8 @@
         .module("BookApp")
         .controller("loginController", loginController);
 
-    function loginController($location, userService, $rootScope, $routeParams) {
+    function loginController($location, userService, $rootScope) {
         var model = this;
-
-        model.userId  = $routeParams["userId"];
 
         model.login = login;
 

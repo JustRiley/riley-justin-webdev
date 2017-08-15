@@ -7,6 +7,7 @@ var googleConfig = {
     callbackURL  : process.env.GOOGLE_CALLBACK_URL
 };
 var app = require("../../express");
+var bcrypt = require("bcrypt-nodejs");
 var userModel = require("../models/user.model.server");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -94,13 +95,19 @@ function deserializeUser(user, done) {
 
 
 function localStrategy(username, password, done) {
+    /*
+
+
+     */
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(function(user) {
-                if (!user) {
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    return done(null, user);
+                }
+                else {
                     return done(null, false);
                 }
-                return done(null, user);
             },
             function(err) {
                 if (err) {
@@ -178,6 +185,7 @@ function createUser(req, response) {
     var user = req.body;
     //user.pageSum = 0;
     if(user.password + "" === user.verifyPassword + "") {
+        user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(function(user){
