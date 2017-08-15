@@ -10,6 +10,10 @@ var userSchema = mongoose.Schema({
     pageSum: {type: Number, default: 0},
     dateCreated: {type: Date, default: Date.now},
     books: [{type: mongoose.Schema.Types.ObjectId, ref:"bookModel"}],
-    friends: [{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}]
+    friends: [{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}],
+    google: {
+        id:    String,
+        token: String
+    }
 }, {collection: "user"});
 module.exports = userSchema;

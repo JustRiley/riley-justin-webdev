@@ -1,10 +1,17 @@
 /**
  * Created by Justin on 7/24/2017.
  */
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
 var app = require("../../express");
 var userModel = require("../models/user.model.server");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -18,6 +25,51 @@ app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/friend/:username", addFriend);
 app.get("/api/checkLogin", checkLogin);
 app.post("/api/logout", logout);
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/project/#!/user',
+        failureRedirect: '/project/#!/login'
+    }));
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        books: [],
+                        friends: [],
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
 function checkLogin(req, response) {
     response.send(req.isAuthenticated() ? req.user : '0');

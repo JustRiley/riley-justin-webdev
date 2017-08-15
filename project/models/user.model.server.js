@@ -12,7 +12,13 @@ userModel.findUserByUsername = findUserByUsername;
 userModel.deleteUser = deleteUser;
 userModel.addFriend = addFriend;
 userModel.removeBookCount = removeBookCount;
+userModel.findUserByGoogleId = findUserByGoogleId;
 module.exports = userModel;
+
+function findUserByGoogleId(googleId) {
+        return userModel.findOne({'google.id': googleId});
+
+}
 
 function removeBookCount(userId, pageCount) {
     var pageSumTmp = 0;
