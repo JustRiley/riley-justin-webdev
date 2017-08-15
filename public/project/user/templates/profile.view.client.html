@@ -52,11 +52,11 @@
            id="pageSum">
 
     <a class="btn btn-default btn-primary btn-block"
-       href="#!/user/{{model.user._id}}/books"
+       href="#!/user/books"
        role="button">Books I've read</a>
 
     <a class="btn btn-default btn-danger btn-block"
-       href="#!/login"
+       ng-click="model.logout()"
        role="button">Logout</a>
 
     <a class="btn btn-default btn-primary btn-block"
@@ -101,7 +101,7 @@
 <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="jgr-glyph-href" href="#!/user/{{model.user._id}}/">
+            <li><a class="jgr-glyph-href" href="#!/user">
                 <span class="pull-right glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div><!-- /.container-fluid -->

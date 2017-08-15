@@ -14,7 +14,8 @@
             "updateUser": updateUser,
             "deleteUser": deleteUser,
             "addFriend": addFriend,
-            "checkLogin": checkLogin
+            "checkLogin": checkLogin,
+            "logout": logout
         };
 
         return api;
@@ -36,6 +37,10 @@
         function createUser(user) {
             var url = "/api/user";
             return $http.post(url, user);
+        }
+
+        function logout(user) {
+            return $http.post("/api/logout");
         }
 
         function login(username, password) {

@@ -5,10 +5,10 @@
     angular.module("BookApp")
         .controller("bookNewController", bookNewController);
 
-    function bookNewController($location, $routeParams, googleService, bookService) {
+    function bookNewController($location, user, googleService, bookService) {
         var model = this;
 
-        model.userId = $routeParams["userId"];
+        model.userId = user._id;
         model.searchBooks = searchBooks;
         model.addBook = addBook;
 
@@ -20,7 +20,7 @@
             bookService
                 .addBook(model.userId, book.volumeInfo)
                 .then(function (response) {
-                    $location.url("/user/" + model.userId + "/books");
+                    $location.url("/user/books");
                 })
         }
 

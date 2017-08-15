@@ -11,6 +11,7 @@
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.addFriend = addFriend;
+        model.logout = logout;
 
         function init() {
             userService.findUserById(model.userId)
@@ -20,11 +21,19 @@
         }
         init();
 
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url("login/");
+                })
+        }
+
         function addFriend(searchText) {
             userService.addFriend(model.userId, searchText)
                 .then(function () {
                     console.log("friend added");
-                    $location.url("user/"+ model.userId);
+                    $location.url("user/");
             })
         }
 

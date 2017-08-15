@@ -2,10 +2,10 @@
     angular.module("BookApp")
         .controller("googleDetailController", googleDetailController);
 
-    function googleDetailController(bookService, $routeParams) {
+    function googleDetailController(bookService, $routeParams, user) {
         var model = this;
         model.bookId = $routeParams["bookId"];
-        model.userId = $routeParams["userId"];
+        model.userId = user._id;
 
         function init() {
             bookService

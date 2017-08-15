@@ -19,7 +19,7 @@
         function createUser(user) {
             userService.createUser(user)
                 .then(function (user){
-                    $location.url("/user/"+user.data._id);
+                    $location.url("/user");
                 });
         }
     }

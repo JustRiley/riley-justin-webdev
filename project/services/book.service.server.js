@@ -30,7 +30,6 @@ function createBook(req, response) {
 }
 
 function removeBook(req, response) {
-    //TODO: Need to reduce the pageSum, so need to take pageCount as well
     var bookId = req.params.bodyId;
     var userId = req.params.userId;
     var pageCount = req.params.pageCount;

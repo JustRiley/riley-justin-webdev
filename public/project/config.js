@@ -29,25 +29,34 @@
                     user: checkLogin
                 }
             })
-            .when("/user/:userId/books", {
+            .when("/user/books", {
                 templateUrl: "book/templates/book-list.view.client.html",
                 controller: "bookListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
-            .when("/user/:userId/books/add", {
+            .when("/user/books/add", {
                 templateUrl: "book/templates/book-new.view.client.html",
                 controller: "bookNewController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
             .when("/test", {
                 templateUrl: "book/templates/google-book-search.view.client.html",
                 controller: "googleController",
                 controllerAs: "model"
             })
-            .when("/user/:userId/books/:bookId", {
+            .when("/user/books/:bookId", {
                 templateUrl: "book/templates/google-book-detail.view.client.html",
                 controller: "googleDetailController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
     }
     

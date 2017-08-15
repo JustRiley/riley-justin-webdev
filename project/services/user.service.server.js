@@ -17,6 +17,7 @@ app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/friend/:username", addFriend);
 app.get("/api/checkLogin", checkLogin);
+app.post("/api/logout", logout);
 
 function checkLogin(req, response) {
     response.send(req.isAuthenticated() ? req.user : '0');
@@ -81,6 +82,11 @@ function getUserById(req, response) {
         .then(function (user) {
             response.json(user);
         })
+}
+
+function logout(req, res) {
+    req.logOut();
+    res.send(200);
 }
 
 function login(req, response) {
