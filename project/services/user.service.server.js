@@ -53,7 +53,7 @@ function findUser(req, response) {
             .then(function (user) {
                 response.json(user);
             }, function (err) {
-                response.sendStatus(404).send(err);
+                response.sendStatus(502).send(err);
         })
     }
     else {
