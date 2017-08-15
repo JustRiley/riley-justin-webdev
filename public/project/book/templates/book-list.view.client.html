@@ -15,7 +15,7 @@
         <li ng-repeat="book in model.user.books" class="list-group-item">
             <div class="row">
                 <div class="col-lg-6 col-xs-6" >
-                <a href="#!/user/{{model.userId}}/books/{{book._id}}"> {{book.title}} </a>
+                <a href="#!/user/books/{{book._id}}"> {{book.title}} </a>
                 </div>
                 <div class="col-lg-4 col-xs-4" >
                     {{book.industryIdentifiers[0].identifier}}
