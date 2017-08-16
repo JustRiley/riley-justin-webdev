@@ -4,7 +4,6 @@ var express = app.express;
 var passport      = require('passport');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
-//TODO:CHANGE TO USE ENV Variable on heroku
 app.use(cookieParser());
 app.use(session({
     secret: 'asdfakga',
