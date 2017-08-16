@@ -6,7 +6,7 @@
     function googleService($http) {
 
 
-        var key = "AIzaSyBTV1n5BxhkhDFRK-IPqlRBkpSvQwboq_k";
+        var key = process.env.GOOGLE_API_KEY;
         var urlBase = "https://www.googleapis.com/books/v1/volumes?q=TYPE:TEXT&key=API_KEY";
 
         var api = {
