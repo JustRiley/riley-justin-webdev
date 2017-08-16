@@ -33,7 +33,7 @@
             userService.addFriend(model.userId, searchText)
                 .then(function () {
                     console.log("friend added");
-                    $location.url("user/");
+                    $location.url("#!/user/");
             })
         }
 
