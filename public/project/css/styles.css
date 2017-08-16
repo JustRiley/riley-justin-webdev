@@ -83,3 +83,7 @@ form {
 .jgr-leaderboard-red {
     color: red;
 }
+
+.jgr-error-msg {
+    color: red;
+}

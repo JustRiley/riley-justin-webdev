@@ -9,18 +9,22 @@
     function registerController(userService, $location) {
         var model = this;
 
-        model.createUser = createUser;
+        model.registerUser = function(user) {
+            model.submitted = true;
+
+            // check to make sure the form is completely valid
+            if (model.registrationForm.$valid) {
+                userService.createUser(user)
+                    .then(function (user) {
+                        $location.url("/user");
+                    })
+            }
+
+        };
 
         function init() {
 
         }
         init();
-
-        function createUser(user) {
-            userService.createUser(user)
-                .then(function (user){
-                    $location.url("/user");
-                });
-        }
     }
 })();
