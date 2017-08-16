@@ -26,6 +26,7 @@ app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/friend/:username", addFriend);
 app.get("/api/checkLogin", checkLogin);
+app.get("/api/checkAdmin", checkAdmin);
 app.post("/api/logout", logout);
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 app.get('/auth/google/callback',
@@ -71,6 +72,10 @@ function googleStrategy(token, refreshToken, profile, done) {
                 if (err) { return done(err); }
             }
         );
+}
+
+function checkAdmin(req, response) {
+    response.send(req.isAuthenticated() ? req.user : '0');
 }
 
 function checkLogin(req, response) {

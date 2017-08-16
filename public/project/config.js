@@ -50,6 +50,15 @@
                 controller: "adminController",
                 controllerAs: "model",
                 resolve: {
+                    user: checkLogin,
+                    admin: checkAdmin
+                }
+            })
+            .when("/user/admin/:userId", {
+                templateUrl: "user/templates/admin-edit-user.view.client.html",
+                controller: "adminEditController",
+                controllerAs: "model",
+                resolve: {
                     user: checkLogin
                 }
             })
@@ -79,6 +88,26 @@
                 }
                 else {
                     deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkAdmin(userService, $q, $location) {
+        var deferred = $q.defer();
+        userService
+            .checkAdmin()
+            .then(function (user) {
+                if(user === '0'){
+                    deferred.reject();
+                    $location.url("/login");
+                }
+                else if(user.isAdmin){
+                    deferred.resolve(user);
+                }
+                else{
+                    deferred.reject();
+                    $location.url("/user");
                 }
             });
         return deferred.promise;

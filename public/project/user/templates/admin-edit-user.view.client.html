@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10">
+                <a class="navbar-brand" href="#">Profile</a>
+            </div>
+            <div class="col-lg-2">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="jgr-glyph-href" ng-click="model.updateUser()" role="button">
+                        <span class="pull-right glyphicon glyphicon-check"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.successMessage" class="alert alert-success">
+        {{model.successMessage}}
+    </div>
+    <label for="firstName">First Name</label>
+    <input name="firstName"
+           ng-model="model.editUser.firstName"
+           placeholder="John"
+           type="text"
+           class="form-control"
+           id="firstName">
+
+    <label for="lastName">Last Name</label>
+    <input name="lastName"
+           ng-model="model.editUser.lastName"
+           placeholder="Doe"
+           type="text"
+           class="form-control"
+           id="lastName">
+
+    <label for="username">Username</label>
+    <input name="username"
+           ng-model="model.editUser.username"
+           type="text"
+           class="form-control"
+           id="username">
+
+    <label for="pageSum">Total Pages Read</label>
+    <input name="pageSum"
+           ng-model="model.editUser.pageSum"
+           type="number"
+           class="form-control"
+           id="pageSum">
+
+    <a class="btn btn-default btn-primary btn-block"
+       ng-click="model.updateUser()"
+       role="button">Update User</a>
+</div>
+
+<nav class="navbar navbar-default navbar-static-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="jgr-glyph-href" href="#!/user/admin">
+                <span class="pull-right glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div><!-- /.container-fluid -->
+</nav>

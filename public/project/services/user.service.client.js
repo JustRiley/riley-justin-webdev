@@ -15,6 +15,7 @@
             "deleteUser": deleteUser,
             "addFriend": addFriend,
             "checkLogin": checkLogin,
+            "checkAdmin": checkAdmin,
             "logout": logout,
             "findAllUsers": findAllUsers
         };
@@ -24,6 +25,13 @@
         function findAllUsers() {
             var url = "/api/user/admin";
             return $http.get(url);
+        }
+
+        function checkAdmin() {
+            return $http.get("/api/checkAdmin")
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         function checkLogin() {
