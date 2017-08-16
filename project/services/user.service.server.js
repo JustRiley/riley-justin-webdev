@@ -20,7 +20,8 @@ passport.deserializeUser(deserializeUser);
 app.get("/api/user/admin", findAllUsers);
 app.get("/api/user/:userId", getUserById);
 app.get("/api/user", findUser);
-app.post("/api/login", passport.authenticate('local'), login);
+app.post("/api/login", login);
+//app.post("/api/login", passport.authenticate('local'), login);
 app.post("/api/register", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
@@ -101,10 +102,6 @@ function deserializeUser(user, done) {
 
 
 function localStrategy(username, password, done) {
-    /*
-
-
-     */
     userModel
         .findUserByUsername(username)
         .then(function(user) {
@@ -156,9 +153,27 @@ function logout(req, res) {
     res.send(200);
 }
 
-function login(req, response) {
-    var user = req.user;
-    response.json(user);
+function login(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    userModel
+        .findUserByUsername(username)
+        .then(function(user) {
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    res.json(user);
+                }
+                else {
+                    res.send(null);
+                    return;
+                }
+            },
+            function(err) {
+                if (err) {
+                    res.send(null);
+                    return;
+                }
+            }
+        );
 }
 
 
