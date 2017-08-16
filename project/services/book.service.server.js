@@ -4,10 +4,20 @@
 var app = require("../../express");
 var bookModel = require("../models/book.model.server");
 
+app.get("/api/book/admin", findAllBooks);
+app.delete("/api/book/admin/delete/:bookId", deleteBook);
 app.post("/api/user/:userId/book/", createBook);
 app.get("/api/book/:bookId", findBookById);
 app.delete("/api/user/:userId/book/:bookId/pages/:pageCount", removeBook);
 
+
+function findAllBooks(req, response) {
+    bookModel
+        .findAllBooks()
+        .then(function (books) {
+            response.send(books);
+        })
+}
 
 function findBookById(req, response) {
     var bookId = req.params.bookId;
@@ -35,6 +45,15 @@ function removeBook(req, response) {
     var pageCount = req.params.pageCount;
     bookModel
         .deleteBook(userId, bookId, pageCount)
+        .then(function (status) {
+            response.send(status);
+        })
+}
+function deleteBook(req, response) {
+    var bookId = req.params.bookId;
+
+    bookModel
+        .adminDeleteBook(bookId)
         .then(function (status) {
             response.send(status);
         })

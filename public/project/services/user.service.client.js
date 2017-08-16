@@ -15,10 +15,16 @@
             "deleteUser": deleteUser,
             "addFriend": addFriend,
             "checkLogin": checkLogin,
-            "logout": logout
+            "logout": logout,
+            "findAllUsers": findAllUsers
         };
 
         return api;
+
+        function findAllUsers() {
+            var url = "/api/user/admin";
+            return $http.get(url);
+        }
 
         function checkLogin() {
             return $http.get("/api/checkLogin")

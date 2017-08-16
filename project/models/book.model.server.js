@@ -6,7 +6,19 @@ var bookModel = mongoose.model("bookModel", bookSchema);
 bookModel.createBook = createBook;
 bookModel.findBookById = findBookById;
 bookModel.deleteBook = deleteBook;
+bookModel.findAllBooks = findAllBooks;
+bookModel.adminDeleteBook = adminDeleteBook;
 module.exports = bookModel;
+
+function adminDeleteBook(bookId) {
+    return bookModel
+        .findById(bookId)
+        .remove();
+}
+
+function findAllBooks() {
+    return bookModel.find();
+}
 
 function deleteBook(userId, bookId, pageCount) {
     return bookModel

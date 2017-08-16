@@ -13,7 +13,12 @@ userModel.deleteUser = deleteUser;
 userModel.addFriend = addFriend;
 userModel.removeBookCount = removeBookCount;
 userModel.findUserByGoogleId = findUserByGoogleId;
+userModel.findAllUsers = findAllUsers;
 module.exports = userModel;
+
+function findAllUsers() {
+    return userModel.find({'isAdmin': false});
+}
 
 function findUserByGoogleId(googleId) {
         return userModel.findOne({'google.id': googleId});

@@ -67,6 +67,11 @@
        ng-click="model.deleteUser()"
        role="button">Unregister</a>
 
+    <a class="btn btn-default btn-danger btn-block"
+       href="#!/user/admin"
+       ng-show="model.user.isAdmin"
+       role="button">Administrate</a>
+
     Enter friend's username to add as friend:
     <div class="input-group">
         <input ng-model="searchText"

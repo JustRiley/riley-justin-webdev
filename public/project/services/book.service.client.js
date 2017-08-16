@@ -8,10 +8,22 @@
         var api = {
             "addBook": addBook,
             "removeBook": removeBook,
-            "findBookById": findBookById
+            "findBookById": findBookById,
+            "findAllBooks": findAllBooks,
+            "deleteBook": deleteBook
         };
 
         return api;
+
+        function deleteBook(bookId) {
+            var url = "/api/book/admin/delete/" + bookId;
+            return $http.delete(url);
+        }
+
+        function findAllBooks() {
+            var url = "/api/book/admin";
+            return $http.get(url);
+        }
 
         function addBook(userId, book) {
             var url = "/api/user/" + userId + "/book/";

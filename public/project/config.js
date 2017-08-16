@@ -45,6 +45,14 @@
                     user: checkLogin
                 }
             })
+            .when("/user/admin", {
+                templateUrl: "user/templates/admin.view.client.html",
+                controller: "adminController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
             .when("/test", {
                 templateUrl: "book/templates/google-book-search.view.client.html",
                 controller: "googleController",

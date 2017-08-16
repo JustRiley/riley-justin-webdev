@@ -17,6 +17,7 @@ passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
+app.get("/api/user/admin", findAllUsers);
 app.get("/api/user/:userId", getUserById);
 app.get("/api/user", findUser);
 app.post("/api/login", passport.authenticate('local'), login);
@@ -127,12 +128,14 @@ function deleteUser(req, response) {
         })
 }
 
-/*
-//Should be towards bottom
-function getAllUsers(req, response) {
-    response.send(users);
+function findAllUsers(req, response) {
+    userModel
+        .findAllUsers()
+        .then(function (users) {
+            response.send(users);
+        })
 }
-*/
+
 //Path parameter
 //As opposed to a query parameter ex ?1234=132
 function getUserById(req, response) {

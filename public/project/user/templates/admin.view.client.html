@@ -1,0 +1,36 @@
+<h3>Admin</h3>
+
+<a class="btn btn-default btn-danger btn-block"
+   ng-click="model.showAllUsers()"
+   role="button">Show all users</a>
+
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="user in model.users">
+        <div class="col-lg-10 col-xs-10">
+            {{user.username}}
+        </div>
+        <div class="col-lg-2 col-xs-2">
+            <a ng-click="model.deleteUser(user)">
+                <span class="pull-right glyphicon glyphicon-remove"></span></a>
+        </div>
+
+    </li>
+</ul>
+
+<a class="btn btn-default btn-danger btn-block"
+   ng-click="model.showAllBooks()"
+   role="button">Show all books</a>
+
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="book in model.books">
+        <div class="col-lg-10 col-xs-10">
+            {{book.title}}
+        </div>
+        <div class="col-lg-2 col-xs-2">
+            <a ng-click="model.deleteBook(book)">
+                <span class="pull-right glyphicon glyphicon-remove"></span></a>
+        </div>
+    </li>
+</ul>
+
+

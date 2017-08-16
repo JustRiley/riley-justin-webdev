@@ -9,7 +9,9 @@
     function registerController(userService, $location) {
         var model = this;
 
-        model.registerUser = function(user) {
+        model.registerUser = registerUser;
+
+        function registerUser(user) {
             model.submitted = true;
 
             // check to make sure the form is completely valid
@@ -20,7 +22,7 @@
                     })
             }
 
-        };
+        }
 
         function init() {
 
