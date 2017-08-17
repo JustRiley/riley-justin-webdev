@@ -39,6 +39,18 @@
             </div>
         </li>
     </ul>
+
+    <hr>
+    <h2>Favorites</h2>
+    <ul class="list-group">
+        <li ng-repeat="book in model.user.favorites" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-12" >
+                    <a href="#!/user/books/{{book._id}}"> {{book.title}} </a>
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>
 
 

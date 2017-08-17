@@ -26,6 +26,7 @@ app.post("/api/register", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/user/:userId/friend/:username", addFriend);
+app.post("/api/user/:userId/favorite/:bookId", addToFavorites);
 app.get("/api/checkLogin", checkLogin);
 app.get("/api/checkAdmin", checkAdmin);
 app.post("/api/logout", logout);
@@ -249,6 +250,17 @@ function addFriend(req, response) {
     userModel
         .addFriend(userId, username)
         .then(function (user){
+            response.json(user);
+        })
+}
+
+function addToFavorites(req, response) {
+    var userId = req.params.userId;
+    var bookId = req.params.bookId;
+
+    userModel
+        .addToFavorites(userId, bookId)
+        .then(function (user) {
             response.json(user);
         })
 }

@@ -11,6 +11,7 @@ userModel.removeBook = removeBook;
 userModel.findUserByUsername = findUserByUsername;
 userModel.deleteUser = deleteUser;
 userModel.addFriend = addFriend;
+userModel.addToFavorites = addToFavorites;
 userModel.removeBookCount = removeBookCount;
 userModel.findUserByGoogleId = findUserByGoogleId;
 userModel.findAllUsers = findAllUsers;
@@ -60,6 +61,15 @@ function addFriend(userId, username) {
         })
 }
 
+function addToFavorites(userId, bookId) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            user.favorites.push(bookId);
+            return user.save();
+        })
+}
+
 function findUserByUsername(username) {
     return userModel.findOne({username: username});
 }
@@ -88,6 +98,7 @@ function findUserById(userId) {
         .findById(userId)
         .populate("friends", "firstName pageSum")
         .populate("books", "title industryIdentifiers pageCount")
+        .populate("favorites", "title")
         .exec();
 }
 

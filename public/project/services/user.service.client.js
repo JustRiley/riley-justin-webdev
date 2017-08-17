@@ -17,7 +17,8 @@
             "checkLogin": checkLogin,
             "checkAdmin": checkAdmin,
             "logout": logout,
-            "findAllUsers": findAllUsers
+            "findAllUsers": findAllUsers,
+            "addToFavorites": addToFavorites
         };
 
         return api;
@@ -39,6 +40,11 @@
                 .then(function (response) {
                     return response.data;
             });
+        }
+
+        function addToFavorites(userId, bookId) {
+            var url = "/api/user/" + userId + "/favorite/" + bookId;
+            return $http.post(url);
         }
 
         function addFriend(userId, username) {
