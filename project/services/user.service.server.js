@@ -160,7 +160,9 @@ function login(req, res) {
         .findUserByUsername(username)
         .then(function(user) {
                 if(user && bcrypt.compareSync(password, user.password)) {
-                    res.json(user);
+                    req.login(user, function () {
+                        res.json(user);
+                    });
                 }
                 else {
                     res.send(null);

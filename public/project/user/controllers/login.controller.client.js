@@ -4,7 +4,7 @@
         .module("BookApp")
         .controller("loginController", loginController);
 
-    function loginController($location, userService) {
+    function loginController($location, userService, $rootScope) {
         var model = this;
 
         model.login = login;
@@ -19,12 +19,14 @@
                 model.errorMessage = "User not found";
                 return;
             }
-            userService.findUserByCredentials(user.username, user.password)
+            userService
+                .findUserByCredentials(user.username, user.password)
                 .then(function (response) {
                     user = response.data;
                     if (!user) {
                         model.errorMessage = "User not found";
                     } else {
+                        $rootScope.currentUser = user;
                         $location.url("/user");
                     }
                 });

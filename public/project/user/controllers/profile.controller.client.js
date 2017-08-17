@@ -31,9 +31,14 @@
 
         function addFriend(searchText) {
             userService.addFriend(model.userId, searchText)
-                .then(function () {
-                    console.log("friend added");
-                    $location.url("#!/user/");
+                .then(function (response) {
+
+                    if(response.data === '0'){
+                        model.noFriendFound = "No user with username: " + searchText;
+                    }
+                    else {
+                        $location.url("user/");
+                    }
             })
         }
 

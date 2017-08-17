@@ -83,6 +83,9 @@
             </a>
         </span>
     </div>
+    <div ng-show="model.noFriendFound">
+        <div class="jgr-error-msg"> {{model.noFriendFound}} </div>
+    </div>
     Friends:
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="friend in model.user.friends">

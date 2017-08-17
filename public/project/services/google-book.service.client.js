@@ -17,7 +17,6 @@
 
         //GET https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
         function searchBooks(searchTerm, queryString) {
-            console.log(queryString);
             var url = urlBase
                 .replace("API_KEY", key)
                 .replace("TEXT", searchTerm)

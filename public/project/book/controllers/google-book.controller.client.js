@@ -5,7 +5,7 @@
     angular.module("BookApp")
         .controller("googleController", googleController);
 
-    function googleController(googleService, $routeParams) {
+    function googleController(googleService) {
         var model = this;
         model.searchBooksByISBN = searchBooksByISBN;
         model.searchBooksByTitle = searchBooksByTitle;
@@ -13,9 +13,19 @@
 
         function searchBooksByISBN(searchTerm) {
             var isbn = "isbn";
-            googleService.searchBooks(searchTerm, isbn)
+            console.log("google book controller");
+            googleService
+                .searchBooks(searchTerm, isbn)
                 .then(function(response) {
-                    model.books = response.data.items;
+                    console.log("inside the promise");
+                    if(response === 0) {
+                        console.log("no items");
+                    }
+                    else {
+                        console.log("in the else");
+                        model.books = response.data.items;
+                    }
+
                 });
         }
 

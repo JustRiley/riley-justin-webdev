@@ -48,7 +48,7 @@ function addFriend(userId, username) {
         .findUserByUsername(username)
         .then(function (user1) {
             if(!user1){
-                return;
+                return '0';
             }else{
                 return userModel
                     .findUserById(userId)
