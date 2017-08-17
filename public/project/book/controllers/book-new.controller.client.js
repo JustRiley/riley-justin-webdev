@@ -9,7 +9,8 @@
         var model = this;
 
         model.userId = user._id;
-        model.searchBooks = searchBooks;
+        model.searchBooksByISBN = searchBooksByISBN;
+        model.searchBooksByTitle = searchBooksByTitle;
         model.addBook = addBook;
 
         function init() {
@@ -24,12 +25,31 @@
                 })
         }
 
-        function searchBooks(searchTerm) {
+        function searchBooksByTitle(searchTerm) {
+            var query = "title";
+            googleService
+                .searchBooks(searchTerm, query)
+                .then(function(response) {
+                    if(!response.data.items) {
+                        model.books = '0';
+                    }
+                    else {
+                        model.books = response.data.items;
+                    }
+                });
+        }
+
+        function searchBooksByISBN(searchTerm) {
             var query = "isbn";
             googleService
                 .searchBooks(searchTerm, query)
                 .then(function(response) {
-                    model.books = response.data.items;
+                    if(!response.data.items) {
+                        model.books = '0';
+                    }
+                    else {
+                        model.books = response.data.items;
+                    }
                 });
         }
     }

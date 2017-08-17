@@ -22,26 +22,42 @@
                type="text"
                class="form-control">
         <span class="input-group-btn">
-            <a ng-click="model.searchBooks(searchText)" class="btn btn-default" type="button">
+            <a ng-click="model.searchBooksByISBN(searchText)" class="btn btn-default" type="button">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
         </span>
     </div>
 
-    <div class="container-fluid">
-        <ul class="list-group">
-            <li ng-repeat="book in model.books" class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <a ng-click="model.addBook(book)" type="button"> {{book.volumeInfo.title}} </a>
-                    </div>
-                    <div class="col-xs-8">
-                        {{book.volumeInfo.description}}
-                    </div>
-                </div>
-            </li>
-        </ul>
+    <div ng-show="model.books === '0'">
+        <div class="jgr-error-msg">
+            Could not find a book with that ISBN
+        </div>
+        Try searching by the title instead:
+        <div class="input-group">
+            <input ng-model="searchText1"
+                   type="text"
+                   class="form-control">
+            <span class="input-group-btn">
+                <a ng-click="model.searchBooksByTitle(searchText1)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
+        </div>
     </div>
+
+    <ul ng-repeat="book in model.books" class="list-group">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a ng-click="model.addBook(book)" type="button"> {{book.volumeInfo.title}} </a>
+                </div>
+                <div class="col-xs-8">
+                    {{book.volumeInfo.description}}
+                </div>
+            </div>
+        </li>
+    </ul>
+
 
     <a class="btn btn-default btn-danger btn-block"
        href="#!/user/books/"
