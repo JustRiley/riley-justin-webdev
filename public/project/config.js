@@ -11,6 +11,11 @@
                 controller: "googleController",
                 controllerAs: "model"
             })
+            .when("/details/:bookId", {
+                templateUrl: "details.html",
+                controller: "homeDetailController",
+                controllerAs: "model"
+            })
             .when("/register", {
                 templateUrl: "user/templates/register.view.client.html",
                 controller: "registerController",

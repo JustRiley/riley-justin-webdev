@@ -5,24 +5,21 @@
     angular.module("BookApp")
         .controller("googleController", googleController);
 
-    function googleController(googleService) {
+    function googleController(googleService, $location) {
         var model = this;
         model.searchBooksByISBN = searchBooksByISBN;
         model.searchBooksByTitle = searchBooksByTitle;
+        model.detailBook = detailBook;
         model.books = "0";
 
         function searchBooksByISBN(searchTerm) {
             var isbn = "isbn";
-            console.log("google book controller");
             googleService
                 .searchBooks(searchTerm, isbn)
                 .then(function(response) {
-                    console.log("inside the promise");
                     if(response === 0) {
-                        console.log("no items");
                     }
                     else {
-                        console.log("in the else");
                         model.books = response.data.items;
                     }
 
@@ -35,6 +32,12 @@
                 .then(function(response) {
                     model.books = response.data.items;
                 });
+        }
+
+        function detailBook(book) {
+            var bookId = book.id;
+            console.log("in controller");
+            $location.url("/details/"+bookId);
         }
 
         function init() {

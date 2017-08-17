@@ -2,14 +2,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-10">
-                <a class="navbar-brand">{{model.book.title}} details</a>
+                <a class="navbar-brand">{{model.book.volumeInfo.title}} details</a>
             </div>
             <div class="col-lg-2">
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-4">
@@ -25,27 +24,27 @@
     <hr>
     <div class="row">
         <div class="col-xs-4">
-            <img ng-src="{{model.book.imageLinks.smallThumbnail}}">
+            <img ng-src="{{model.book.volumeInfo.imageLinks.smallThumbnail}}">
         </div>
         <div class="col-xs-4">
-            <h4>{{model.book.title}}</h4>
+            <h4>{{model.book.volumeInfo.title}}</h4>
         </div>
         <div class="col-xs-4">
-                <ul  ng-repeat="author in model.book.authors">
-                    <li class="list-group-item-info">{{author}}</li>
-                </ul>
+            <ul  ng-repeat="author in model.book.volumeInfo.authors">
+                <li class="list-group-item-info">{{author}}</li>
+            </ul>
         </div>
     </div>
     <h2>Description:</h2>
     <hr>
     <div class="row">
         <div class="col-xs-12">
-            <p>{{model.book.description}}</p>
+            <p>{{model.book.volumeInfo.description}}</p>
         </div>
     </div>
     <hr>
 </div>
 
 <a class="btn btn-default btn-danger btn-block"
-   href="#!/user/books"
+   href="#!/"
    role="button">Back</a>

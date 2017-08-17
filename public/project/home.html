@@ -50,7 +50,7 @@
         <li ng-repeat="book in model.books" class="list-group-item">
             <div class="row">
                 <div class="col-lg-4 col-xs-4" >
-                    {{book.volumeInfo.title}}
+                    <a href="#!/details/{{book.volumeInfo.industryIdentifiers[0].identifier}}" role="button">{{book.volumeInfo.title}}</a>
                 </div>
                 <div class="col-lg-4 col-xs-4" >
                     {{book.volumeInfo.description}}
