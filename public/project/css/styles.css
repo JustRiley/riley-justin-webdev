@@ -1,4 +1,4 @@
-input, textarea{
+input, textarea {
     margin-bottom: 5px;
 }
 .navbar-static-bottom {
@@ -86,4 +86,8 @@ form {
 
 .jgr-error-msg {
     color: red;
+}
+
+.jgr-top-buffer {
+    padding-top: 5px;
 }

@@ -10,12 +10,14 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container-fluid">
-    <h3>
-        Search by ISBN
-    </h3>
-    <p>
-        By using the ISBN found in the book you have just completed, we can insure that the correct edition is stored on your account. Enter only numbers in the search box below. (No dashes)
-    </p>
+    <div class="jumbotron">
+        <h3>
+            Search by ISBN</h3>
+        <p>
+            By using the ISBN found in the book you have just completed, we can insure that the correct edition is stored on your account.
+            Enter only numbers in the search box below. (No dashes) If the book is not found by the entered number you can try again or
+            search by title instead.</p>
+    </div>
 
     <div class="input-group">
         <input ng-model="searchText"
@@ -29,10 +31,10 @@
     </div>
 
     <div ng-show="model.books === '0'">
-        <div class="jgr-error-msg">
-            Could not find a book with that ISBN
+        <div class="jgr-error-msg jgr-top-buffer">
+            <div class="alert alert-danger" role="alert">Could not find a book with that ISBN</div>
         </div>
-        Try searching by the title instead:
+        <div class="alert alert-info" role="alert">Try searching by the title instead:</div>
         <div class="input-group">
             <input ng-model="searchText1"
                    type="text"
@@ -58,6 +60,7 @@
         </li>
     </ul>
 
+    <hr>
 
     <a class="btn btn-default btn-danger btn-block"
        href="#!/user/books/"
