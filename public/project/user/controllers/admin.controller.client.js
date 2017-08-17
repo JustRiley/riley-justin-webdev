@@ -1,7 +1,6 @@
 /**
  * Created by Justin on 7/19/2017.
  */
-//TODO: need Create for admin
 (function () {
     angular
         .module("BookApp")
