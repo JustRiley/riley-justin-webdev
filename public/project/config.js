@@ -59,6 +59,15 @@
                     admin: checkAdmin
                 }
             })
+            .when("/user/admin/new", {
+                templateUrl: "user/templates/admin-new-user.view.client.html",
+                controller: "adminController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin,
+                    admin: checkAdmin
+                }
+            })
             .when("/user/admin/:userId", {
                 templateUrl: "user/templates/admin-edit-user.view.client.html",
                 controller: "adminEditController",

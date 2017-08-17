@@ -1,6 +1,7 @@
 /**
  * Created by Justin on 7/19/2017.
  */
+//TODO: need Create for admin
 (function () {
     angular
         .module("BookApp")
@@ -16,10 +17,23 @@
         model.showAllBooks = showAllBooks;
         model.deleteUser = deleteUser;
         model.deleteBook = deleteBook;
+        model.createUser = createUser;
 
         function init() {
         }
         init();
+
+        function createUser(user) {
+            model.submitted = true;
+
+            // check to make sure the form is completely valid
+            if (model.registrationForm.$valid) {
+                userService.createUser(user)
+                    .then(function (user) {
+                        $location.url("#!/user/admin");
+                    })
+            }
+        }
 
         function deleteBook(book) {
             bookService
